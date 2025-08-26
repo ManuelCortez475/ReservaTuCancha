@@ -1,0 +1,14 @@
+.Tabla-Principal {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e3f02d;
+    padding: 50px;
+    border: #000000 15px;
+
+}
+body{
+    background-image: ;
+}
