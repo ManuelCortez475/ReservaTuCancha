@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,6 @@
                     <th> Cantidad Jugadores </th>
                     <th> Fecha y Horarios </th>                    
                     <th> Estado </th>
-                    <th> </th>
                 </tr>
             </thead>
             <tbody class="Table-Body">
@@ -26,7 +25,13 @@
                     <td> Nordelta </td>
                     <td> <input type="number"> </td>
                     <td> <input type="date" name="Fecha"><br>
-                         <input type="time" name="Hora">
+                        <select name="Horarios" id="hor01"> 
+                            <option disabled selected>Seleccionar..</option>
+                            <option value="9:00"> 9:00 AM </option>
+                            <option value="10:30"> 10:30 AM </option>
+                            <option value="12:00"> 12:00 AM </option>
+                            <option value="13:30"> 13:30 PM </option>
+                        </select>
                     </td>
                     <td><label for="r"> Reservada </label>
                         <input type="radio" name="Estado" id="rad1" value="r"><br>
@@ -42,8 +47,14 @@
                     <td> Beccar </td>
                     <td> <input type="number"> </td>
                     <td> <input type="date" name="Fecha"><br>
-                         <input type="time" name="Hora">
-                     </td>
+                        <select name="Horarios" id="hor01"> 
+                            <option disabled selected>Seleccionar..</option>
+                            <option value="9:00"> 9:00 AM </option>
+                            <option value="10:30"> 10:30 AM </option>
+                            <option value="12:00"> 12:00 AM </option>
+                            <option value="13:30"> 13:30 PM </option>
+                        </select>
+                    </td>
                     <td><label for="r"> Reservada </label>
                         <input type="radio" name="Estado" id="rad1" value="r"><br>
                         <label for="h"> Habilitada </label>
@@ -51,14 +62,20 @@
                         <label for="i"> Inhabilitada </label>
                         <input type="radio" name="Estado" id="rad3" value="i"> 
                     </td>
-                    <td><input type="submit"></td>
+                    <td><input type="submit" placeholder="Aceptar"> </td>
                 </tr>   
                 <tr>
                     <td> Cancha Benavidez </td>
                     <td> Benavidez </td>
                     <td> <input type="number"> </td>
                     <td> <input type="date" name="Fecha"><br>
-                         <input type="time" name="Hora">
+                        <select name="Horarios" id="hor01"> 
+                            <option disabled selected>Seleccionar..</option>
+                            <option value="9:00"> 9:00 AM </option>
+                            <option value="10:30"> 10:30 AM </option>
+                            <option value="12:00"> 12:00 AM </option>
+                            <option value="13:30"> 13:30 PM </option>
+                        </select>
                     </td>
                     <td><label for="r"> Reservada </label>
                         <input type="radio" name="Estado" id="rad1" value="r"><br>
