@@ -1,14 +1,22 @@
+.Titulo {
+    text-align: center;
+    margin: 2%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .Tabla-Principal {
-    width: 100%;
-    height: 100vh;
-    display: flex;
+    width: 50%;
+    height: 400px;
     justify-content: center;
     align-items: center;
-    background-color: #e3f02d;
+    background-color: #7dd0c5;
     padding: 50px;
     border: #000000 15px;
-
+    margin: auto;
 }
-body{
-    background-image: ;
+
+.Table-Body {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif
+
 }
