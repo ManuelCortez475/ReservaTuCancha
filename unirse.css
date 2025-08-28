@@ -9,10 +9,11 @@
     height: 400px;
     justify-content: center;
     align-items: center;
-    background-color: #7dd0c5;
+    background-color: #4CAF50;
     padding: 50px;
     border: #000000 15px;
     margin: auto;
+    border-collapse: collapse;
 }
 
 .Table-Header{
@@ -36,14 +37,16 @@
     color: white;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 10px;
+    margin: auto;
     border-radius: 5px;
+    border-collapse: collapse;
 }
 .Tabla-Principal button:hover {
     background-color: lightgrey;
 }
 .Tabla-Principal th{
     border-bottom: 1px solid black;
+    padding: 10px;
 }
 
 .Tabla-Principal td {
