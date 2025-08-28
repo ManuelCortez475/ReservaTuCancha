@@ -42,3 +42,19 @@
 .Tabla-Principal button:hover {
     background-color: lightgrey;
 }
+.Tabla-Principal th{
+    border-bottom: 1px solid black;
+}
+
+.Tabla-Principal td {
+    border-bottom: 1px solid black;  
+    padding: 10px;
+}
+
+.Tabla-Principal td:first-child{
+    border-left: 1px solid black;
+
+}
+.Tabla-Principal td:last-child {
+    border-right: 1px solid black;
+}
