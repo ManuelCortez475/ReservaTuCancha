@@ -1,0 +1,53 @@
+h1 {
+    text-align: center;
+    margin: 100px;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 48px;
+}
+
+.Unirse{
+    text-align: center;
+    margin: 2%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 20px;
+    border-radius: 100px;
+    border: none;
+    height: 100px;
+    width: 200px;
+    font-size: 20px;
+    color: white;
+    background-color: #45a049;
+}
+.Reservar{
+    text-align: center;
+    margin: 2%;
+    padding: 20px;
+    border-radius: 100px;
+    border: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: 100px;
+    width: 200px;
+    font-size: 20px;
+    color: white;
+    background-color: #45a049;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 200px;
+}
+.parrafo1 {
+    text-align: center;
+    margin: 2%;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px; 
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+.button-container1 button:hover {
+    background-color: #52b155;
+}
+.button-container2 button:hover {
+    background-color: #52b155;
+}
