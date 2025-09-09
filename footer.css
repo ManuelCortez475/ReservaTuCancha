@@ -1,25 +1,25 @@
 
-		.navbar{
+		.navbar_footer{
 			background: #000000; font-family: calibri; padding: 15px 0;
 		  position: fixed;justify-content: center;bottom: 0; left: 0; width: 100%; display: flex;
         }
-        .navdiv{
+        .navdiv_footer{
 			display: flex; align-items: center; justify-content: center;
 		}
-        .navbutton{
+        .navbutton_footer{
             display: flex; align-items: center; justify-content: center; gap: 40px;
             list-style: none; margin: 0; padding: 0;
         }
-        .liNav{
+        .liNav_footer{
 			list-style: none; display: inline-block;
 			font-size: 18px; font-weight: bold; align-items: center;
         }
-		.buttonNav{
+		.buttonNav_footer{
 			background-color: rgb(11, 99, 18); margin-left: 10px; border-radius: 10px; 
             padding: 10px 30px; text-decoration: none;
 			color: white; font-weight: bold; font-size: 15px; }
 
-        .buttonNav:hover {
+        .buttonNav_footer:hover {
             background-color: rgb(15, 130, 25);
             transform: scale(1.15); 
 }
