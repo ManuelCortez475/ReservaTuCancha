@@ -102,4 +102,13 @@ body {
     background-color: rgb(15, 130, 25);
     transform: scale(1.15); 
 }
-    
+    .logo_header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* espacio entre logo y texto */
+}
+
+.logo-img_header {
+    height: 40px;  /* ajusta el tamaño según quieras */
+    width: auto;   /* mantiene la proporción */
+}
