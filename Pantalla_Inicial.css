@@ -4,37 +4,28 @@ h1 {
     font-family:'Courier New', Courier, monospace;
     font-size: 48px;
 }
-
-.Unirse{
+.Unirse,
+.Reservar {
+    display: inline-block;
     text-align: center;
-    margin: 2%;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    padding: 20px;
-    border-radius: 100px;
-    border: none;
-    height: 100px;
-    width: 200px;
-    font-size: 20px;
-    color: white;
-    background-color: #45a049;
-}
-.Reservar{
-    text-align: center;
-    margin: 2%;
-    padding: 20px;
-    border-radius: 100px;
+    margin: 20px;
+    padding: 25px 40px;   
+    border-radius: 50px;
     border: none;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    height: 100px;
-    width: 200px;
-    font-size: 20px;
+    min-width: 300px; 
+    min-height: 100px;
+    font-size: 24px;      
     color: white;
     background-color: #45a049;
+    cursor: pointer;
 }
 .container {
     display: flex;
-    justify-content: space-between;
-    margin: 200px;
+    justify-content: center;
+    gap: 40px;;
+    align-items: center;
+    margin: 0;
 }
 .parrafo1 {
     text-align: center;
@@ -68,7 +59,7 @@ h1 {
 }
 .buttonNav_header{
     background-color: rgb(11, 99, 18); margin-left: 10px; border-radius: 10px; 
-    padding-right: 30px;padding-left: 30px; width: 90px; padding-top: 10px;padding-bottom: 10px;
+    padding-right: 30px;padding-left: 30px; width: 50px; padding-top: 10px;padding-bottom: 10px;
     color: white; font-weight: bold; font-size: 15px; }
 
 .buttonNav_header:hover {
