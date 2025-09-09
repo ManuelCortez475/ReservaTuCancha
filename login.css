@@ -79,7 +79,7 @@ body {
 
 
 .navbar_footer{
-    background: #000000; font-family: calibri; padding: 15px 0;
+    background: #514646; font-family: calibri; padding: 15px 0;
     position: fixed;justify-content: center;bottom: 0; left: 0; width: 100%; display: flex;
 }
 .navdiv_footer{
