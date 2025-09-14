@@ -1,0 +1,106 @@
+/* BODY */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-image: url("../Imagenes/Cancha3.jpg"); /* cancha gris oscura */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: #f0f0f0; /* texto claro sobre gris */
+}
+
+/* HERO / TÍTULO */
+.hero {
+    text-align: center; 
+    margin: 80px 20px 50px;
+}
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f5d07e; /* tono mostaza suave */
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+.underline {
+    width: 100px;
+    height: 5px;
+    background: #f5d07e; /* mismo color que el título */
+    margin: 15px auto 0;
+    border-radius: 5px;
+}
+
+/* SECCIÓN VS */
+.vs-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin: 60px auto;
+    flex-wrap: wrap;
+}
+
+/* TARJETAS */
+.card {
+    background: rgba(30, 30, 30, 0.85); /* gris oscuro translúcido */
+    padding: 40px 30px;
+    border-radius: 16px;
+    text-align: center;
+    width: 280px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 18px rgba(0,0,0,0.4);
+}
+.card h2 {
+    margin-bottom: 20px;
+    color: #f5d07e; /* mostaza suave */
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* BOTÓN */
+.btn {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #f5d07e, #e0b354); /* degradé mostaza/ocre */
+    border: none;
+    border-radius: 30px;
+    color: #1e1e1e; /* texto oscuro */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+.btn:hover {
+    background: linear-gradient(135deg, #e0b354, #d1a03a);
+    transform: scale(1.08);
+}
+
+/* CAJA VS */
+.vs-box {
+    background: rgba(50, 50, 50, 0.9); /* gris intermedio */
+    padding: 25px 40px;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f5d07e; /* mostaza */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .vs-section {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .card {
+        width: 90%;
+    }
+}
