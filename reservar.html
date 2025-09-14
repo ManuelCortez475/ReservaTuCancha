@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservaTuCancha</title>
+    <link rel="stylesheet" href="Css/unirse.css">
+    <link rel="stylesheet" href="Css/footer.css">
+    <link rel="stylesheet" href="Css/header.css">
+    <link rel="icon" href="Imagenes/Logo.png.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar_header">
+            <div class="navdiv_header">
+                <div class="logo_header">
+                    <img src="Imagenes/Logo.png.png" alt="Logo ReservaTuCancha" class="logo-img_header">
+                </div>
+                <div class="logo_header"><a href="#">ReservaTuCancha</a></div>
+                <ul class="navbutton_header">
+                    <li class="liNav_header"><a class="buttonNav_header" href="Pantalla_Inicial.html">Home</a></li>
+                    <li class="liNav_header"><a class="buttonNav_header" href="#">About</a></li>
+                    <li class="liNav_header"><a class="buttonNav_header" href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="Titulo">ReservaTuCancha</h1>
+        <div>
+            <table class="Tabla-Principal">
+                <thead class="Table-Header">
+                    <tr>
+                        <th>Canchas</th>
+                        <th>Ubicaciones</th>
+                        <th>Jugadores</th>
+                        <th>Fecha y Horarios</th>                    
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="Table-Body">
+                    <tr>
+                        <td>Cancha Nordelta</td>
+                        <td>Nordelta</td>
+                        <td><input type="number" placeholder="N°"></td>
+                        <td>
+                            <input type="date" name="Fecha"><br>
+                            <select name="Horarios">
+                                <option disabled selected>Seleccionar...</option>
+                                <option value="9:00">9:00 AM</option>
+                                <option value="10:30">10:30 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:30">1:30 PM</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>Reservada</label><br>
+                        </td>
+                        <td><button disabled class=" btn btn-reservado">Reservado</button></td>
+                    </tr>
+                    <tr>
+                        <td>Cancha Beccar</td>
+                        <td>Beccar</td>
+                        <td><input type="number" placeholder="N°"></td>
+                        <td>
+                            <input type="date" name="Fecha"><br>
+                            <select name="Horarios">
+                                <option disabled selected>Seleccionar...</option>
+                                <option value="9:00">9:00 AM</option>
+                                <option value="10:30">10:30 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:30">1:30 PM</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>Habilitada</label><br>
+                        </td>
+                        <td><button class="btn btn-reservar">Reservar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Cancha Benavidez</td>
+                        <td>Benavidez</td>
+                        <td><input type="number" placeholder="N°"></td>
+                        <td>
+                            <input type="date" name="Fecha"><br>
+                            <select name="Horarios">
+                                <option disabled selected>Seleccionar...</option>
+                                <option value="9:00">9:00 AM</option>
+                                <option value="10:30">10:30 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:30">1:30 PM</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label>Inhabilitada</label>
+                        </td>
+                        <td><button disabled class="btn btn-inhabilitado">Fuera de Servicio</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <nav class="navbar_footer">
+            <div class="navdiv_footer">
+                <ul class="navbutton_footer">
+                    <li class="liNav_footer"><a href="https://discord.gg/6wVzJSuN3R"><img src="Imagenes/discord-logo-discord-logo-transparent-discord-icon-transparent-free-free-png.webp" alt="discord" height="40px"></a></li>
+                    <li class="liNav_footer"><a class="buttonNav_footer" href="#">About</a></li>
+                    <li class="liNav_footer"><a class="buttonNav_footer" href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </footer>
+</body>
+</html>
