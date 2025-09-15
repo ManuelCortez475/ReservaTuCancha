@@ -13,7 +13,7 @@
     justify-content: space-between;
 }
 
-.logo_header a {
+.logo_header {
     font-size: 32px;
     font-weight: 600;
     color: white;
