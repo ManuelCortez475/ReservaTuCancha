@@ -30,7 +30,11 @@
     height: 40px;
     width: auto;
 }
-
+.perfil-img_header{
+    border-radius: 50%;
+    height: 40px;
+    width: auto;
+}
 .liNav_header {
     list-style: none;
     display: inline-block;
