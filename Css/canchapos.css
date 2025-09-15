@@ -138,3 +138,8 @@ h1{ margin:0 0 10px; }
 /* Delanteros dentro de su mitad */
 #b10 { left:60%; top:54%; }          /* ST */
 #b11 { left:60%; top:46%; }          /* ST */
+
+a{
+    text-decoration: none;
+    color: inherit;
+}

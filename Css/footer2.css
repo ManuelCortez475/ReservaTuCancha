@@ -50,3 +50,8 @@
     background-color: #f5d07e;
     transform: scale(1.1);
 }
+
+a{
+    text-decoration: none;
+    color: inherit;
+}

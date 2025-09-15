@@ -104,3 +104,8 @@ body {
         width: 90%;
     }
 }
+
+a{
+    text-decoration: none;
+    color: inherit;
+}

@@ -74,3 +74,7 @@ input[type="radio"] {
     transform: none;      /* evita animaciones */
     opacity: 0.8;         /* leve transparencia para diferenciarlos */
 }
+a{
+    text-decoration: none;
+    color: inherit;
+}
