@@ -24,8 +24,8 @@ body {
 }
 
 .Table-Header th {
-    background: #2ecc71;
-    color: #fff;
+    background: #1e1e1e;
+    color: #f5d07e;
     text-align: center;
     padding: 15px;
     font-size: 1rem;
@@ -54,10 +54,10 @@ input[type="radio"] {
 
 .btn-reservar {
     padding: 8px 14px;
-    background: #2ecc71;
+    background: #f5d07e;
     border: none;
     border-radius: 6px;
-    color: #fff;
+    color: #1e1e1e;
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s ease;
