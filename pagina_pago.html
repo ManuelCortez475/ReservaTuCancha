@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Css/pagina_pago.css">
+  <title>Página de Pago</title>
+</head>
+<body>
+  <header>
+    <h1>Pago Seguro - ReservaTuCancha</h1>
+  </header>
+
+  <div class="container">
+    <h2>Detalles de Pago</h2>
+    <form>
+      <label for="nombre">Titular de la tarjeta</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
+
+      <label for="numero">Número de tarjeta</label>
+      <input type="text" id="numero" name="numero" placeholder="1234 5678 9012 3456" required>
+
+      <div class="row">
+        <div class="col">
+          <label for="vencimiento">Vencimiento</label>
+          <input type="text" id="vencimiento" name="vencimiento" placeholder="MM/AA" required>
+        </div>
+        <div class="col">
+          <label for="cvc">CVC</label>
+          <input type="text" id="cvc" name="cvc" placeholder="123" required>
+        </div>
+      </div>
+
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" placeholder="tuemail@gmail.com" required>
+
+      <button type="submit" class="btn">Pagar ahora</button>
+    </form>
+
+    <div class="summary">
+      <h3>Resumen de la reserva</h3>
+      <p><strong>Cancha:</strong> Futbol 5 - 1 hora</p>
+      <p><strong>Fecha:</strong> 25/03/2025 - 19:00</p>
+      <p><strong>Total:</strong> $2.500</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 ReservaTuCancha - Pago seguro
+  </footer>
+</body>
+</html>
