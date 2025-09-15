@@ -67,7 +67,16 @@ input[type="radio"] {
     background: #27ae60;
     transform: scale(1.05);
 }
-
+.btn-reservado{
+    padding: 8px 14px;
+    background: #2ecc71;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 a{
     text-decoration: none;
     color: inherit;
