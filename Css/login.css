@@ -39,10 +39,10 @@ body {
 .login-container button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #f5d07e;
     border: none;
     border-radius: 5px;
-    color: white;
+    color: #1e1e1e;
     font-size: 16px;
     cursor: pointer;
     margin-top: 10px;
