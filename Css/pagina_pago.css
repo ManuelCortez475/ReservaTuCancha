@@ -6,8 +6,8 @@ body {
 }
 
 header {
-    background: #27ae60;
-    color: white;
+    background: #1e1e1e;
+    color: #f5d07e;
     padding: 15px 20px;
     text-align: center;
 }
@@ -57,8 +57,8 @@ input {
 }
 
 .btn {
-    background: #27ae60;
-    color: white;
+    background: #f5d07e;
+    color: #1e1e1e;
     padding: 14px;
     border: none;
     border-radius: 8px;
@@ -69,7 +69,7 @@ input {
 }
 
 .btn:hover {
-    background: #219150;
+    background: #e0b354;
 }
 
 .summary {
