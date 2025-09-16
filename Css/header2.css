@@ -18,7 +18,6 @@
     width: 100%;
 }
 
-/* LOGO */
 .logo_header a {
     font-size: 26px;
     font-weight: 700;
@@ -70,16 +69,16 @@
     top: 0;
     right: 0;
     height: 100vh;
-    width: 220px; /* más angosto */
+    width: 220px;
     z-index: 999;
-    background-color: rgba(30, 30, 30, 0.95); /* más oscuro */
+    background-color: rgba(30, 30, 30, 0.95);
     backdrop-filter: blur(12px);
     list-style: none;
     display: none;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 15px 15px; /* un poco de aire interno */
+    padding: 15px 15px;
     box-shadow: -3px 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -100,14 +99,14 @@
     transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
-/* Hover */
+
 .sidebar a:hover {
     background: rgba(255, 255, 255, 0.08);
     color: #ffd98e;
     transform: translateX(5px);
 }
 
-/* Botón cerrar (la X, primer li) */
+
 .sidebar li:first-child {
     margin-bottom: 25px;
     display: flex;
@@ -126,9 +125,9 @@
 .sidebar li:first-child a:hover {
     background: rgba(255, 255, 255, 0.15);
 }
-/* ===== RESPONSIVE ===== */
+
 @media (max-width: 900px) {
     .navbutton_header li:not(:last-child) {
-        display: none; /* oculta todo menos el menú hamburguesa */
+        display: none;
     }
 }

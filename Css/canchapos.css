@@ -3,15 +3,15 @@
   --turf-dark:#27774b;
   --line:#ffffff;
 
-  /* equipo A (oscuro) */
+ 
   --chip-a:#0b0b0b;
   --chip-a-border:#ffffff;
 
-  /* equipo B (rojo) */
+
   --chip-b:#c62828;
   --chip-b-border:#7f0e0e;
 
-  /* separación mínima respecto de la mitad (buffer) */
+
   --midline-buffer: 3%;
 }
 
@@ -44,7 +44,7 @@ h1{ margin:0 0 10px; }
   margin-inline:auto;
 }
 
-/* líneas del campo */
+
 .cancha::before{
   content:"";
   position:absolute;
@@ -76,7 +76,7 @@ h1{ margin:0 0 10px; }
   border-radius:50%;
 }
 
-/* Fichas */
+
 .posicion{
   position:absolute;
   width:50px; height:50px;
@@ -90,7 +90,7 @@ h1{ margin:0 0 10px; }
 .small{ font-size:11px; }
 .big{ font-size:14px; margin-top:2px; }
 
-/* Estilo por equipo */
+
 .posicion.a{ background:var(--chip-a); border-color:var(--chip-a-border); }
 .posicion.b{ background:var(--chip-b); border-color:var(--chip-b-border); }
 
@@ -101,41 +101,35 @@ h1{ margin:0 0 10px; }
 
 .leyenda{ margin-top:12px; font-size:14px; }
 
-/* ===========================
-   COORDENADAS (4-4-2)
-   A: siempre a la IZQUIERDA de (50% - buffer)
-   B: siempre a la DERECHA de (50% + buffer)
-=========================== */
 
-/* Equipo A (izquierda) */
-#a1  { left: 6%;  top:50%; }        /* GK */
-#a2  { left:22%;  top:72%; }        /* LB */
-#a3  { left:22%;  top:56%; }        /* CB */
-#a4  { left:22%;  top:44%; }        /* CB */
-#a5  { left:22%;  top:28%; }        /* RB */
-/* Mediocampo pegado a la mitad pero sin tocarla */
-#a6  { left: calc(50% - var(--midline-buffer)); top:68%; } /* LM */
-#a7  { left: calc(50% - var(--midline-buffer)); top:54%; } /* CM izq */
-#a8  { left: calc(50% - var(--midline-buffer)); top:46%; } /* CM der */
-#a9  { left: calc(50% - var(--midline-buffer)); top:32%; } /* RM */
-/* Delanteros dentro de su mitad */
-#a10 { left:40%; top:46%; }          /* ST */
-#a11 { left:40%; top:54%; }          /* ST */
+#a1  { left: 6%;  top:50%; }        
+#a2  { left:22%;  top:72%; }       
+#a3  { left:22%;  top:56%; }        
+#a4  { left:22%;  top:44%; }        
+#a5  { left:22%;  top:28%; }        
 
-/* Equipo B (derecha) */
-#b1  { left:94%; top:50%; }          /* GK */
-#b2  { left:78%; top:28%; }          /* RB */
-#b3  { left:78%; top:44%; }          /* CB */
-#b4  { left:78%; top:56%; }          /* CB */
-#b5  { left:78%; top:72%; }          /* LB */
-/* Mediocampo pegado a la mitad pero sin tocarla */
-#b6  { left: calc(50% + var(--midline-buffer)); top:32%; } /* RM */
-#b7  { left: calc(50% + var(--midline-buffer)); top:46%; } /* CM izq */
-#b8  { left: calc(50% + var(--midline-buffer)); top:54%; } /* CM der */
-#b9  { left: calc(50% + var(--midline-buffer)); top:68%; } /* LM */
-/* Delanteros dentro de su mitad */
-#b10 { left:60%; top:54%; }          /* ST */
-#b11 { left:60%; top:46%; }          /* ST */
+#a6  { left: calc(50% - var(--midline-buffer)); top:68%; } 
+#a7  { left: calc(50% - var(--midline-buffer)); top:54%; } 
+#a8  { left: calc(50% - var(--midline-buffer)); top:46%; } 
+#a9  { left: calc(50% - var(--midline-buffer)); top:32%; } 
+
+#a10 { left:40%; top:46%; }          
+#a11 { left:40%; top:54%; }          
+
+
+#b1  { left:94%; top:50%; }          
+#b2  { left:78%; top:28%; }          
+#b3  { left:78%; top:44%; }          
+#b4  { left:78%; top:56%; }          
+#b5  { left:78%; top:72%; }          
+
+#b6  { left: calc(50% + var(--midline-buffer)); top:32%; } 
+#b7  { left: calc(50% + var(--midline-buffer)); top:46%; } 
+#b8  { left: calc(50% + var(--midline-buffer)); top:54%; } 
+#b9  { left: calc(50% + var(--midline-buffer)); top:68%; } 
+
+#b10 { left:60%; top:54%; }          
+#b11 { left:60%; top:46%; }          
 
 a{
     text-decoration: none;

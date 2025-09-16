@@ -54,7 +54,7 @@ input[type="radio"] {
 
 .btn{
     padding: 8px 14px;
-    background: #2ecc71;   /* verde */
+    background: #2ecc71;   
     border: none;
     border-radius: 6px;
     color: #fff;
@@ -69,10 +69,10 @@ input[type="radio"] {
 
 .btn-reservado:disabled,
 .btn-inhabilitado:disabled {
-    background: #2ecc71;  /* mismo verde */
-    cursor: not-allowed;  /* muestra que no se puede usar */
-    transform: none;      /* evita animaciones */
-    opacity: 0.8;         /* leve transparencia para diferenciarlos */
+    background: #2ecc71;  
+    cursor: not-allowed; 
+    transform: none;      
+    opacity: 0.8;         
 }
 a{
     text-decoration: none;

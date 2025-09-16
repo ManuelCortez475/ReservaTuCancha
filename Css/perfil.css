@@ -25,7 +25,7 @@ body {
     padding: 0 20px;
 }
 
-  /* Columna izquierda */
+
 .sidebar {
     flex: 0 0 280px;
     display: flex;
