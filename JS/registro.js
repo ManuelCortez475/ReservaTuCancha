@@ -7,7 +7,8 @@ function comparandoPasswordARegistrar(e) {
     if (password.value !== confirmPassword.value) {
         e.preventDefault();
         error.textContent = "Las contraseñas no coinciden";
-    } else {
+    } 
+    else {
         error.textContent = "";
     }
 }
