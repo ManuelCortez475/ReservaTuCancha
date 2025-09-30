@@ -51,15 +51,6 @@ input {
     width: 100%;
 }
 
-.row {
-    display: flex;
-    gap: 15px;
-}
-
-.row .col {
-    flex: 1;
-}
-
 .btn {
     background: #f5d07e;
     color: #1e1e1e;
