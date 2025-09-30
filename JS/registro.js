@@ -3,7 +3,7 @@ const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirmPassword");
 const error = document.getElementById("error");
 
-function validarPasswords(e) {
+function comparandoPasswordARegistrar(e) {
     if (password.value !== confirmPassword.value) {
         e.preventDefault();
         error.textContent = "Las contraseñas no coinciden";
@@ -12,4 +12,4 @@ function validarPasswords(e) {
     }
 }
 
-form.addEventListener("submit", validarPasswords);
+form.addEventListener("submit", comparandoPasswordARegistrar);
