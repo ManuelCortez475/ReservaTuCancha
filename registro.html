@@ -51,15 +51,18 @@
 		sidebar.style.display = 'none'
 		}
 	</script>
+	<script src="/JS/registro.js"></script>
+
     <h1 class="Titulo"> ReservaTuCancha </h1>
     <div class="main-login">
     <div class="login-container">
         <h2> Registrarse </h2>
-        <form>
+        <form id="registroForm">
             <input type="text" name="Login" id="log" placeholder="Nombre de Usuario o Email">
-            <input type="password" name="Contraseña" id="pass" placeholder="Contraseña">
-            <input type="password" name="Contraseña" id="pass" placeholder="Repetir Contraseña">
-            <button type="submit"><a href="Pantalla_Inicial.html"> Ingresar</a></button>
+            <input type="password" name="Contraseña" id="password" placeholder="Contraseña">
+            <input type="password" name="Contraseña" id="confirmPassword" placeholder="Repetir Contraseña">
+			<span id="error" style="color: red;"></span><br><br>
+            <button type="submit">Registrarse</button>
         </form>
     </div>
     <div/>
@@ -74,5 +77,6 @@
             </div>
 	    </nav>
     </footer>
+	<script src="JS/registro.js"></script>
 </body>
 </html>
