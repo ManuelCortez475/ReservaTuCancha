@@ -19,6 +19,6 @@ function soloNumerosCVU(e) {
     } else {
       errorCvu.textContent = "";
     }
-  });
-}
+  };
+
 CVU.addEventListener("submit", validarCVU);
