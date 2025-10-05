@@ -55,6 +55,7 @@ a{
     text-decoration: none;
     color: inherit;
 }
+
 @media screen and (max-width: 768px) {
     .login-container {
         width: 90%;
@@ -84,27 +85,5 @@ a{
         width: 100%;
         text-align: left;
         margin: 5px 0;
-    }
-}
-@media screen and (max-width: 480px) {
-    .Titulo {
-        font-size: 24px;
-    }
-
-    .login-container {
-        padding: 15px;
-    }
-
-    .login-container h2 {
-        font-size: 20px;
-    }
-
-    .login-container input {
-        padding: 12px;
-    }
-
-    .login-container button {
-        padding: 14px;
-        font-size: 18px;
     }
 }
