@@ -51,68 +51,69 @@
 		sidebar.style.display = 'none'
 		}
 	</script>
- <div class="profile-container">
+    <div class="profile-container">
 
-    <aside class="profile-sidebar">
-        <div class="avatar-wrap">
-            <img id="avatarPreview" src="Imagenes/Logo.png.png" alt="Foto de perfil">
-            <label for="avatarInput" class="upload-label">Subir nueva foto</label>
-        </div>
-
-        <div class="card">
-            <h3>Stats</h3>
-            <ul>
-                <li><strong>Partidos Jugados:</strong> 125</li>
-                <li><strong>Goles:</strong> 13</li>
-                <li><strong>Palos:</strong> 37</li>
-                <li><strong>Partidos Ganados:</strong> 78</li>
-            </ul>
-        </div>
-    </aside>
-
-    <section class="profile-form">
-        <h2>Perfil</h2>
-        <form>
-            <div class="grid">
-                <div>
-                    <label>Nombre</label>
-                    <input type="text" placeholder="Nombre">
-                </div>
-                <div>
-                    <label>Apellido</label>
-                    <input type="text" placeholder="Apellido">
-                </div>
+        <aside class="profile-sidebar">
+            <div class="avatar-wrap">
+                <img id="avatarPreview" src="Imagenes/Logo.png.png" alt="Foto de perfil">
+                <label for="avatarInput" class="upload-label">Subir nueva foto</label>
             </div>
 
-            <div class="grid">
-                <div>
-                    <label>Teléfono</label>
-                    <input type="text" placeholder="Teléfono">
-                </div>
-                <div>
-                    <label>Edad</label>
-                    <input type="text" placeholder="Edad">
-                </div>
+            <div class="card">
+                <h3>Stats  <button id="btnEditar">Editar</button></h3>
+                <ul>
+                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> 125</li>
+                    <li id="goles"><strong>Goles:</strong> 13</li>
+                    <li id="Palos"><strong>Palos:</strong> 37</li>
+                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> 78</li>
+                </ul>
             </div>
+        </aside>
 
-            <div class="grid">
-                <div>
-                    <label>Email</label>
-                    <input type="email" placeholder="Email">
+        <section class="profile-form">
+            <h2>Perfil</h2>
+            <form>
+                <div class="grid">
+                    <div>
+                        <label>Nombre</label>
+                        <input type="text" placeholder="Nombre">
+                    </div>
+                    <div>
+                        <label>Apellido</label>
+                        <input type="text" placeholder="Apellido">
+                    </div>
                 </div>
-                <div>
-                    <label>Ciudad</label>
-                    <input type="text" placeholder="Ciudad">
-                </div>
-            </div>
 
-            <div class="buttons">
-                <button type="submit" class="btn success">Guardar</button>
-                <button type="reset" class="btn danger">Limpiar</button>
-                <a href="misreservas.html" class="btn reservas">Mis Reservas</a>
-            </div>
-        </form>
-    </section>
-</div>
+                <div class="grid">
+                    <div>
+                        <label>Teléfono</label>
+                        <input type="text" placeholder="Teléfono">
+                    </div>
+                    <div>
+                        <label>Edad</label>
+                        <input type="text" placeholder="Edad">
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div>
+                        <label>Email</label>
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <div>
+                        <label>Ciudad</label>
+                        <input type="text" placeholder="Ciudad">
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="btn success">Guardar</button>
+                    <button type="reset" class="btn danger">Limpiar</button>
+                    <a href="misreservas.html" class="btn reservas">Mis Reservas</a>
+                </div>
+            </form>
+        </section>
+    </div>
+    <script src="JS/perfil.js"></script>
 </body>
 </html>

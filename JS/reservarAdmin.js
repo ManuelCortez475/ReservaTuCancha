@@ -1,12 +1,10 @@
 
 const btnAgregar = document.getElementById('btnAgregar');
 const tabla = document.getElementById('tableCanchas');
-
+ const rowCount = tabla.querySelectorAll('tr').length + 1;
+const nuevaFila = document.createElement('tr');
 
 function crearFilaNueva() {
-    const rowCount = tabla.querySelectorAll('tr').length + 1;
-    const nuevaFila = document.createElement('tr');
-
     nuevaFila.innerHTML = `
         <td><input type="text" placeholder="Name"></td>
         <td><input type="text" placeholder="Location"></td>
