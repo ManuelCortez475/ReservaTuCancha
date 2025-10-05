@@ -135,3 +135,11 @@ a{
     text-decoration: none;
     color: inherit;
 }
+@media screen and (max-width:480px) {
+    h1 { font-size:1.2rem; }
+    .cancha { aspect-ratio: 1/1; }
+    .posicion { width:30px; height:30px; }
+    .small { font-size:8px; }
+    .big { font-size:10px; }
+    .leyenda { font-size:11px; display:block; line-height:1.4; }
+}
