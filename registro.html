@@ -58,10 +58,12 @@
     <div class="login-container">
         <h2> Registrarse </h2>
         <form id="registroForm">
-            <input type="text" name="Login" id="log" placeholder="Nombre de Usuario o Email">
+            <input type="text" name="email" id="email" placeholder="Email">
+			<span id="errorMail" style="color: red;"></span><br><br>
             <input type="password" name="Contraseña" id="password" placeholder="Contraseña">
+			<span id="errorPassword" style="color: red;"></span><br><br>
             <input type="password" name="Contraseña" id="confirmPassword" placeholder="Repetir Contraseña">
-			<span id="error" style="color: red;"></span><br><br>
+			<span id="errorComparativo" style="color: red;"></span><br><br>
 			<select name="categoria" id="categoria">
 				<option disabled selected>Seleccionar ...</option>
 				<option value="admin">Usuario</option>
