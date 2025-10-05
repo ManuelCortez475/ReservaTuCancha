@@ -9,7 +9,7 @@
       <link rel="stylesheet" href="Css/misreservas.css">
 </head>
 <body>
-    <header>
+  <header>
         <nav class="navbar_header">
             <div class="navdiv_header">
                 <div class="logo_header">
@@ -51,16 +51,7 @@
             sidebar.style.display = 'none'
             }
         </script>
-    </header>
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reservas</title>
-  <link rel="stylesheet" href="reservas.css">
-</head>
-<body>
+  </header>
   <div class="container">
     <h1>RESERVAS</h1>
 
@@ -68,8 +59,6 @@
       <button class="tab active" data-tab="vigentes">Vigentes</button>
       <button class="tab" data-tab="vencidas">Vencidas</button>
     </div>
-
-    <!-- Contenedor de reservas -->
     <div class="tab-content active" id="vigentes">
       <div class="reserva-card">
         <p><strong>Fecha:</strong> 05/10/2025</p>
@@ -84,7 +73,6 @@
         <p><strong>Estado:</strong> Cancelado</p>
       </div>
     </div>
-
     <div class="tab-content" id="vencidas">
       <div class="reserva-card">
         <p><strong>Fecha:</strong> 15/09/2025</p>
@@ -96,7 +84,6 @@
   </div>
 
   <script>
-    // Script para cambiar pestañas
     const tabs = document.querySelectorAll(".tab");
     const contents = document.querySelectorAll(".tab-content");
 
