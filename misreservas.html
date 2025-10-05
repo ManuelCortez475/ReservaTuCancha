@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mis Reservas</title>
     <link rel="stylesheet" href="Css/footer2.css">
     <link rel="stylesheet" href="Css/header2.css">
-      <link rel="stylesheet" href="Css/misreservas.css">
+    <link rel="stylesheet" href="Css/misreservas.css">
+    <link rel="icon" href="Imagenes/Logo.png.png" type="image/x-icon">
 </head>
 <body>
   <header>
@@ -38,67 +39,50 @@
 			</ul>
             </div>
         </nav>
-        <script>
-            function showSidebar(){
-                const sidebar = document.querySelector('.sidebar')
-                sidebar.style.display = 'flex'
-            }
-        </script>
-    
-        <script>
-            function Hidesidebar(){
-            const sidebar = document.querySelector('.sidebar')
-            sidebar.style.display = 'none'
-            }
-        </script>
-  </header>
-  <div class="container">
+         <main class="wrap">
     <h1>RESERVAS</h1>
 
-    <div class="tabs">
-      <button class="tab active" data-tab="vigentes">Vigentes</button>
-      <button class="tab" data-tab="vencidas">Vencidas</button>
-    </div>
-    <div class="tab-content active" id="vigentes">
-      <div class="reserva-card">
-        <p><strong>Fecha:</strong> 05/10/2025</p>
-        <p><strong>Lugar:</strong> Cancha 1 palermo</p>
-        <p><strong>Hora:</strong> 18:00</p>
-        <p><strong>Estado:</strong> Habilitado</p>
-      </div>
-      <div class="reserva-card">
-        <p><strong>Fecha:</strong> 10/10/2025</p>
-        <p><strong>Lugar:</strong> Cancha 3 recoleta</p>
-        <p><strong>Hora:</strong> 20:00</p>
-        <p><strong>Estado:</strong> Cancelado</p>
-      </div>
-    </div>
-    <div class="tab-content" id="vencidas">
-      <div class="reserva-card">
-        <p><strong>Fecha:</strong> 15/09/2025</p>
-        <p><strong>Lugar:</strong> Cancha 3</p>
-        <p><strong>Hora:</strong> 19:00</p>
-        <p><strong>Estado:</strong> Finalizada</p>
-      </div>
-    </div>
-  </div>
+    <section class="grid">
+      <!-- Columna Vigentes -->
+      <div class="col">
+        <h2>Vigentes</h2>
 
-  <script>
-    const tabs = document.querySelectorAll(".tab");
-    const contents = document.querySelectorAll(".tab-content");
+        <div class="card">
+          <div class="row"><b>Fecha:</b> 05/10/2025</div>
+          <div class="row"><b>Lugar:</b> Cancha 1</div>
+          <div class="row"><b>Hora:</b> 18:00</div>
+          <div class="row"><b>Estado:</b> <span class="badge ok">Habilitado</span></div>
+        </div>
 
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        tabs.forEach(t => t.classList.remove("active"));
-        contents.forEach(c => c.classList.remove("active"));
-        tab.classList.add("active");
-        document.getElementById(tab.dataset.tab).classList.add("active");
-      });
-    });
-  </script>
-</body>
-</html>
-    
+        <div class="card">
+          <div class="row"><b>Fecha:</b> 10/10/2025</div>
+          <div class="row"><b>Lugar:</b> Cancha 2</div>
+          <div class="row"><b>Hora:</b> 20:00</div>
+          <div class="row"><b>Estado:</b> <span class="badge warn">Cancelado Por Admin</span></div>
+        </div>
+      </div>
+
+      <!-- Columna Vencidas -->
+      <div class="col">
+        <h2>Vencidas</h2>
+
+        <div class="card">
+          <div class="row"><b>Fecha:</b> 15/09/2025</div>
+          <div class="row"><b>Lugar:</b> Cancha 3</div>
+          <div class="row"><b>Hora:</b> 19:00</div>
+          <div class="row"><b>Estado:</b> <span class="badge neu">Finalizada</span></div>
+        </div>
+
+        <div class="card">
+          <div class="row"><b>Fecha:</b> 02/09/2025</div>
+          <div class="row"><b>Lugar:</b> Cancha 4</div>
+          <div class="row"><b>Hora:</b> 21:00</div>
+          <div class="row"><b>Estado:</b> <span class="badge neu">Finalizada</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
     
     
     
