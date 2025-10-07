@@ -28,7 +28,7 @@ body {
 
 .sidebar {
     flex: 0 0 280px;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 20px;
 }
