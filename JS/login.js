@@ -1,10 +1,12 @@
 const form = document.getElementById("form");
 const password = document.getElementById("pass");
-const mail = document.getElementById("mail");
-const errorMail = document.getElementById("errorMail");
+
 
 
 function validandoFormatoMail(event) {
+  const mail = document.getElementById("mail");
+  const errorMail = document.getElementById("errorMail");
+
   event.preventDefault(); 
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 

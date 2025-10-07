@@ -11,23 +11,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar_header">
-        <div class="navdiv_header">
-            <div class="logo_header">
-                <img src="Imagenes/Logo.png.png" alt="Logo ReservaTuCancha" class="logo-img_header">
-            </div>
-            <div class="logo_header"> <a href="#">ReservaTuCancha</a> </div>
-            <ul class="sidebar">
-                <li><a href="Pantalla_Inicial.html">Home</a></li>
-                <li><a href="registro.html">Register</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="perfil.html">Profile</a></li>
-                <li><a href="reservar.html">Reservar</a></li>
-                <li><a href="unirse.html">Unirse</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header>
+                <nav class="navbar_header">
+            <div class="navdiv_header">
+                <div class="logo_header">
+                    <img src="Imagenes/Logo.png.png" alt="Logo ReservaTuCancha" class="logo-img_header">
+                </div>
+                <div class="logo_header"> <a href="Pantalla_Inicial.html">ReservaTuCancha</a> </div>
+                <ul class="sidebar">
+                <li onclick=Hidesidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+			<li> <a href="Pantalla_Inicial.html">Home</a></li>
+			<li> <a href="registro.html">Register</a></li>
+			<li> <a href="login.html">Login</a></li>
+			<li> <a href="perfil.html">Profile</a></li>
+			<li> <a href="reservar.html">Reservar</a></li>
+			<li> <a href="unirse.html">Unirse</a></li>
 
+			</ul>
+
+			<ul class="navbutton_header">
+				<li> <a href="Pantalla_Inicial.html">Home</a></li>
+				<li> <a href="registro.html">Register</a></li>
+				<li> <a href="login.html">Login</a></li>
+				<li> <a href="perfil.html">Profile</a></li>
+				<li> <a href="reservar.html">Reservar</a></li>
+				<li> <a href="unirse.html">Unirse</a></li>
+				<li onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+			</ul>
+            </div>
+        </nav>
+        <script>
+            function showSidebar(){
+                const sidebar = document.querySelector('.sidebar')
+                sidebar.style.display = 'flex'
+            }
+        </script>
+    
+        <script>
+            function Hidesidebar(){
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = 'none'
+            }
+        </script>
+    </header>
     <main>
         <h1 class="Titulo">ReservaTuCancha</h1>
         <div>
