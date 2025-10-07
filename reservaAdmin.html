@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReservaTuCancha</title>
-    <link rel="stylesheet" href="Css/unirse.css">
+    <link rel="stylesheet" href="Css/reservarAdmin.css">
     <link rel="stylesheet" href="Css/footer2.css">
     <link rel="stylesheet" href="Css/header2.css">
     <link rel="icon" href="Imagenes/Logo.png.png" type="image/x-icon">
@@ -68,73 +68,35 @@
                     </tr>
                 </thead>
                 <tbody class="Table-Body" id="tableCanchas">
-                    <tr>
-                        <td><input type="text" placeholder="Name"></td>
-                        <td><input type="text" placeholder="Location"></td>
-                        <td><input type="number" placeholder="N°"></td>
+                    <tr id="fila1">
+                        <td><input type="text" id="nombre1" placeholder="Name"></td>
+                        <td><input type="text" id="ubicacion1" placeholder="Location"></td>
+                        <td><input type="number" id="cantJug1" placeholder="N°"></td>
                         <td>
                             <input type="date" name="Fecha"><br>
                            <form>
-                            <label for="start">Desde:</label>
-                             <input type="time" id="start" name="start" required>
+                            <label for="start1">Desde:</label>
+                             <input type="time" id="start1" name="start" required>
 
-                              <label for="end">Hasta:</label>
-                             <input type="time" id="end" name="end" required>
+                              <label for="end1">Hasta:</label>
+                             <input type="time" id="end1" name="end" required>
                             </form>
                         </td>
-                        <td>
+                        <td class="estado">
                             <label><input type="radio" name="Estado1" value="r"> Reservada</label><br>
                             <label><input type="radio" name="Estado1" value="h"> Habilitada</label><br>
                             <label><input type="radio" name="Estado1" value="i"> Inhabilitada</label>
                         </td>
-                        <td><button class="btn-reservar">Publicar</button></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" placeholder="Name"></td>
-                        <td><input type="text" placeholder="Location"></td>
-                        <td><input type="number" placeholder="N°"></td>
                         <td>
-                            <input type="date" name="Fecha"><br>
-                           <form>
-                        <label for="start">Desde:</label>
-                         <input type="time" id="start" name="start" required>
-
-                        <label for="end">Hasta:</label>
-                        <input type="time" id="end" name="end" required>
-                        </form>
+                            <input type="submit" id="btnPublicar1" class="btnPublicar1" value="Publicar"> 
+                            <p class="errorCampos" id="errorCampos1"></p>
                         </td>
-                        <td>
-                            <label><input type="radio" name="Estado2" value="r"> Reservada</label><br>
-                            <label><input type="radio" name="Estado2" value="h"> Habilitada</label><br>
-                            <label><input type="radio" name="Estado2" value="i"> Inhabilitada</label>
-                        </td>
-                        <td><button class="btn-reservar">Publicar</button></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" placeholder="Name"></td>
-                        <td><input type="text" placeholder="Location"></td>
-                        <td><input type="number" placeholder="N°"></td>
-                        <td>
-                            <input type="date" name="Fecha"><br>
-                            <form>
-                            <label for="start">Desde:</label>
-                            <input type="time" id="start" name="start" required>
-
-                            <label for="end">Hasta:</label>
-                            <input type="time" id="end" name="end" required>
-                            </form>
-                        </td>
-                        <td>
-                            <label><input type="radio" name="Estado3" value="r"> Reservada</label><br>
-                            <label><input type="radio" name="Estado3" value="h"> Habilitada</label><br>
-                            <label><input type="radio" name="Estado3" value="i"> Inhabilitada</label>
-                        </td>
-                        <td><button class="btn-reservar">Publicar</button></td>
                     </tr>
                     <tr>
                         <td>
                             <form>
                                 <input type="button" id="btnAgregar" value="Agregar Cancha" class="btn-agregar">
+                                
                             </form>
                         </td>
                     </tr>
