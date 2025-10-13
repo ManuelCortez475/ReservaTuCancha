@@ -126,7 +126,7 @@ a{
     .Table-Body td {
         font-weight: 600;
         color: #1e1e1e;
-        
+        width: 90%;        
     }
 
     .btn-reservar {

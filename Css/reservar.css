@@ -24,8 +24,8 @@ body {
 }
 
 .Table-Header th {
-    background: #2ecc71;
-    color: #fff;
+    background: #1e1e1e;
+    color: #f5d07e;
     text-align: center;
     padding: 15px;
     font-size: 1rem;
@@ -52,9 +52,24 @@ input[type="radio"] {
     margin-right: 6px;
 }
 
-.btn{
+.btn-reservar {
     padding: 8px 14px;
-    background: #2ecc71;   
+    background: #f5d07e;
+    border: none;
+    border-radius: 6px;
+    color: #1e1e1e;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reservar:hover {
+    background: #27ae60;
+    transform: scale(1.05);
+}
+.btn-reservado{
+    padding: 8px 14px;
+    background: #c80b0b;
     border: none;
     border-radius: 6px;
     color: #fff;
@@ -62,19 +77,62 @@ input[type="radio"] {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.btn-reservar:hover {
-    background: #27ae60;
-    transform: scale(1.05);
+.btn-agregar {
+    padding: 8px 14px;
+    background: #3498db;   
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.btn-reservado:disabled,
-.btn-inhabilitado:disabled {
-    background: #2ecc71;  
-    cursor: not-allowed; 
-    transform: none;      
-    opacity: 0.8;         
-}
 a{
     text-decoration: none;
     color: inherit;
+}
+@media screen and (max-width: 480px) {
+    .Tabla-Principal {
+        width: 95%;
+    }
+    .Table-Header, .Table-Body, .Table-Header th, .Table-Body td, .Table-Body tr {
+        display: block;
+        width: 100%;
+    }
+
+    .Table-Header {
+        display: none;
+    }
+
+    .Table-Body tr {
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e0e0e0;
+        padding: 10px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .Table-Body td {
+        text-align: left;
+        padding: 8px 10px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        border: none;
+        width: 90%;
+    }
+
+    .Table-Body td {
+        font-weight: 600;
+        color: #1e1e1e;
+        
+    }
+
+    .btn-reservar {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
 }

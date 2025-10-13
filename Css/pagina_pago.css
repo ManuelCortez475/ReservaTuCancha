@@ -104,7 +104,10 @@ a{
         margin: 20px auto;
         padding: 20px;
     }
-
+    .formulario {
+        gap: 12px;
+        width: 90%;
+    }
     h2 {
         font-size: 1.6rem;
     }

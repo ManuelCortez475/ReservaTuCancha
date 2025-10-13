@@ -114,7 +114,7 @@ a{
     }
     .Table-Header, .Table-Body, .Table-Header th, .Table-Body td, .Table-Body tr {
         display: block;
-        width: 100%;
+        width: 95%;
     }
 
     .Table-Header {
