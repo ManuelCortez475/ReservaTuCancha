@@ -28,4 +28,24 @@ function validandoFormatoMail(event) {
   }
 };
 
+function validarCamposVacios(event) {
+  event.preventDefault();
+  const errorPass = document.getElementById("errorPass");
+  const mail = document.getElementById("mail");
+  const errorMail = document.getElementById("errorMail");
+
+  if (mail.value === "") {
+    errorMail.textContent = "El campo correo no puede estar vacío.";
+    errorMail.style.color = "red";
+  } else if (password.value === "") { 
+    errorPass.textContent = "El campo contraseña no puede estar vacío.";
+    errorPass.style.color = "red";
+  } else {
+    errorMail.textContent = "";
+    errorPass.textContent = "";
+    form.submit();
+  }
+}
+
 form.addEventListener("submit", validandoFormatoMail);
+form.addEventListener("submit", validarCamposVacios);
