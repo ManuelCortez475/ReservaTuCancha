@@ -39,6 +39,11 @@ body {
     font-size: 0.95rem;
 }
 
+.botonPrivado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 input[type="number"], input[type="date"], select {
     padding: 6px 8px;
     border: 1px solid #ccc;
