@@ -52,7 +52,7 @@ input[type="radio"] {
     margin-right: 6px;
 }
 
-.btn-reservar {
+.btn-unirse {
     padding: 8px 14px;
     background: #f5d07e;
     border: none;
@@ -63,7 +63,7 @@ input[type="radio"] {
     transition: all 0.3s ease;
 }
 
-.btn-reservar:hover {
+.btn-unirse:hover {
     background: #27ae60;
     transform: scale(1.05);
 }
@@ -129,7 +129,7 @@ a{
         width: 90%;        
     }
 
-    .btn-reservar {
+    .btn-unirse {
         width: 100%;
         text-align: center;
         margin-top: 10px;
