@@ -68,6 +68,5 @@ function verificarCamposCompletos(e) {
     }
 }
 
-
 btnAgregar.addEventListener('click', crearFilaNueva);
 btnPublicar1.addEventListener('click', verificarCamposCompletos);

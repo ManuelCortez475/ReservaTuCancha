@@ -13,7 +13,7 @@ function validarLongitudCVU(e) {
 }
 function soloNumerosCVU(e) {
     const regex = /^[0-9]+$/;
-    if (!regex.test(cvu.value)) {
+    if (!regex.test(CVU.value)) {
       e.preventDefault();
       errorCVU.textContent = "El CVU debe contener solo números.";
     } else {

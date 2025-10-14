@@ -1,5 +1,5 @@
 const btnUnirse = document.querySelectorAll('.btn-unirse');
-const CONTRASENA_CORRECTA = 'reserva123'; 
+const CONTRASEÑA_CORRECTA = 'reserva123'; 
 
 function agregarJugador (event){
     const fila = event.target.closest('tr');
@@ -12,11 +12,10 @@ function agregarJugador (event){
     const max = parseInt(maximo);
     
     if (estado_actual === 'Privada'){
-        const contrasena_ingresada = prompt("Esta cancha es privada. Por favor, ingresa la contraseÃ±a:");
+        const contrasena_ingresada = prompt("Esta cancha es privada. Por favor, ingresa la contraseña:");
 
-        // Si el usuario cancela (null) o la contraseÃ±a es incorrecta,
-        if (contrasena_ingresada !== CONTRASENA_CORRECTA) {
-            alert("ContraseÃ±a incorrecta o acciÃ³n cancelada. No puedes unirte.");
+        if (contrasena_ingresada !== CONTRASEÑA_CORRECTA) {
+            alert("Contraseña incorrecta o accion cancelada. No puedes unirte.");
             return;
         }
     }

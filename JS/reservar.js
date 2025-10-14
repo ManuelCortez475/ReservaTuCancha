@@ -1,4 +1,3 @@
-// ===== Nordelta =====
 const fechaNordelta = document.getElementById("fechaNordelta");
 const horaNordelta  = document.getElementById("horaNordelta");
 const btnNordelta   = document.getElementById("btnNordelta");
@@ -17,7 +16,6 @@ function validarNordelta(e) {
 btnNordelta && btnNordelta.addEventListener("click", validarNordelta);
 
 
-// ===== Beccar =====
 const fechaBeccar = document.getElementById("fechaBeccar");
 const horaBeccar  = document.getElementById("horaBeccar");
 const btnBeccar   = document.getElementById("btnBeccar");
@@ -38,7 +36,6 @@ btnBeccar && btnBeccar.addEventListener("click", validarBeccar);
 linkBeccar && linkBeccar.addEventListener("click", validarBeccar);
 
 
-// ===== Benavidez =====
 const fechaBenavidez = document.getElementById("fechaBenavidez");
 const horaBenavidez  = document.getElementById("horaBenavidez");
 const btnBenavidez   = document.getElementById("btnBenavidez");
