@@ -14,7 +14,6 @@ function agregarJugador (event){
     if (estado_actual === 'Privada'){
         const contrasena_ingresada = prompt("Esta cancha es privada. Por favor, ingresa la contraseña:");
 
-        // Si el usuario cancela (null) o la contraseña es incorrecta,
         if (contrasena_ingresada !== CONTRASENA_CORRECTA) {
             alert("Contraseña incorrecta o acción cancelada. No puedes unirte.");
             return;
