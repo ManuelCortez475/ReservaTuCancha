@@ -13,16 +13,14 @@
 
   <div class="container">
     <h2>Detalles de Pago</h2>
-    <form class="formulario">
+    <form id="registroForm" class="formulario">
       <label for="nombre">Titular de la tarjeta</label>
       <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
-
       <label for="numero">CVU</label>
       <input type="text" id="cvu" name="numero" placeholder="1234567890123456789012" required>
-      
+      <span id="errorCVU" style="color: red;"></span>
       <label for="comprobante">Comprobante</label>
       <input type="file" id="comprobante" name="comprobante" accept=".jpg,.jpeg,.png,.pdf" required>
-      <span id="errorCVU" style="color: red;"></span><br><br>
       <button type="submit" class="btn">Confirmar Pago</button>
     </form>
 

@@ -21,4 +21,5 @@ function soloNumerosCVU(e) {
     }
   };
 
-CVU.addEventListener("submit", validarLongitudCVU);
+form.addEventListener("submit", validarLongitudCVU);
+form.addEventListener("submit", soloNumerosCVU);
