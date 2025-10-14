@@ -1,8 +1,6 @@
 const form = document.getElementById("form");
 const password = document.getElementById("pass");
 
-
-
 function validandoFormatoMail(event) {
   const mail = document.getElementById("mail");
   const errorMail = document.getElementById("errorMail");

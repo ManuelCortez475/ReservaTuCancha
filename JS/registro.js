@@ -63,3 +63,13 @@ function validandoFormatoMail(event) {
 form.addEventListener("submit", comparandoPasswordARegistrar);
 form.addEventListener("submit", requisitosPassword);
 form.addEventListener("submit", validandoFormatoMail);
+
+
+function eleccion(event) {
+  const categoria_select = document.getElementById('.categoria');
+  const categoria = categoria_select.value;
+  if (categoria === 'admin'){
+
+  }
+
+}
