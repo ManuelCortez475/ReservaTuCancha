@@ -1,5 +1,5 @@
 const form = document.getElementById("form");
-const password = document.getElementById("pass");
+
 
 function validandoFormatoMail(event) {
   const mail = document.getElementById("mail");
@@ -33,17 +33,14 @@ function validarCamposVacios(event) {
   const errorPass = document.getElementById("errorPass");
   const mail = document.getElementById("mail");
   const errorMail = document.getElementById("errorMail");
+  const password = document.getElementById("pass");
 
-  if (mail.value === "") {
-    errorMail.textContent = "El campo correo no puede estar vacío.";
-    errorMail.style.color = "red";
-  } else if (password.value === "") { 
-    errorPass.textContent = "El campo contraseña no puede estar vacío.";
+  if (mail.value === "" || password.value === "") {
+    errorPass.textContent = "Los campos no puede estar vacío.";
     errorPass.style.color = "red";
   } else {
     errorMail.textContent = "";
     errorPass.textContent = "";
-    form.submit();
   }
 }
 
