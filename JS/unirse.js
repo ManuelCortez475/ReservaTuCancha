@@ -30,6 +30,6 @@ function agregarJugador (event){
     }
 }
 
-btnUnirse.forEach(button => {
+for (const button of btnUnirse) {
     button.addEventListener('click', agregarJugador);
-});
+}
