@@ -1,3 +1,9 @@
+.error-text {
+        color: red;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -135,4 +141,6 @@ a{
         text-align: center;
         margin-top: 10px;
     }
+
+      
 }
