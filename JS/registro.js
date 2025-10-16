@@ -46,16 +46,23 @@ function validarFormulario(event) {
   const mailOk = validandoFormatoMail(event);
   const passOk = requisitosPassword(event);
   const passCompOk = comparandoPasswordARegistrar(event);
+  const tipoUsuario = document.getElementById("categoria").value;
 
   errorMail.textContent = "";
   errorPassword.textContent = "";
   error.textContent = "";
-  
+
   if (mailOk) {
     if (passOk) {
       if (passCompOk) {
-        form.submit();
-        window.location.href = "login.html";
+        if (tipoUsuario === "usuario") {
+          form.submit();
+          window.location.href = "perfil.html";
+        }
+        else if (tipoUsuario === "admin") {
+          form.submit();
+          window.location.href = "perfil_admin.html";
+        }
       }
       else {
         error.textContent = "Las contraseñas no coinciden";
