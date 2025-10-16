@@ -38,15 +38,19 @@ function validarCamposVacios(event) {
 }
 
 function validarErrores(event) {
+  
   event.preventDefault();
+  
   const mailOk = validandoFormatoMail(event);
   const camposOk = validarCamposVacios(event); 
+  
   errorMail.textContent = "";
   errorPass.textContent = "";
 
   if (mailOk) {
     if (camposOk) {
       form.submit();
+      window.location.href = "perfil.html";
     }
     else {
       errorPass.textContent = "La contraseña no puede estar vacía";
@@ -59,4 +63,4 @@ function validarErrores(event) {
   }
 }
 
-form.addEventListener("submit", validarErrores);
+form.addEventListener("click", validarErrores);
