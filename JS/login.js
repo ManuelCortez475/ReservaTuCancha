@@ -2,10 +2,8 @@ const form = document.getElementById("form");
 
 
 function validandoFormatoMail(event) {
+  
   const mail = document.getElementById("mail");
-  const errorMail = document.getElementById("errorMail");
-
-  event.preventDefault(); 
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   /*
@@ -20,29 +18,45 @@ function validandoFormatoMail(event) {
   */
 
   if (regex.test(mail.value)) {
-    errorMail.textContent = "Correo válido ";
-    errorMail.style.color = "green";
+    return true;
   } else {
-    errorMail.textContent = "El correo no está bien formado. Ejemplo: usuario@dominio.com.ar";
-    errorMail.style.color = "red";
+    return false;
   }
 };
 
 function validarCamposVacios(event) {
-  event.preventDefault();
-  const errorPass = document.getElementById("errorPass");
+
   const mail = document.getElementById("mail");
-  const errorMail = document.getElementById("errorMail");
   const password = document.getElementById("pass");
 
   if (mail.value === "" || password.value === "") {
-    errorPass.textContent = "Los campos no puede estar vacío.";
-    errorPass.style.color = "red";
+    return false;
   } else {
-    errorMail.textContent = "";
-    errorPass.textContent = "";
+
+    return true;
   }
 }
 
-form.addEventListener("submit", validandoFormatoMail);
-form.addEventListener("submit", validarCamposVacios);
+function validarErrores(event) {
+  event.preventDefault();
+  const mailOk = validandoFormatoMail(event);
+  const camposOk = validarCamposVacios(event); 
+  errorMail.textContent = "";
+  errorPass.textContent = "";
+
+  if (mailOk) {
+    if (camposOk) {
+      form.submit();
+    }
+    else {
+      errorPass.textContent = "La contraseña no puede estar vacía";
+      errorPass.style.color = "red";
+    }
+  }
+  else {
+    errorMail.textContent = "El correo no está bien formado. Ejemplo: usuario@dominio.com.ar";
+    errorMail.style.color = "red";
+  }
+}
+
+form.addEventListener("submit", validarErrores);
