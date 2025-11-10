@@ -1,54 +1,87 @@
-const fechaNordelta = document.getElementById("fechaNordelta");
-const horaNordelta  = document.getElementById("horaNordelta");
-const btnNordelta   = document.getElementById("btnNordelta");
-const errorNordelta = document.getElementById("errorNordelta");
-
-function validarNordelta(e) {
-  const sinFecha = fechaNordelta.value === "";
-  const horaSinSeleccion = horaNordelta.selectedIndex === 0;
-  if (sinFecha || horaSinSeleccion) {
-    e.preventDefault();
-    errorNordelta.textContent = "⚠️ Debes elegir fecha y horario para Nordelta.";
-  } else {
-    errorNordelta.textContent = "";
+// Js/reservar-dom-universal.js
+(function () {
+  // --- Utilidades para obtener elementos por FILA ---
+  function getNombre(tr) {
+    const celdaNombre = tr.querySelector('td');
+    return (celdaNombre?.textContent || 'esta cancha').trim();
   }
-}
-btnNordelta && btnNordelta.addEventListener("click", validarNordelta);
-
-
-const fechaBeccar = document.getElementById("fechaBeccar");
-const horaBeccar  = document.getElementById("horaBeccar");
-const btnBeccar   = document.getElementById("btnBeccar");
-const linkBeccar  = document.getElementById("linkBeccar");
-const errorBeccar = document.getElementById("errorBeccar");
-
-function validarBeccar(e) {
-  const sinFecha = fechaBeccar.value === "";
-  const horaSinSeleccion = horaBeccar.selectedIndex === 0;
-  if (sinFecha || horaSinSeleccion) {
-    e.preventDefault();
-    errorBeccar.textContent = "⚠️ Debes elegir fecha y horario para Beccar.";
-  } else {
-    errorBeccar.textContent = "";
+  function getFecha(tr) {
+    return tr.querySelector('input[type="date"]');
   }
-}
-btnBeccar && btnBeccar.addEventListener("click", validarBeccar);
-linkBeccar && linkBeccar.addEventListener("click", validarBeccar);
-
-
-const fechaBenavidez = document.getElementById("fechaBenavidez");
-const horaBenavidez  = document.getElementById("horaBenavidez");
-const btnBenavidez   = document.getElementById("btnBenavidez");
-const errorBenavidez = document.getElementById("errorBenavidez");
-
-function validarBenavidez(e) {
-  const sinFecha = fechaBenavidez.value === "";
-  const horaSinSeleccion = horaBenavidez.selectedIndex === 0;
-  if (sinFecha || horaSinSeleccion) {
-    e.preventDefault();
-    errorBenavidez.textContent = "⚠️ Debes elegir fecha y horario para Benavidez.";
-  } else {
-    errorBenavidez.textContent = "";
+  function getHora(tr) {
+    return tr.querySelector('select');
   }
-}
-btnBenavidez && btnBenavidez.addEventListener("click", validarBenavidez);
+  function getError(tr) {
+    return tr.querySelector('.error-text');
+  }
+  function getEstadoTexto(tr) {
+    const lbl = tr.querySelector('td label');
+    return (lbl?.textContent || '').trim().toLowerCase(); // habilitada/reservada/inhabilitada
+  }
+  function getBoton(tr) {
+    return tr.querySelector('td:last-child button');
+  }
+  function getAnchor(tr) {
+    return tr.querySelector('td:last-child button a, td:last-child a');
+  }
+
+  // --- Validación por FILA (no crea ni toca filas) ---
+  function validarFila(tr) {
+    const nombre = getNombre(tr);
+    const fecha = getFecha(tr);
+    const hora = getHora(tr);
+    const error = getError(tr);
+
+    const sinFecha = !fecha || !fecha.value;
+    const horaSinSeleccion = !hora || hora.selectedIndex === 0;
+
+    if (sinFecha || horaSinSeleccion) {
+      if (error) error.textContent = `⚠️ Debes elegir fecha y horario para ${nombre}.`;
+      return false;
+    }
+    if (error) error.textContent = '';
+    return true;
+  }
+
+  // --- Delegación de eventos: NO agrega filas ---
+  const tbody = document.querySelector('.Table-Body');
+  if (!tbody) return;
+
+  tbody.addEventListener('click', function (e) {
+    const target = e.target;
+    if (!(target instanceof HTMLElement)) return;
+
+    const boton = target.closest('button');
+    const anchor = target.closest('a');
+    if (!boton && !anchor) return;
+
+    const tr = target.closest('tr');
+    if (!tr) return;
+
+    // Si el botón está disabled, no seguimos
+    const buttonEl = getBoton(tr);
+    if (buttonEl && buttonEl.disabled) return;
+
+    // Respeta el estado (solo permite si dice "Habilitada")
+    const estado = getEstadoTexto(tr); // 'habilitada' | 'reservada' | 'inhabilitada'
+    if (estado !== 'habilitada') {
+      e.preventDefault();
+      return;
+    }
+
+    // Validar fecha/hora
+    if (!validarFila(tr)) {
+      e.preventDefault();
+      return;
+    }
+
+    // Resolver URL de pago
+    const dataUrl = buttonEl?.dataset?.url;
+    const href = getAnchor(tr)?.getAttribute('href');
+    const destino = dataUrl || href || 'pagina_pago.html';
+
+    // Unificar navegación
+    e.preventDefault();
+    window.location.href = destino;
+  });
+})();
