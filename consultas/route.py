@@ -10,18 +10,18 @@ def route(app):
     @app.route("/home")
     def home():
         return render_template('Pantalla_Inicial.html')
-   
-   
+    
+
     @app.route('/login')
     def login():
         return render_template('login.html')
 
-     
     @app.route('/recibir_datos',methods = ['POST', 'GET']) # 
     def formrecibe():
         diRequest={}            # Inicializa un diccionario vacío para almacenar los datos de la solicitud
         getRequet(diRequest)    # Llena el diccionario con datos de la solicitud (ya sea POST o GET)
         upload_file(diRequest)  # Maneja la carga de archivos y actualiza el diccionario con la información de la carga de archivos
+        print(diRequest)
         return diRequest        # Devuelve el diccionario que contiene todos los datos de la solicitud y la información de la carga de archivos
 
 

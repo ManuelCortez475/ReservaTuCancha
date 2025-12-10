@@ -39,7 +39,6 @@ function validarErrores(event) {
   if (mailOk) {
     if (camposOk) {
       form.submit();
-      window.location.href = "perfil.html";
     }
     else {
       errorPass.textContent = "La contraseña no puede estar vacía";
