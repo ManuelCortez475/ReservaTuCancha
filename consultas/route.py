@@ -25,11 +25,13 @@ def route(app):
         return diRequest        # Devuelve el diccionario que contiene todos los datos de la solicitud y la información de la carga de archivos
 
 
-    @app.route('/menu')
-    def menu():
-        param={}
-        obtenerDatosMenu(param)
-        return render_template('menu.html',param=param)
+    @app.route('/perfil')
+    def perfil():
+        return render_template('perfil.html')
+    
+    @app.route('/perfilAdmin')
+    def perfil():
+        return render_template('perfil_admin.html')
     
     @app.route('/<name>') # dinámico
     def general(name):
@@ -41,6 +43,34 @@ def route(app):
             res='Pagina "{}" no encontrada'.format(name)
         return res
     
+    @app.route('/misreservas')
+    def perfil():
+        return render_template('misreservas.html')
+    
+    @app.route('/pagina_pago')
+    def perfil():
+        return render_template('pagina_pago.html')
+    @app.route('/publicaciones')
+    def perfil():
+        return render_template('publicaciones.html')
+    
+    @app.route('/registro')
+    def perfil():
+        return render_template('registro.html')
+    
+    @app.route('/reservaAdmin')
+    def perfil():
+        return render_template('reservaAdmin.html')
+    
+    @app.route('/reservar')
+    def perfil():
+        return render_template('reservar.html')
+    
+    @app.route('/unirse')
+    def perfil():
+        return render_template('unirse.html')
+    
+
 
 def getRequet(diResult):  # Función para obtener los datos de la solicitud y almacenarlos en un diccionario
     if request.method=='POST':                    # Si el método de la solicitud es POST
