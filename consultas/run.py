@@ -1,6 +1,6 @@
 import os
-from DataBase import conectarDB, cerrarDB, ejecutar, ejecutarConsulta
-from Insertar import altaPerfil, bajaPerfil, modificarTabla, consultarTablaXId, consultarTablaXCampoYValor
+from consultas._mysql_db import conectarDB, cerrarDB, ejecutar, ejecutarConsulta
+from consultas.model import altaPerfil, bajaPerfil, modificarTabla, consultarTablaXId, consultarTablaXCampoYValor
 from flask import Flask
 from route import route
 

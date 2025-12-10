@@ -1,4 +1,4 @@
-from DataBase import conectarDB, cerrarDB, ejecutar, ejecutarConsulta
+from _mysql_db import conectarDB, cerrarDB, ejecutar, ejecutarConsulta
 
 def altaPerfil(nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion):
     sQuery = """
