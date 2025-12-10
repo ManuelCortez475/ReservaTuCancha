@@ -30,7 +30,7 @@ def route(app):
         return render_template('perfil.html')
     
     @app.route('/perfilAdmin')
-    def perfil():
+    def perfil_admin():
         return render_template('perfil_admin.html')
     
     @app.route('/<name>') # dinámico
@@ -44,30 +44,30 @@ def route(app):
         return res
     
     @app.route('/misreservas')
-    def perfil():
+    def misreservas():
         return render_template('misreservas.html')
     
     @app.route('/pagina_pago')
-    def perfil():
+    def pago():
         return render_template('pagina_pago.html')
     @app.route('/publicaciones')
-    def perfil():
+    def publicaciones():
         return render_template('publicaciones.html')
     
     @app.route('/registro')
-    def perfil():
+    def registro():
         return render_template('registro.html')
     
     @app.route('/reservaAdmin')
-    def perfil():
+    def reserva_admin():
         return render_template('reservaAdmin.html')
     
     @app.route('/reservar')
-    def perfil():
+    def reserva():
         return render_template('reservar.html')
     
     @app.route('/unirse')
-    def perfil():
+    def unirse():
         return render_template('unirse.html')
     
 

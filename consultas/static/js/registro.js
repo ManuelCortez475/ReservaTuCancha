@@ -57,11 +57,9 @@ function validarFormulario(event) {
       if (passCompOk) {
         if (tipoUsuario === "usuario") {
           form.submit();
-          window.location.href = "perfil.html";
         }
         else if (tipoUsuario === "admin") {
           form.submit();
-          window.location.href = "perfil_admin.html";
         }
       }
       else {
