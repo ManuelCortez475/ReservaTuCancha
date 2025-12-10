@@ -1,6 +1,6 @@
 import mysql.connector
 
-def conectarDB(miBase="usario"):
+def conectarDB(miBase="usuario"):
     connDB = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -16,7 +16,7 @@ def ejecutarConsulta(connDB,sQuery):
     #SELECT
     base = connDB.cursor()   #es como un USE
     base.execute(sQuery)     #me deja la consulta en la variable base
-    resultado = base.fetchall()      #con el fetchall extraemos el formato que tiene en el cursos la consulta y devuelve una lista
+    resultado = base.fetchall()      #con el fetchall extraemos el formato que tiene en el cursor la consulta y devuelve una lista
     return resultado
 
 def ejecutar (connDB,sQuery):

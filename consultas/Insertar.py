@@ -1,20 +1,20 @@
 from DataBase import conectarDB, cerrarDB, ejecutar, ejecutarConsulta
 
-def altaUsuario(mail,contraseña,categoria):
+def altaPerfil(nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion):
     sQuery = """
-            INSERT INTO usuario
-            (id, mail, contraseña, categoria)
+            INSERT INTO perfil
+            (id, nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion)
             VALUES
-            (NULL,"{}","{}","{}")
-    """.format(mail,contraseña,categoria)
+            (NULL,"{}","{}","{}","{}","{}","{}")
+    """.format(nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion)
     connDB = conectarDB()
     res = ejecutar(connDB,sQuery) #la respuesta de un insert son las filas afectadas (un entero)
     cerrarDB(connDB)
     return res
 
-def bajaUsuario(_id):
-    sQuery = """"
-        DELETE FROM usuario
+def bajaPerfil(_id):
+    sQuery = """
+        DELETE FROM perfil
         WHERE id = {}
         """.format(_id)
     connDB = conectarDB()
@@ -22,16 +22,29 @@ def bajaUsuario(_id):
     cerrarDB(connDB)
     return res
 
-def modificarUsuario(_id,campo,valorNuevo):
-    sQuery="UPDATE usuario SET {}={} WHERE id={}".format(campo,valorNuevo,_id)
+
+
+def modificarTabla(tabla,campo,valorNuevo,_id):
+    sQuery="UPDATE {} SET {}={} WHERE id={}".format(tabla,campo,valorNuevo,_id)
     connDB = conectarDB()
     res = ejecutar(connDB,sQuery)
     cerrarDB(connDB)
     return res
 
-def consultarUsuarioXId (id):
-    sQuery="SELECT * FROM usuario where id={}".format(id)
+
+
+def consultarTablaXId (tabla,id):
+    sQuery="SELECT * FROM {} where id={}".format(tabla,id)
     connDB = conectarDB()
     res = ejecutarConsulta(connDB,sQuery)
     cerrarDB(connDB)
     return res
+
+def consultarTablaXCampoYValor (tabla,campo,valor):
+    sQuery="SELECT * FROM {} where {}='{}'".format(tabla,campo,valor)
+    connDB = conectarDB()
+    res = ejecutarConsulta(connDB,sQuery)
+    cerrarDB(connDB)
+    return res
+
+

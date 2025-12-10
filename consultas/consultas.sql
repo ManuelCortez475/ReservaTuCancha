@@ -6,8 +6,7 @@ SHOW TABLES;
 
 DESCRIBE perfil;
 
-SELECT * FROM perfil 
-WHERE fecha_nacimiento > "2000-01-01";
+SELECT * FROM perfil ;
 ALTER TABLE perfil AUTO_INCREMENT = 1;
 
 INSERT INTO perfil (id, nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion) VALUES 
@@ -21,7 +20,7 @@ INSERT INTO perfil (id, nombre, apellido, telefono, fecha_nacimiento, ciudad, de
 (NULL, "Nicolás", "Fernández Rojas", 5491130000009, "1996-08-17", "Neuquén", "Mediocentro — distribución, control del tempo y recuperación de balones."),
 (NULL, "Agustina", "Méndez Paredes", 5491130000010, "2002-05-29", "Ushuaia", "Defensa central — liderazgo atrás, juego aéreo y salir jugando desde el fondo.");
 
-DELETE FROM perfil WHERE id BETWEEN 35 AND 42;
+SELECT FROM perfil WHERE id = 20;
 
 UPDATE perfil SET ciudad = "Córdoba Capital" WHERE id = 5;
 
