@@ -1,7 +1,8 @@
 import os
 from DataBase import conectarDB, cerrarDB, ejecutar, ejecutarConsulta
-from Insertar import altaUsuario, bajaUsuario, modificarUsuario, consultarUsuarioXId
+from Insertar import altaPerfil, bajaPerfil, modificarTabla, consultarTablaXId, consultarTablaXCampoYValor
 from flask import Flask
+from route import route
 
 
 def main():

@@ -23,10 +23,7 @@ def route(app):
         getRequet(diRequest)    # Llena el diccionario con datos de la solicitud (ya sea POST o GET)
         upload_file(diRequest)  # Maneja la carga de archivos y actualiza el diccionario con la información de la carga de archivos
         return diRequest        # Devuelve el diccionario que contiene todos los datos de la solicitud y la información de la carga de archivos
-  
-    @app.route('/verimagen')
-    def verimagen():
-        return render_template('verimagen.html')
+
 
     @app.route('/menu')
     def menu():
