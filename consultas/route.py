@@ -17,7 +17,7 @@ def route(app):
         return render_template('login.html')
 
     @app.route('/recibir_datos',methods = ['POST', 'GET']) # 
-    def formrecibe():
+    def formLogin():
         diRequest={}            # Inicializa un diccionario vacío para almacenar los datos de la solicitud
         getRequet(diRequest)    # Llena el diccionario con datos de la solicitud (ya sea POST o GET)
         upload_file(diRequest)  # Maneja la carga de archivos y actualiza el diccionario con la información de la carga de archivos
@@ -29,9 +29,26 @@ def route(app):
     def perfil():
         return render_template('perfil.html')
     
+    @app.route('/datosPerfil',methods = ['POST', 'GET']) # 
+    def formPerfil():
+        diRequest={}           
+        getRequet(diRequest)   
+        upload_file(diRequest)
+        print(diRequest)
+        return diRequest
+    
+
     @app.route('/perfilAdmin')
     def perfil_admin():
         return render_template('perfil_admin.html')
+    
+    @app.route('/datosPerfilAdmin',methods = ['POST', 'GET']) # 
+    def formPerfilAdmin():
+        diRequest={}           
+        getRequet(diRequest)   
+        upload_file(diRequest)
+        print(diRequest)
+        return diRequest
     
     @app.route('/<name>') # dinámico
     def general(name):
@@ -50,6 +67,16 @@ def route(app):
     @app.route('/pagina_pago')
     def pago():
         return render_template('pagina_pago.html')
+    
+    @app.route('/datosPaginaPago',methods = ['POST', 'GET']) # 
+    def formPaginaPago():
+        diRequest={}           
+        getRequet(diRequest)   
+        upload_file(diRequest)
+        print(diRequest)
+        return diRequest
+    
+
     @app.route('/publicaciones')
     def publicaciones():
         return render_template('publicaciones.html')
@@ -58,13 +85,40 @@ def route(app):
     def registro():
         return render_template('registro.html')
     
+    @app.route('/datosRegistro',methods = ['POST', 'GET']) # 
+    def formRegistro():
+        diRequest={}           
+        getRequet(diRequest)   
+        upload_file(diRequest)
+        print(diRequest)
+        return diRequest
+    
+    
     @app.route('/reservaAdmin')
     def reserva_admin():
         return render_template('reservaAdmin.html')
     
+    @app.route('/datosReservaAdmin',methods = ['POST', 'GET']) # 
+    def formReservaAdmin():
+        diRequest={}           
+        getRequet(diRequest)   
+        upload_file(diRequest)
+        print(diRequest)
+        return diRequest
+    
+
     @app.route('/reservar')
     def reserva():
         return render_template('reservar.html')
+    
+    @app.route('/datosReservar',methods = ['POST', 'GET']) # 
+    def formReservar():
+        diRequest={}           
+        getRequet(diRequest)   
+        upload_file(diRequest)
+        print(diRequest)
+        return diRequest
+    
     
     @app.route('/unirse')
     def unirse():
