@@ -31,57 +31,57 @@
     </header>
 
     <div class="profile-container">
-
+        
         <aside class="profile-sidebar">
             <div class="avatar-wrap">
                 <img id="avatarPreview" src="../static/img/Logo.png.png" alt="Foto de perfil">
                 <label for="avatarInput" class="upload-label">Subir nueva foto</label>
             </div>
-
+            <form action="/perfil" method="post">
             <div class="card">
-                <h3>Stats <button class="btn danger" id="btnEditar">Editar</button></h3>
+                <h3>Stats <button class="btn danger" id="btnEditar">Guardar</button></h3>
                 <ul>
-                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> 0</li>
-                    <li id="goles"><strong>Goles:</strong> 0</li>
-                    <li id="Palos"><strong>Palos:</strong> 0</li>
-                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> 0</li>
+                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> <input type="number" name="PartidosJugados" id="inputPartidos" value="{{ partidos }}"></li>
+                    <li id="goles"><strong>Goles:</strong> <input type="number" name="Goles" id="inputGoles" value="{{ goles }}"></li>
+                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> <input type="number" name="PartidosGanados" id="inputGanados" value="{{ partidosGanados }}"></li>
                 </ul>
             </div>
-        </aside>
+            </form>
+        </aside>     
 
         <section class="profile-form">
             <h2>Perfil</h2>
-            <form id="form" action="perfil" method="get">
+            <form id="form" action="perfil" method="post">
                 <div class="grid">
                     <div>
                         <label>Nombre</label>
-                        <input name="Nombre" type="text" id="nombre" placeholder="Nombre" value="{{ nombre }}">
+                        <input name="Nombre" type="text" id="nombre" placeholder="Nombre" value="{{ nombre or '' }}">
                     </div>
                     <div>
                         <label>Apellido</label>
-                        <input name="Apellido" type="text" id="apellido" placeholder="Apellido" value="{{ apellido }}">
+                        <input name="Apellido" type="text" id="apellido" placeholder="Apellido" value="{{ apellido or '' }}">
                     </div>
                 </div>
 
                 <div class="grid">
                     <div>
                         <label>Teléfono</label>
-                        <input name="Telefono" type="text" id="telefono" placeholder="Teléfono" value="{{ telefono }}">
+                        <input name="Telefono" type="text" id="telefono" placeholder="Teléfono" value="{{ telefono or '' }}">
                     </div>
                     <div>
                         <label>Edad</label>
-                        <input name="Edad" type="text" id="edad" placeholder="Edad" value="{{ edad }}">
+                        <input name="Edad" type="text" id="edad" placeholder="Edad" value="{{ edad or '' }}">
                     </div>
                 </div>
 
                 <div class="grid">
                     <div>
                         <label>Email</label>
-                        <input name="Email" type="email" id="email" placeholder="Email" value="{{ email }}">
+                        <input name="Email" type="email" id="email" placeholder="Email" value="{{ email or '' }}">
                     </div>
                     <div>
                         <label>Ciudad</label>
-                        <input name="Ciudad" type="text" id="ciudad" placeholder="Ciudad" value="{{ ciudad }}">
+                        <input name="Ciudad" type="text" id="ciudad" placeholder="Ciudad" value="{{ ciudad or '' }}">
                     </div>
                 </div>
 
@@ -106,7 +106,7 @@
 	</nav>
     </footer>
 
-    <script src="../static/js/perfil.js"></script>
+
 
 </body>
 </html>

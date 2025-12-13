@@ -26,11 +26,12 @@ body {
 }
 
 
-.sidebar {
+.profile-sidebar {
     flex: 0 0 280px;
-    display: none;
+    display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 5px;
+ 
 }
 
 .avatar-wrap {

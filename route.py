@@ -30,7 +30,16 @@ def route(app):
         diRequest={}           
         getRequet(diRequest)   
         upload_file(diRequest)
-        return render_template('/perfil.html',nombre= diRequest.get('Nombre'),apellido = diRequest.get('Apellido'),ciudad = diRequest.get('Ciudad'),edad = diRequest.get('Edad'),email = diRequest.get('Email'),telefono = diRequest.get('Telefono'))
+        return render_template('/perfil.html',
+                               nombre= diRequest.get('Nombre'),
+                               apellido = diRequest.get('Apellido'),
+                               ciudad = diRequest.get('Ciudad'),
+                               edad = diRequest.get('Edad'),
+                               email = diRequest.get('Email'),
+                               telefono = diRequest.get('Telefono'),
+                               partidos = diRequest.get('PartidosJugados'),
+                               goles = diRequest.get('Goles'),
+                               partidosGanados = diRequest.get('PartidosGanados'))
     
 
     @app.route('/perfilAdmin')
