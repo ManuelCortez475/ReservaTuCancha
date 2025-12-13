@@ -8,9 +8,9 @@ function crearFilaNueva() {
     const nuevaFila = document.createElement('tr');
     
     nuevaFila.innerHTML = `
-        <td><input type="text" id="nombre${rowCount}" placeholder="Name"></td>
-        <td><input type="text" id="ubicacion${rowCount}" placeholder="Location"></td>
-        <td><input type="number" id="cantJug${rowCount}" placeholder="N°"></td>
+        <td><input name='NombreCancha${rowCount}' type="text" id="nombre${rowCount}" placeholder="Name"></td>
+        <td><input name='UbicacionCancha${rowCount}' type="text" id="ubicacion${rowCount}" placeholder="Location"></td>
+        <td><input name='CantidadJug${rowCount}' type="number" id="cantJug${rowCount}" placeholder="N°"></td>
         <td>
             <input type="date" name="Fecha"><br>
             <label for="start${rowCount}">Desde:</label>

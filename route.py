@@ -1,9 +1,9 @@
-from flask import render_template             # https://flask.palletsprojects.com/en/2.3.x/tutorial/templates/
-from flask import redirect, url_for, request  # redirect: redirigir a otras rutas # url_for: generar URLs dinámicamente # request: gestiona las solicitudes http recibidas 
+from flask import Flask, render_template, request, redirect, session, flash, url_for
 from werkzeug.utils import secure_filename    # Valida caracteres seguros en el nombre del un archivo
 from appConfig import config                  # Archivo de configuracion de la aplicación
 from uuid import uuid4                        # Crea Universally Unique IDentifier (UUID)  # https://docs.python.org/es/3/library/uuid.html#uuid.UUID
-import os                                     # Gestiona acceso al sistema operativo local
+from controller import *
+import os                                   # Gestiona acceso al sistema operativo local
 
 def route(app):
     @app.route("/")
@@ -25,17 +25,12 @@ def route(app):
         return diRequest        # Devuelve el diccionario que contiene todos los datos de la solicitud y la información de la carga de archivos
 
 
-    @app.route('/perfil')
-    def perfil():
-        return render_template('perfil.html')
-    
-    @app.route('/datosPerfil',methods = ['POST', 'GET']) # 
+    @app.route('/perfil',methods = ['POST', 'GET']) # 
     def formPerfil():
         diRequest={}           
         getRequet(diRequest)   
         upload_file(diRequest)
-        print(diRequest)
-        return diRequest
+        return render_template('/perfil.html',nombre= diRequest.get('Nombre'),apellido = diRequest.get('Apellido'),ciudad = diRequest.get('Ciudad'),edad = diRequest.get('Edad'),email = diRequest.get('Email'),telefono = diRequest.get('Telefono'))
     
 
     @app.route('/perfilAdmin')
