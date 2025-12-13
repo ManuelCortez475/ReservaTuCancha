@@ -41,9 +41,9 @@
             <div class="card">
                 <h3>Stats <button class="btn danger" id="btnEditar">Guardar</button></h3>
                 <ul>
-                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> <input type="number" name="PartidosJugados" id="inputPartidos" value="{{ partidos }}"></li>
-                    <li id="goles"><strong>Goles:</strong> <input type="number" name="Goles" id="inputGoles" value="{{ goles }}"></li>
-                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> <input type="number" name="PartidosGanados" id="inputGanados" value="{{ partidosGanados }}"></li>
+                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> <input type="number" name="PartidosJugados" id="inputPartidos" value="{{ partidos or '' }}"></li>
+                    <li id="goles"><strong>Goles:</strong> <input type="number" name="Goles" id="inputGoles" value="{{ goles or '' }}"></li>
+                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> <input type="number" name="PartidosGanados" id="inputGanados" value="{{ partidosGanados or '' }}"></li>
                 </ul>
             </div>
             </form>
