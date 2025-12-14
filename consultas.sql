@@ -20,15 +20,16 @@ INSERT INTO perfil (id, nombre, apellido, telefono, fecha_nacimiento, ciudad, de
 (NULL, "Nicolás", "Fernández Rojas", 5491130000009, "1996-08-17", "Neuquén", "Mediocentro — distribución, control del tempo y recuperación de balones.",8),
 (NULL, "Agustina", "Méndez Paredes", 5491130000010, "2002-05-29", "Ushuaia", "Defensa central — liderazgo atrás, juego aéreo y salir jugando desde el fondo.",9);
 
-SELECT FROM perfil WHERE id = 20;
+SELECT nombre FROM perfil WHERE id = 2;
 
-UPDATE perfil SET ciudad = "Córdoba Capital" WHERE id = 5;
+UPDATE usuario SET mail = "agustina.mendez@example.com" WHERE id = 9;
 
 DELETE FROM reserva_cancha;  
 
 
 
-
+SELECT categoria FROM usuario where mail= 'sofia.rodriguez@example.com';
+SELECT contraseña FROM usuario where mail='sofia.rodriguez@example.com'
 
 
 DESCRIBE usuario;
@@ -121,6 +122,7 @@ SELECT
     INNER JOIN reserva_cancha ON cancha.id = reserva_cancha.id_cancha
     WHERE reserva_cancha.estado = "reservada";
 
+SELECT mail FROM usuario where contraseña = 'DemoPwd#22';
 SELECT 
     usuario.id AS Usuario_que_reservo,
     perfil.telefono AS telefono_usuario,

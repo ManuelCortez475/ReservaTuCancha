@@ -33,18 +33,28 @@ def modificarTabla(tabla,campo,valorNuevo,_id):
 
 
 
-def consultarTablaXId (tabla,id):
-    sQuery="SELECT * FROM {} where id={}".format(tabla,id)
+def consultarContraseñaDeUsuarioExistenteXMail (mail):
+    sQuery="SELECT contraseña FROM usuario where mail= %s"
     connDB = conectarDB()
-    res = ejecutarConsulta(connDB,sQuery)
-    cerrarDB(connDB)
-    return res
+    try:
+        res = ejecutarConsulta(connDB, sQuery, (mail,))
+    finally:
+        cerrarDB(connDB)
+    if res:
+        return res[0][0]
+    return None
 
-def consultarTablaXCampoYValor (tabla,campo,valor):
-    sQuery="SELECT * FROM {} where {}='{}'".format(tabla,campo,valor)
+
+def consultarCategoriaDeUsuarioXMail (mail):
+    sQuery="SELECT categoria FROM usuario where mail= %s"
     connDB = conectarDB()
-    res = ejecutarConsulta(connDB,sQuery)
-    cerrarDB(connDB)
-    return res
+    try:
+        res = ejecutarConsulta(connDB, sQuery, (mail,))
+    finally:
+        cerrarDB(connDB)
+    if res:
+        return bool(res[0][0])
+    return None
+
 
 

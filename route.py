@@ -30,17 +30,22 @@ def route(app):
             return redirect(url_for(redirect_route))     # ruta perfil de admin
             
 
-    @app.route('/login')
-    def login():
-        return render_template('login.html')
-
-    @app.route('/datosLogin',methods = ['POST', 'GET']) # 
+    @app.route('/login',methods = ['POST', 'GET']) # 
     def formLogin():
-        diRequestLogin={}            # Inicializa un diccionario vacío para almacenar los datos de la solicitud
-        getRequet(diRequestLogin)    # Llena el diccionario con datos de la solicitud (ya sea POST o GET)
-        upload_file(diRequestLogin)  # Maneja la carga de archivos y actualiza el diccionario con la información de la carga de archivos
-        print(diRequestLogin)
-        return diRequestLogin        # Devuelve el diccionario que contiene todos los datos de la solicitud y la información de la carga de archivos
+        if request.method == 'GET':
+            return render_template('login.html')
+        else:
+            diRequestLogin={}            
+            getRequet(diRequestLogin)    
+            upload_file(diRequestLogin)  
+            if diRequestLogin.get('Contraseña') == consultarContraseñaDeUsuarioExistenteXMail(diRequestLogin.get('Email')):
+                if consultarCategoriaDeUsuarioXMail(diRequestLogin.get('Email')) == True: 
+                    redirect_route = 'formPerfil'
+                elif consultarCategoriaDeUsuarioXMail(diRequestLogin.get('Email')) == False:
+                    redirect_route = 'formPerfilAdmin'
+            else:
+                redirect_route = 'formLogin'
+            return redirect(url_for(redirect_route))
 
 
     @app.route('/perfil',methods = ['POST', 'GET']) # 

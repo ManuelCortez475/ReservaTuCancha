@@ -12,10 +12,10 @@ def cerrarDB(connDB):
     if connDB!=None:
         connDB.close()
 
-def ejecutarConsulta(connDB,sQuery):
+def ejecutarConsulta(connDB,sQuery, params=None):
     #SELECT
     base = connDB.cursor()   #es como un USE
-    base.execute(sQuery)     #me deja la consulta en la variable base
+    base.execute(sQuery,params)     #me deja la consulta en la variable base
     resultado = base.fetchall()      #con el fetchall extraemos el formato que tiene en el cursor la consulta y devuelve una lista
     return resultado
 
