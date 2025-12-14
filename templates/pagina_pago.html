@@ -13,7 +13,7 @@
 
   <div class="container">
     <h2>Detalles de Pago</h2>
-    <form id="registroForm" class="formulario" method="post", action="datosPaginaPago">
+    <form id="registroForm" class="form" method="post" action="datosPaginaPago" enctype="multipart/form-data">
       <label for="nombre">Titular de la tarjeta</label>
       <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
       <label for="numero">CVU</label>
@@ -26,9 +26,9 @@
 
     <div class="summary">
       <h3>Resumen de la reserva</h3>
-      <p><strong>Cancha:</strong> Cancha Beccar - 1:30 hora</p>
-      <p><strong>Fecha:</strong> 25/03/2025 - 19:00</p>
-      <p><strong>Total:</strong> $2.500</p>
+      <p><strong>Cancha:</strong> {{ nombreCancha }}</p>
+      <p><strong>Fecha:</strong> {{ fecha }}</p>
+      <p><strong>Total:</strong> {{ precio }}</p>
     </div>
   </div>
   <script src="../static/js/pagina_pago.js"></script>

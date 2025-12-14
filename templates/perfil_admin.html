@@ -17,6 +17,7 @@
                     <img src="../static/img/Logo.png.png" alt="Logo ReservaTuCancha" class="logo-img_header">
                 </div>
                 <div class="logo_header"> <a href="/home">ReservaTuCancha</a> </div>
+
 			<ul class="navbutton_header">
 				<li> <a href="/home">Home</a></li>
                 <li> <a href="/registro">Register</a></li>
@@ -30,80 +31,71 @@
     </header>
 
     <div class="profile-container">
-
+        
         <aside class="profile-sidebar">
+            <form action="/perfil" method="post">
             <div class="avatar-wrap">
                 <img id="avatarPreview" src="../static/img/Logo.png.png" alt="Foto de perfil">
-                <label for="avatarInput" class="upload-label">Subir nueva foto</label>
+                <input type="file" id="avatarInput" accept="image/*">
+                <label for="avatarInput" class="upload-label"> Subir nueva foto </label>
             </div>
-
             <div class="card">
-                <h3>Stats <button class="btn danger" id="btnEditar">Editar</button></h3>
+                <h3>Stats <button class="btn danger" id="btnEditar">Guardar</button></h3>
                 <ul>
-                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> 0</li>
-                    <li id="goles"><strong>Goles:</strong> 0</li>
-                    <li id="Palos"><strong>Palos:</strong> 0</li>
-                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> 0</li>
+                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> <input type="number" name="PartidosJugados" id="inputPartidos" value="{{ partidos or '' }}"></li>
+                    <li id="goles"><strong>Goles:</strong> <input type="number" name="Goles" id="inputGoles" value="{{ goles or '' }}"></li>
+                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> <input type="number" name="PartidosGanados" id="inputGanados" value="{{ partidosGanados or '' }}"></li>
                 </ul>
             </div>
-        </aside>
+            </form>
+        </aside>     
 
         <section class="profile-form">
             <h2>Perfil</h2>
-            <form action="datosPerfilAdmin" method="post">
+            <form id="form" action="perfil" method="post">
                 <div class="grid">
                     <div>
                         <label>Nombre</label>
-                        <input type="text" name="Nombre"  id="nombre" placeholder="Nombre">
+                        <input name="Nombre" type="text" id="nombre" placeholder="Nombre" value="{{ nombre or '' }}">
                     </div>
                     <div>
                         <label>Apellido</label>
-                        <input type="text" name="Apellido" id="apellido" placeholder="Apellido">
+                        <input name="Apellido" type="text" id="apellido" placeholder="Apellido" value="{{ apellido or '' }}">
                     </div>
                 </div>
 
                 <div class="grid">
                     <div>
                         <label>Teléfono</label>
-                        <input type="text" name="Telefono"  id="telefono" placeholder="Teléfono">
+                        <input name="Telefono" type="text" id="telefono" placeholder="Teléfono" value="{{ telefono or '' }}">
                     </div>
                     <div>
                         <label>Edad</label>
-                        <input type="text" name="Edad" id="edad" placeholder="Edad">
+                        <input name="Edad" type="text" id="edad" placeholder="Edad" value="{{ edad or '' }}">
                     </div>
                 </div>
 
                 <div class="grid">
                     <div>
                         <label>Email</label>
-                        <input type="email" name="Email" id="email" placeholder="Email">
+                        <input name="Email" type="email" id="email" placeholder="Email" value="{{ email or '' }}">
                     </div>
                     <div>
                         <label>Ciudad</label>
-                        <input type="text" name="Ciudad" id="ciudad" placeholder="Ciudad">
+                        <input name="Ciudad" type="text" id="ciudad" placeholder="Ciudad" value="{{ ciudad or '' }}">
                     </div>
                 </div>
 
                 <div class="buttons">
-                    <button type="submit" class="btn success">Guardar</button>
-                    <button type="reset" class="btn danger">Limpiar</button>
+                    <button type="submit" id="btnGuardar" class="btn success">Guardar</button>
                     <a href="misreservas.html" class="btn reservas">Mis publicaciones</a>
+                   
                 </div>
             </form>
         </section>
     </div>
 
-     <footer>
-        <nav class="navbar_footer">
-		<div class="navdiv_footer">
-			<ul class="navbutton_footer">
-                <li class="liNav_footer"><a href="https://discord.gg/6wVzJSuN3R"><img src="../static/img/discord-logo-discord-logo-transparent-discord-icon-transparent-free-free-png.webp" alt="discord" height="50px"></a></li>
-				<li class="liNav_footer"><a class="buttonNav_footer" href="#">About</a></li>
-				<li class="liNav_footer"><a class="buttonNav_footer" href="#">Contact</a></li>
-			</ul>
-		</div>
-	</nav>
-    </footer>
-    <script src="../static/js/perfil.js"></script>
+<script src="../static/js/perfill.js"></script>
+
 </body>
 </html>

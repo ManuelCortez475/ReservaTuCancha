@@ -33,11 +33,12 @@
     <div class="profile-container">
         
         <aside class="profile-sidebar">
+            <form action="/perfil" method="post">
             <div class="avatar-wrap">
                 <img id="avatarPreview" src="../static/img/Logo.png.png" alt="Foto de perfil">
-                <label for="avatarInput" class="upload-label">Subir nueva foto</label>
+                <input type="file" id="avatarInput" accept="image/*">
+                <label for="avatarInput" class="upload-label"> Subir nueva foto </label>
             </div>
-            <form action="/perfil" method="post">
             <div class="card">
                 <h3>Stats <button class="btn danger" id="btnEditar">Guardar</button></h3>
                 <ul>
@@ -87,26 +88,14 @@
 
                 <div class="buttons">
                     <button type="submit" id="btnGuardar" class="btn success">Guardar</button>
-                    <button type="reset" class="btn danger">Limpiar</button>
-                    
+                    <button type="submit" id="btnReservas" class="btn reservas"><a href="/misreservas">Mis reservas</a></button>
+                   
                 </div>
             </form>
         </section>
     </div>
 
-     <footer>
-        <nav class="navbar_footer">
-		<div class="navdiv_footer">
-			<ul class="navbutton_footer">
-                <li class="liNav_footer"><a href="https://discord.gg/6wVzJSuN3R"><img src="../static/img/discord-logo-discord-logo-transparent-discord-icon-transparent-free-free-png.webp" alt="discord" height="50px"></a></li>
-				<li class="liNav_footer"><a class="buttonNav_footer" href="#">About</a></li>
-				<li class="liNav_footer"><a class="buttonNav_footer" href="#">Contact</a></li>
-			</ul>
-		</div>
-	</nav>
-    </footer>
-
-
+<script src="../static/js/perfil.js"></script>
 
 </body>
 </html>

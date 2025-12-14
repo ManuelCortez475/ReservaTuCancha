@@ -16,30 +16,30 @@ def route(app):
     def login():
         return render_template('login.html')
 
-    @app.route('/recibir_datos',methods = ['POST', 'GET']) # 
+    @app.route('/datosLogin',methods = ['POST', 'GET']) # 
     def formLogin():
-        diRequest={}            # Inicializa un diccionario vacío para almacenar los datos de la solicitud
-        getRequet(diRequest)    # Llena el diccionario con datos de la solicitud (ya sea POST o GET)
-        upload_file(diRequest)  # Maneja la carga de archivos y actualiza el diccionario con la información de la carga de archivos
-        print(diRequest)
-        return diRequest        # Devuelve el diccionario que contiene todos los datos de la solicitud y la información de la carga de archivos
+        diRequestLogin={}            # Inicializa un diccionario vacío para almacenar los datos de la solicitud
+        getRequet(diRequestLogin)    # Llena el diccionario con datos de la solicitud (ya sea POST o GET)
+        upload_file(diRequestLogin)  # Maneja la carga de archivos y actualiza el diccionario con la información de la carga de archivos
+        print(diRequestLogin)
+        return diRequestLogin        # Devuelve el diccionario que contiene todos los datos de la solicitud y la información de la carga de archivos
 
 
     @app.route('/perfil',methods = ['POST', 'GET']) # 
     def formPerfil():
-        diRequest={}           
-        getRequet(diRequest)   
-        upload_file(diRequest)
-        return render_template('/perfil.html',
-                               nombre= diRequest.get('Nombre'),
-                               apellido = diRequest.get('Apellido'),
-                               ciudad = diRequest.get('Ciudad'),
-                               edad = diRequest.get('Edad'),
-                               email = diRequest.get('Email'),
-                               telefono = diRequest.get('Telefono'),
-                               partidos = diRequest.get('PartidosJugados'),
-                               goles = diRequest.get('Goles'),
-                               partidosGanados = diRequest.get('PartidosGanados'))
+        diRequestPerfil={}           
+        getRequet(diRequestPerfil)   
+        upload_file(diRequestPerfil)
+        return render_template('perfil.html',
+                               nombre= diRequestPerfil.get('Nombre'),
+                               apellido = diRequestPerfil.get('Apellido'),
+                               ciudad = diRequestPerfil.get('Ciudad'),
+                               edad = diRequestPerfil.get('Edad'),
+                               email = diRequestPerfil.get('Email'),
+                               telefono = diRequestPerfil.get('Telefono'),
+                               partidos = diRequestPerfil.get('PartidosJugados'),
+                               goles = diRequestPerfil.get('Goles'),
+                               partidosGanados = diRequestPerfil.get('PartidosGanados'))
     
 
     @app.route('/perfilAdmin')
@@ -48,11 +48,11 @@ def route(app):
     
     @app.route('/datosPerfilAdmin',methods = ['POST', 'GET']) # 
     def formPerfilAdmin():
-        diRequest={}           
-        getRequet(diRequest)   
-        upload_file(diRequest)
-        print(diRequest)
-        return diRequest
+        diRequestPerfilAdmin={}           
+        getRequet(diRequestPerfilAdmin)   
+        upload_file(diRequestPerfilAdmin)
+        print(diRequestPerfilAdmin)
+        return diRequestPerfilAdmin
     
     @app.route('/<name>') # dinámico
     def general(name):
@@ -68,17 +68,14 @@ def route(app):
     def misreservas():
         return render_template('misreservas.html')
     
-    @app.route('/pagina_pago')
-    def pago():
-        return render_template('pagina_pago.html')
-    
-    @app.route('/datosPaginaPago',methods = ['POST', 'GET']) # 
+    @app.route('/pagina_pago', methods = ['POST', 'GET']) # 
     def formPaginaPago():
-        diRequest={}           
-        getRequet(diRequest)   
-        upload_file(diRequest)
-        print(diRequest)
-        return diRequest
+        diRequestPago={}           
+        getRequet(diRequestPago)   
+        upload_file(diRequestPago)
+        print(diRequestPago)
+        return render_template('pagina_pago.html', 
+                              )
     
 
     @app.route('/publicaciones')
@@ -91,24 +88,49 @@ def route(app):
     
     @app.route('/datosRegistro',methods = ['POST', 'GET']) # 
     def formRegistro():
-        diRequest={}           
-        getRequet(diRequest)   
-        upload_file(diRequest)
-        print(diRequest)
-        return diRequest
+        diRequestRegistro={}           
+        getRequet(diRequestRegistro)   
+        upload_file(diRequestRegistro)
+        print(diRequestRegistro)
+        return diRequestRegistro
     
     
-    @app.route('/reservaAdmin')
-    def reserva_admin():
-        return render_template('reservaAdmin.html')
-    
-    @app.route('/datosReservaAdmin',methods = ['POST', 'GET']) # 
+    @app.route('/reservaAdmin',methods = ['POST', 'GET']) # 
     def formReservaAdmin():
-        diRequest={}           
-        getRequet(diRequest)   
-        upload_file(diRequest)
-        print(diRequest)
-        return diRequest
+        if request.method == 'GET':
+            return render_template('reservaAdmin.html', canchas=session.get('canchas_publicadas', []))
+        else: 
+            diRequestReservaAdmin={}           
+            getRequet(diRequestReservaAdmin)   
+            upload_file(diRequestReservaAdmin)
+            print(diRequestReservaAdmin)
+            
+            boton_id = None
+
+            for key in request.form.keys():
+                if key.startswith('btnPublicar'):
+                    boton_id = key  # ej: btnPublicar3
+                    break
+            numero = boton_id.replace('btnPublicar', '')
+            if boton_id is None:
+                flash('No se detectó botón de publicación')
+                return redirect(url_for('formReservaAdmin'))
+            cancha = {
+                'numero': numero,
+                'nombre': request.form.get(f'NombreCancha{numero}'),
+                'ubicacion': request.form.get(f'UbicacionCancha{numero}'),
+                'jugadores': request.form.get(f'CantidadJug{numero}'),
+                'estado': request.form.get(f'Estado{numero}'),
+                'fecha': request.form.get('Fecha'),
+                'inicio': request.form.get(f'start{numero}'),
+                'fin': request.form.get(f'end{numero}')
+            }
+            if 'canchas_publicadas' not in session:
+                session['canchas_publicadas'] = []
+            canchas = session.get('canchas_publicadas',[])
+            canchas.append(cancha)
+            session['canchas_publicadas'] = canchas
+            return redirect(url_for('formReservaAdmin'))
     
 
     @app.route('/reservar')
@@ -117,11 +139,11 @@ def route(app):
     
     @app.route('/datosReservar',methods = ['POST', 'GET']) # 
     def formReservar():
-        diRequest={}           
-        getRequet(diRequest)   
-        upload_file(diRequest)
-        print(diRequest)
-        return diRequest
+        diRequestReservar={}           
+        getRequet(diRequestReservar)   
+        upload_file(diRequestReservar)
+        print(diRequestReservar)
+        return diRequestReservar
     
     
     @app.route('/unirse')

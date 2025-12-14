@@ -30,7 +30,7 @@ body {
     flex: 0 0 280px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 0px;
  
 }
 

@@ -44,36 +44,38 @@
                     </tr>
                 </thead>
                 <tbody class="Table-Body" id="tableCanchas">
-                    <form method="post" action="datosReservaAdmin">
+                    {% for cancha in canchas %}
+                    <form method="post" action="/reservaAdmin">
                     <tr id="fila1">
+
                         <td>
-                         
-                            <input name="NombreCancha1" type="text" id="nombre1" placeholder="Name">
+                            <input name="NombreCancha {{ cancha.numero }}" type="text" id="nombre1" placeholder="Name" value="{{ cancha.nombre }}">
                         </td>
-                        <td><input name="UbicacionCancha1" type="text" id="ubicacion1" placeholder="Location"></td>
-                        <td><input name="CantidadJug1" type="number" id="cantJug1" placeholder="N°"></td>
+                        <td><input name="UbicacionCancha{{ cancha.numero }}" type="text" id="ubicacion1" placeholder="Location" value="{{ cancha.ubicacion }}"></td>
+                        <td><input name="CantidadJug{{ cancha.numero }}" type="number" id="cantJug1" placeholder="N°" value="{{ cancha.jugadores }}"></td>
                         <td>
-                            <input type="date" name="Fecha"><br>
+                            <input type="date" name="Fecha" value="{{ cancha.fecha }}"><br>
                        
                             <label for="start1">Desde:</label>
-                            <input type="time" id="start1" name="start" required>
+                            <input type="time" id="start1" name="start{{ cancha.numero }}" value="{{ cancha.inicio }}" required>
 
                             <label for="end1">Hasta:</label>
-                            <input type="time" id="end1" name="end" required>
+                            <input type="time" id="end1" name="end{{ cancha.numero }}" value="{{ cancha.fin }}" required>
                             
                         </td>
                         <td class="estado">
-                            <label><input type="radio" name="Estado1" value="r"> Reservada</label><br>
-                            <label><input type="radio" name="Estado1" value="h"> Habilitada</label><br>
-                            <label><input type="radio" name="Estado1" value="i"> Inhabilitada</label>
+                            <label><input type="radio" name="Estado{{ cancha.numero }}" value="reservada" {% if cancha.estado == 'reservada' %}checked{% endif %}> Reservada</label><br>
+                            <label><input type="radio" name="Estado{{ cancha.numero }}" value="habilitada" {% if cancha.estado == 'habilitada' %}checked{% endif %} > Habilitada</label><br>
+                            <label><input type="radio" name="Estado{{ cancha.numero }}" value="inhabilitada" {% if cancha.estado == 'inhabilitada' %}checked{% endif %}> Inhabilitada</label>
                         </td>
                         <td>
-                            <button type="submit" id="btnPublicar1" class="btnPublicar1">Publicar</button> 
+                            <button type="submit" id="btnPublicar1" name="btnPublicar1" class="btnPublicar1">Publicar</button> 
                             <p class="errorCampos" id="errorCampos1"></p>
                             
                         </td>
                     </tr>
                     </form>
+                    {% endfor %}
                     <tr>
                         <td>
                             <form>
