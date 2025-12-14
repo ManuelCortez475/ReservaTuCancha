@@ -1,12 +1,12 @@
 from _mysql_db import conectarDB, cerrarDB, ejecutar, ejecutarConsulta
 
-def altaPerfil(nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion):
+def altaUsuario(mail,contraseña,categoria):
     sQuery = """
             INSERT INTO perfil
-            (id, nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion)
+            (id,mail,contraseña,categoria)
             VALUES
-            (NULL,"{}","{}","{}","{}","{}","{}")
-    """.format(nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion)
+            (NULL,"{}","{}","{}")
+    """.format(mail,contraseña,categoria)
     connDB = conectarDB()
     res = ejecutar(connDB,sQuery) #la respuesta de un insert son las filas afectadas (un entero)
     cerrarDB(connDB)

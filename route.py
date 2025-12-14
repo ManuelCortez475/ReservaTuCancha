@@ -12,6 +12,20 @@ def route(app):
         return render_template('Pantalla_Inicial.html')
     
 
+    @app.route('/registro',methods = ['POST', 'GET']) # 
+    def formRegistro():
+        if request.method == 'POST':
+            categoria = request.form.get('categoria')
+            if categoria == "Usuario":
+                return redirect(url_for('formPerfil'))       # ruta perfil de usuario
+            elif categoria == "Admin":
+                return redirect(url_for('perfil_admin'))     # ruta perfil de admin
+            else:
+                flash("Selecciona una categoría válida")
+                return redirect(url_for('formRegistro'))
+
+        return render_template('registro.html')
+
     @app.route('/login')
     def login():
         return render_template('login.html')
@@ -86,20 +100,6 @@ def route(app):
     @app.route('/publicaciones')
     def publicaciones():
         return render_template('publicaciones.html')
-    
-    @app.route('/registro',methods = ['POST', 'GET']) # 
-    def formRegistro():
-        if request.method == 'POST':
-            categoria = request.form.get('categoria')
-            if categoria == "Usuario":
-                return redirect(url_for('formPerfil'))       # ruta perfil de usuario
-            elif categoria == "Admin":
-                return redirect(url_for('perfil_admin'))     # ruta perfil de admin
-            else:
-                flash("Selecciona una categoría válida")
-                return redirect(url_for('formRegistro'))
-
-        return render_template('registro.html')
     
     
     @app.route('/reservaAdmin',methods = ['POST', 'GET']) # 
