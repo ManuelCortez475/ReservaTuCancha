@@ -33,20 +33,21 @@ DELETE FROM reserva_cancha;
 
 DESCRIBE usuario;
 SELECT * FROM usuario;
-ALTER TABLE usuario AUTO_INCREMENT = 1;
-INSERT INTO usuario (id,mail,contraseña,categoria, id_perfil) VALUES 
-(NULL, "sofia.rodriguez@example.com", "DemoPwd#22", true, 1),
-(NULL, "joaquin.perez@example.com", "Sample123!A", true, 2),
-(NULL, "valentina.gomez@example.com", "PassDemo@33", true, 3),
-(NULL, "lucas.martinez@example.com", "Example!45aa", true, 4),
-(NULL, "camila.nunez@example.com", "MyTestPwd#6", true, 5),
-(NULL, "mateo.ruiz@example.com", "FakePass_77", true, 6),
-(NULL, "florencia.diaz@example.com", "Placeholder!8", true, 7),
-(NULL, "nicolas.fernandez@example.com", "Demo!Pass909", true, 8),
-(NULL, "agustina.mendez@example.com", "TempPwd*10", false, 9);
+ALTER TABLE usuario AUTO_INCREMENT = 10;
+INSERT INTO usuario (id,mail,contraseña,categoria) VALUES 
+(NULL, "sofia.rodriguez@example.com", "DemoPwd#22", true),
+(NULL, "joaquin.perez@example.com", "Sample123!A", true),
+(NULL, "valentina.gomez@example.com", "PassDemo@33", true),
+(NULL, "lucas.martinez@example.com", "Example!45aa", true),
+(NULL, "camila.nunez@example.com", "MyTestPwd#6", true),
+(NULL, "mateo.ruiz@example.com", "FakePass_77", true),
+(NULL, "florencia.diaz@example.com", "Placeholder!8", true),
+(NULL, "nicolas.fernandez@example.com", "Demo!Pass909", true),
+(NULL, "agustina.mendez@example.com", "TempPwd*10", false);
 
-DELETE FROM usuario WHERE id BETWEEN 2 AND 8;
-
+DELETE FROM usuario WHERE id BETWEEN 18 AND 24;
+INSERT INTO usuario (id,mail,contraseña,categoria) VALUES 
+(NULL, "carlos.rodriguez@example.com", "DemoPwd#22", True);
 
 SELECT
     perfil.nombre AS Nombre,

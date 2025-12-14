@@ -1,6 +1,5 @@
 import os
 from _mysql_db import conectarDB, cerrarDB, ejecutar, ejecutarConsulta
-from model import altaPerfil, bajaPerfil, modificarTabla, consultarTablaXId, consultarTablaXCampoYValor
 from flask import Flask, session
 from route import route
 

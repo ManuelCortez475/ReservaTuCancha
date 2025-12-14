@@ -2,19 +2,19 @@ from _mysql_db import conectarDB, cerrarDB, ejecutar, ejecutarConsulta
 
 def altaUsuario(mail,contraseña,categoria):
     sQuery = """
-            INSERT INTO perfil
+            INSERT INTO usuario
             (id,mail,contraseña,categoria)
             VALUES
-            (NULL,"{}","{}","{}")
+            (NULL,"{}","{}",{})
     """.format(mail,contraseña,categoria)
     connDB = conectarDB()
     res = ejecutar(connDB,sQuery) #la respuesta de un insert son las filas afectadas (un entero)
     cerrarDB(connDB)
     return res
 
-def bajaPerfil(_id):
+def bajaUsuario(_id):
     sQuery = """
-        DELETE FROM perfil
+        DELETE FROM usuario
         WHERE id = {}
         """.format(_id)
     connDB = conectarDB()

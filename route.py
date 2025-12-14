@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename    # Valida caracteres seguros en el 
 from appConfig import config                  # Archivo de configuracion de la aplicación
 from uuid import uuid4                        # Crea Universally Unique IDentifier (UUID)  # https://docs.python.org/es/3/library/uuid.html#uuid.UUID
 from controller import *
+from model import *
 import os                                   # Gestiona acceso al sistema operativo local
 
 def route(app):
@@ -14,17 +15,20 @@ def route(app):
 
     @app.route('/registro',methods = ['POST', 'GET']) # 
     def formRegistro():
-        if request.method == 'POST':
-            categoria = request.form.get('categoria')
-            if categoria == "Usuario":
-                return redirect(url_for('formPerfil'))       # ruta perfil de usuario
-            elif categoria == "Admin":
-                return redirect(url_for('perfil_admin'))     # ruta perfil de admin
-            else:
-                flash("Selecciona una categoría válida")
-                return redirect(url_for('formRegistro'))
-
-        return render_template('registro.html')
+        if request.method == 'GET':
+            return render_template('registro.html')
+        
+        else:
+            categoria_str = request.form.get('categoria')
+            if categoria_str == 'Usuario':
+                categoria = True
+                redirect_route = 'formPerfil'
+            elif categoria_str == 'Admin':
+                categoria = False
+                redirect_route = 'formPerfilAdmin'            
+            altaUsuario(request.form.get('email'), request.form.get('Contraseña'), categoria)
+            return redirect(url_for(redirect_route))     # ruta perfil de admin
+            
 
     @app.route('/login')
     def login():
