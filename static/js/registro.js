@@ -41,7 +41,7 @@ function validandoFormatoMail(event) {
 
 function validarFormulario(event) {
   
-  event.preventDefault();
+  
   
   const mailOk = validandoFormatoMail(event);
   const passOk = requisitosPassword(event);
@@ -63,16 +63,19 @@ function validarFormulario(event) {
         }
       }
       else {
+        event.preventDefault();
         error.textContent = "Las contraseñas no coinciden";
         error.style.color = "red";
       }
     }
     else {
+      event.preventDefault();
       errorPassword.textContent = "Debe tener al menos una mayúscula, una minúscula, un número, un carácter especial y 8 caracteres.";
       errorPassword.style.color = "red";
     }
   }
   else {
+    event.preventDefault();
     errorMail.textContent = "El correo no está bien formado. Ejemplo: usuario@dominio.com.ar";
     errorMail.style.color = "red";
   }

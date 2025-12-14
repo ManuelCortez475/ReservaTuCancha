@@ -42,17 +42,22 @@ def route(app):
                                partidosGanados = diRequestPerfil.get('PartidosGanados'))
     
 
-    @app.route('/perfilAdmin')
-    def perfil_admin():
-        return render_template('perfil_admin.html')
-    
-    @app.route('/datosPerfilAdmin',methods = ['POST', 'GET']) # 
+    @app.route('/perfilAdmin',methods = ['POST', 'GET']) # 
     def formPerfilAdmin():
         diRequestPerfilAdmin={}           
         getRequet(diRequestPerfilAdmin)   
         upload_file(diRequestPerfilAdmin)
         print(diRequestPerfilAdmin)
-        return diRequestPerfilAdmin
+        return render_template('perfil_admin.html',
+                               nombre= diRequestPerfilAdmin.get('Nombre'),
+                               apellido = diRequestPerfilAdmin.get('Apellido'),
+                               ciudad = diRequestPerfilAdmin.get('Ciudad'),
+                               edad = diRequestPerfilAdmin.get('Edad'),
+                               email = diRequestPerfilAdmin.get('Email'),
+                               telefono = diRequestPerfilAdmin.get('Telefono'),
+                               partidos = diRequestPerfilAdmin.get('PartidosJugados'),
+                               goles = diRequestPerfilAdmin.get('Goles'),
+                               partidosGanados = diRequestPerfilAdmin.get('PartidosGanados'))
     
     @app.route('/<name>') # dinámico
     def general(name):
@@ -82,17 +87,19 @@ def route(app):
     def publicaciones():
         return render_template('publicaciones.html')
     
-    @app.route('/registro')
-    def registro():
-        return render_template('registro.html')
-    
-    @app.route('/datosRegistro',methods = ['POST', 'GET']) # 
+    @app.route('/registro',methods = ['POST', 'GET']) # 
     def formRegistro():
-        diRequestRegistro={}           
-        getRequet(diRequestRegistro)   
-        upload_file(diRequestRegistro)
-        print(diRequestRegistro)
-        return diRequestRegistro
+        if request.method == 'POST':
+            categoria = request.form.get('categoria')
+            if categoria == "Usuario":
+                return redirect(url_for('formPerfil'))       # ruta perfil de usuario
+            elif categoria == "Admin":
+                return redirect(url_for('perfil_admin'))     # ruta perfil de admin
+            else:
+                flash("Selecciona una categoría válida")
+                return redirect(url_for('formRegistro'))
+
+        return render_template('registro.html')
     
     
     @app.route('/reservaAdmin',methods = ['POST', 'GET']) # 
