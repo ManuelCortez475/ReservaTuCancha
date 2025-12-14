@@ -131,7 +131,21 @@ def route(app):
             canchas.append(cancha)
             session['canchas_publicadas'] = canchas
             return redirect(url_for('formReservaAdmin'))
-    
+        
+    @app.route('/confirmarPublicaciones', methods=['POST'])
+    def confirmar_publicaciones():
+
+        canchas = session.get('canchas_publicadas', [])
+
+        for cancha in canchas:
+            # 👇 ACÁ VA LA DB (ejemplo)
+            print("Guardando en DB:", cancha)
+
+        # 🔥 limpiar session
+        session.pop('canchas_publicadas', None)
+
+        flash("Canchas publicadas con éxito")
+        return redirect(url_for('formReservaAdmin'))
 
     @app.route('/reservar')
     def reserva():

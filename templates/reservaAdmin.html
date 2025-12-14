@@ -69,7 +69,7 @@
                             <label><input type="radio" name="Estado{{ cancha.numero }}" value="inhabilitada" {% if cancha.estado == 'inhabilitada' %}checked{% endif %}> Inhabilitada</label>
                         </td>
                         <td>
-                            <button type="submit" id="btnPublicar1" name="btnPublicar1" class="btnPublicar1">Publicar</button> 
+                            <button type="submit" id="btnPublicar1" name="btnPublicar1" class="btnPublicar1">Publicar Borrador</button> 
                             <p class="errorCampos" id="errorCampos1"></p>
                             
                         </td>
@@ -82,12 +82,17 @@
                                 <input type="button" id="btnAgregar" value="Agregar Cancha" class="btn-agregar">
                                 
                             </form>
-                    
+                            <form method="post" action="/confirmarPublicaciones">
+                            <button type="submit" class="btn-confirmar">
+                                Confirmar publicaciones
+                            </button>
+                            </form>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        
     </main>
 
     <footer>

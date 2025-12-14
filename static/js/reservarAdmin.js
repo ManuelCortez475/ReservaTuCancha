@@ -24,7 +24,7 @@ function crearFilaNueva() {
             <label><input type="radio" name="Estado${rowCount}" value="i"> Inhabilitada</label>
         </td>
         <td>
-            <input type="submit" id="btnPublicar${rowCount}" name='btnPublicar${rowCount}' class="btnPublicar1" value="Publicar">
+            <input type="submit" id="btnPublicar${rowCount}" name='btnPublicar${rowCount}' class="btnPublicar1" value="Publicar Borrador">
             <p class="errorCampos" id="errorCampos${rowCount}"></p>
         </td>
     `;
