@@ -9,20 +9,22 @@ DESCRIBE perfil;
 SELECT * FROM perfil ;
 ALTER TABLE perfil AUTO_INCREMENT = 1;
 
-INSERT INTO perfil (id, nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion) VALUES 
-(NULL, "Sofía", "Rodríguez Fernández", 5491130000002, "2001-09-03", "Córdoba", "Extremo derecho — velocidad para desbordar, centros precisos y tirar diagonales al área."),
-(NULL, "Joaquín", "Pérez Morales", 5491130000003, "1995-06-20", "Rosario", "Mediocampista defensivo — cortocircuito las jugadas, juego simple y salidas limpias."),
-(NULL, "Valentina", "Gómez Castillo", 5491130000004, "2003-01-14", "Mar del Plata", "Interior izquierda — combinación en corto, llegada al área y buen remate desde afuera."),
-(NULL, "Lucas", "Martínez Herrera", 5491130000005, "1992-11-30", "Mendoza", "Lateral derecho — subir por la banda, centros ofensivos y cubrir al defensor rival."),
-(NULL, "Camila", "Núñez Silva", 5491130000006, "2000-07-08", "Salta", "Volante creativa — dirijo el ritmo, busco pases entre líneas y tiro pases filtrados."),
-(NULL, "Mateo", "Ruiz Blanco", 5491130000007, "1999-02-25", "La Plata", "Segundo volante — enlace entre mediocampo y ataque, llegada al área y asistencia."),
-(NULL, "Florencia", "Díaz Ortega", 5491130000008, "2004-12-05", "Tucumán", "Extremo izquierdo — regate corto, cambiar de ritmo y tirar centros al segundo palo."),
-(NULL, "Nicolás", "Fernández Rojas", 5491130000009, "1996-08-17", "Neuquén", "Mediocentro — distribución, control del tempo y recuperación de balones."),
-(NULL, "Agustina", "Méndez Paredes", 5491130000010, "2002-05-29", "Ushuaia", "Defensa central — liderazgo atrás, juego aéreo y salir jugando desde el fondo.");
+INSERT INTO perfil (id, nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion, id_usuario) VALUES 
+(NULL, "Sofía", "Rodríguez Fernández", 5491130000002, "2001-09-03", "Córdoba", "Extremo derecho — velocidad para desbordar, centros precisos y tirar diagonales al área.",1),
+(NULL, "Joaquín", "Pérez Morales", 5491130000003, "1995-06-20", "Rosario", "Mediocampista defensivo — cortocircuito las jugadas, juego simple y salidas limpias.",2),
+(NULL, "Valentina", "Gómez Castillo", 5491130000004, "2003-01-14", "Mar del Plata", "Interior izquierda — combinación en corto, llegada al área y buen remate desde afuera.",3),
+(NULL, "Lucas", "Martínez Herrera", 5491130000005, "1992-11-30", "Mendoza", "Lateral derecho — subir por la banda, centros ofensivos y cubrir al defensor rival.",4),
+(NULL, "Camila", "Núñez Silva", 5491130000006, "2000-07-08", "Salta", "Volante creativa — dirijo el ritmo, busco pases entre líneas y tiro pases filtrados.",5),
+(NULL, "Mateo", "Ruiz Blanco", 5491130000007, "1999-02-25", "La Plata", "Segundo volante — enlace entre mediocampo y ataque, llegada al área y asistencia.",6),
+(NULL, "Florencia", "Díaz Ortega", 5491130000008, "2004-12-05", "Tucumán", "Extremo izquierdo — regate corto, cambiar de ritmo y tirar centros al segundo palo.",7),
+(NULL, "Nicolás", "Fernández Rojas", 5491130000009, "1996-08-17", "Neuquén", "Mediocentro — distribución, control del tempo y recuperación de balones.",8),
+(NULL, "Agustina", "Méndez Paredes", 5491130000010, "2002-05-29", "Ushuaia", "Defensa central — liderazgo atrás, juego aéreo y salir jugando desde el fondo.",9);
 
 SELECT FROM perfil WHERE id = 20;
 
 UPDATE perfil SET ciudad = "Córdoba Capital" WHERE id = 5;
+
+DELETE FROM reserva_cancha;  
 
 
 
@@ -30,7 +32,7 @@ UPDATE perfil SET ciudad = "Córdoba Capital" WHERE id = 5;
 
 
 DESCRIBE usuario;
-SELECT * FROM usuario where categoria = false;
+SELECT * FROM usuario;
 ALTER TABLE usuario AUTO_INCREMENT = 1;
 INSERT INTO usuario (id,mail,contraseña,categoria, id_perfil) VALUES 
 (NULL, "sofia.rodriguez@example.com", "DemoPwd#22", true, 1),
@@ -137,7 +139,9 @@ DESCRIBE reserva_cancha;
 
 SELECT * FROM reserva_cancha;
 
-INSERT INTO reserva_cancha (id, id_cancha,id_usuario,hora,comprobante_pago,estado ) VALUES
+ALTER TABLE reserva_cancha AUTO_INCREMENT = 1;
+
+INSERT INTO reserva_cancha (id, id_cancha,id_perfil,hora,comprobante_pago,estado ) VALUES
 (NULL, 1, 1, "9:00 am", "comprobante1.jpg", ""),
 (NULL, 2, 1, "10:30 am", "comprobante2.jpg", "reservada"),
 (NULL, 3, 7, "12:00 pm", "comprobante3.jpg", "cancelada"),
@@ -172,7 +176,9 @@ DESCRIBE cancha_para_unirse;
 
 SELECT * FROM cancha_para_unirse;
 
-INSERT INTO cancha_para_unirse (id,id_usuario, id_reservar_cancha) VALUES
+ALTER TABLE cancha_para_unirse AUTO_INCREMENT = 1;
+
+INSERT INTO cancha_para_unirse (id,id_perfil, id_reservar_cancha) VALUES
 (NULL, 1, 1),
 (NULL, 6, 3),
 (NULL, 4, 4),
