@@ -81,5 +81,5 @@ function validarFormulario(event) {
   }
 }
 
-form.addEventListener("click", validarFormulario);
+form.addEventListener("submit", validarFormulario);
 

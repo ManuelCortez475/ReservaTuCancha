@@ -22,12 +22,10 @@ def route(app):
             categoria_str = request.form.get('categoria')
             if categoria_str == 'Usuario':
                 categoria = True
-                redirect_route = 'formPerfil'
             elif categoria_str == 'Admin':
-                categoria = False
-                redirect_route = 'formPerfilAdmin'            
+                categoria = False            
             altaUsuario(request.form.get('email'), request.form.get('Contraseña'), categoria)
-            return redirect(url_for(redirect_route))     # ruta perfil de admin
+            return redirect(url_for('formLogin'))     # ruta perfil de admin
             
 
     @app.route('/login',methods = ['POST', 'GET']) # 
@@ -39,6 +37,7 @@ def route(app):
             getRequet(diRequestLogin)    
             upload_file(diRequestLogin)  
             if diRequestLogin.get('Contraseña') == consultarContraseñaDeUsuarioExistenteXMail(diRequestLogin.get('Email')):
+                session['email'] = diRequestLogin.get('Email')
                 if consultarCategoriaDeUsuarioXMail(diRequestLogin.get('Email')) == True: 
                     redirect_route = 'formPerfil'
                 elif consultarCategoriaDeUsuarioXMail(diRequestLogin.get('Email')) == False:
@@ -50,37 +49,46 @@ def route(app):
 
     @app.route('/perfil',methods = ['POST', 'GET']) # 
     def formPerfil():
-        diRequestPerfil={}           
-        getRequet(diRequestPerfil)   
-        upload_file(diRequestPerfil)
-        return render_template('perfil.html',
-                               nombre= diRequestPerfil.get('Nombre'),
-                               apellido = diRequestPerfil.get('Apellido'),
-                               ciudad = diRequestPerfil.get('Ciudad'),
-                               fechaNacimiento = diRequestPerfil.get('FechaNacimiento'),
-                               email = diRequestPerfil.get('Email'),
-                               telefono = diRequestPerfil.get('Telefono'),
-                               partidos = diRequestPerfil.get('PartidosJugados'),
-                               goles = diRequestPerfil.get('Goles'),
-                               partidosGanados = diRequestPerfil.get('PartidosGanados'))
+        
+        email = session.get('email', '') 
+        if request.method == 'GET':
+            diRequestPerfil={}           
+            getRequet(diRequestPerfil)   
+            upload_file(diRequestPerfil)
+            agregarInfoPerfil(diRequestPerfil)
+            return render_template('perfil.html',
+                                nombre= diRequestPerfil.get('Nombre'),
+                                apellido = diRequestPerfil.get('Apellido'),
+                                ciudad = diRequestPerfil.get('Ciudad'),
+                                fechaNacimiento = diRequestPerfil.get('FechaNacimiento'),
+                                email = email,
+                                descripcion = diRequestPerfil.get('Descripcion'),
+                                telefono = diRequestPerfil.get('Telefono'),
+                                partidos = diRequestPerfil.get('PartidosJugados'),
+                                goles = diRequestPerfil.get('Goles'),
+                                partidosGanados = diRequestPerfil.get('PartidosGanados'))
+        return render_template('perfil.html', email=email)
     
 
     @app.route('/perfilAdmin',methods = ['POST', 'GET']) # 
     def formPerfilAdmin():
-        diRequestPerfilAdmin={}           
-        getRequet(diRequestPerfilAdmin)   
-        upload_file(diRequestPerfilAdmin)
-        print(diRequestPerfilAdmin)
-        return render_template('perfil_admin.html',
-                               nombre= diRequestPerfilAdmin.get('Nombre'),
-                               apellido = diRequestPerfilAdmin.get('Apellido'),
-                               ciudad = diRequestPerfilAdmin.get('Ciudad'),
-                               fechaNacimiento = diRequestPerfilAdmin.get('FechaNacimiento'),
-                               email = diRequestPerfilAdmin.get('Email'),
-                               telefono = diRequestPerfilAdmin.get('Telefono'),
-                               partidos = diRequestPerfilAdmin.get('PartidosJugados'),
-                               goles = diRequestPerfilAdmin.get('Goles'),
-                               partidosGanados = diRequestPerfilAdmin.get('PartidosGanados'))
+        email = session.get('email', '') 
+        if request.method == 'POST':
+            diRequestPerfilAdmin={}           
+            getRequet(diRequestPerfilAdmin)   
+            upload_file(diRequestPerfilAdmin)
+            agregarInfoPerfil(diRequestPerfilAdmin)
+            return render_template('perfil_admin.html',
+                                nombre= diRequestPerfilAdmin.get('Nombre'),
+                                apellido = diRequestPerfilAdmin.get('Apellido'),
+                                ciudad = diRequestPerfilAdmin.get('Ciudad'),
+                                fechaNacimiento = diRequestPerfilAdmin.get('FechaNacimiento'),
+                                email = email,
+                                telefono = diRequestPerfilAdmin.get('Telefono'),
+                                partidos = diRequestPerfilAdmin.get('PartidosJugados'),
+                                goles = diRequestPerfilAdmin.get('Goles'),
+                                partidosGanados = diRequestPerfilAdmin.get('PartidosGanados'))
+        return render_template('perfil_admin.html', email=email)
     
     @app.route('/<name>') # dinámico
     def general(name):

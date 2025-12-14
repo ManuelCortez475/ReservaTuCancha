@@ -19,12 +19,12 @@ def ejecutarConsulta(connDB,sQuery, params=None):
     resultado = base.fetchall()      #con el fetchall extraemos el formato que tiene en el cursor la consulta y devuelve una lista
     return resultado
 
-def ejecutar (connDB,sQuery):
+def ejecutar (connDB,sQuery,params=None):
     #INSERT, UPDATE, DELETE
     res=None
     base=connDB.cursor()
     try:
-        base.execute(sQuery)  #prueba y ejecuta la operacion pero no cambia nada
+        base.execute(sQuery,params)  #prueba y ejecuta la operacion pero no cambia nada
         connDB.commit()       # se confirma el cambio en la base da datos
         res=base.rowcount
     except mysql.connector.Error as e:
