@@ -187,93 +187,13 @@ def route(app):
     @app.route('/unirse')
     def unirse():
         return render_template('unirse.html')
-    
 
+    @app.route("/logout")
+    def logout():  
+        ''' Info: 
+          Cierra la sesión.
+          retorna la redirección a la pagina home   
+        ''' 
+        cerrarSesion()     
+        return redirect('/')
 
-def getRequet(diResult):  # Función para obtener los datos de la solicitud y almacenarlos en un diccionario
-    if request.method=='POST':                    # Si el método de la solicitud es POST
-        for name in request.form.to_dict().keys():  # Itera sobre las claves del formulario
-            li=request.form.getlist(name)           # Obtiene la lista de valores para cada clave
-            if len(li)>1:                           # Si hay más de un valor
-                diResult[name]=request.form.getlist(name)  # Almacena la lista de valores en el diccionario
-            elif len(li)==1:                        # Si hay un solo valor
-                diResult[name]=li[0]                # Almacena el valor en el diccionario
-            else:                                   # Si no hay valores
-                diResult[name]=""                   # Almacena una cadena vacía en el diccionario
-    elif request.method=='GET':                   # Si el método de la solicitud es GET
-        for name in request.args.to_dict().keys():  # Itera sobre las claves de los argumentos
-            li=request.args.getlist(name)           # Obtiene la lista de valores para cada clave
-            if len(li)>1:                           # Si hay más de un valor
-                diResult[name]=request.args.getlist(name)  # Almacena la lista de valores en el diccionario
-            elif len(li)==1:                        # Si hay un solo valor
-                diResult[name]=li[0]                # Almacena el valor en el diccionario
-            else:                                   # Si no hay valores
-                diResult[name]=""                   # Almacena una cadena vacía en el diccionario
-
- 
-def upload_file (diResult) :
-    UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif', '.pdf']
-    MAX_CONTENT_LENGTH = 1024 * 1024     
-    if request.method == 'POST' :         
-        for key in request.files.keys():  
-            diResult[key]={} 
-            diResult[key]['file_error']=False            
-            
-            f = request.files[key] 
-            if f.filename!="":     
-                #filename_secure = secure_filename(f.filename)
-                file_extension=str(os.path.splitext(f.filename)[1])
-                filename_unique = uuid4().__str__() + file_extension
-                path_filename=os.path.join( config['upload_folder'] , filename_unique)
-                # Validaciones
-                if file_extension not in UPLOAD_EXTENSIONS:
-                    diResult[key]['file_error']=True
-                    diResult[key]['file_msg']='Error: No se admite subir archivos con extension '+file_extension
-                if os.path.exists(path_filename):
-                    diResult[key]['file_error']=True
-                    diResult[key]['file_msg']='Error: el archivo ya existe.'
-                    diResult[key]['file_name']=f.filename
-                try:
-                    if not diResult[key]['file_error']:
-                        diResult[key]['file_error']=True
-                        diResult[key]['file_msg']='Se ha producido un error.'
-
-                        f.save(path_filename)   
-                        diResult[key]['file_error']=False
-                        diResult[key]['file_name_new']=filename_unique
-                        diResult[key]['file_name']=f.filename
-                        diResult[key]['file_msg']='OK. Archivo cargado exitosamente'
- 
-                except:
-                        pass
-            else:
-                diResult[key]={} # viene vacio el input del file upload
-
-    # si existe el archivo devuelve True
-    # os.path.exists(os.path.join('G:\\directorio\\....\\uploads',"agua.png"))
-
-    # borrar un archivo
-    # os.remove(os.path.join('G:\\directorio\\.....\\uploads',"agua.png"))
-
-
-def obtenerDatosMenu(param):
-    param["menu"]= [{"href":"/home","contenido":"Home"},
-                    {"href":"/login","contenido":"Log In"},
-                    {"href":"/logout","contenido":"Log Out"},
-                    {"href":"/About","contenido":"About"},
-                    {"href":"#","contenido":'&#128587'}#1F64B  # &#128587; #u'\u2630'
-                   ]
-   
-
-def obtenerDatosTabla(param):
-    param['titulo']="El titulo principal tabla"
-    param['parrafo_01']="Esto es una prueba con una tabla"
-    param['tabla']={"titulos":["NOMBRE","APELLIDO","DNI","EDAD"],
-                      "datos":[["Juan","Perez",1234,23],
-                              ["Laura","Lopez",9632,55],
-                              ["Lucia","Marano",8775,28],
-                              ["Pablo","Cuti",7744,63]
-                        ]
-                    }
-
-    

@@ -91,3 +91,38 @@ def consultarIdXMail(mail):
         return res[0][0]
     return None
 
+
+def obtenerPerfilXEmailPass(result,email):
+    '''### Información:
+       Obtiene todos los campos de la tabla usuario a partir de la clave 'email'
+         y del 'password'.
+       Carga la información obtenida de la BD en el dict 'result'
+       Recibe 'result' in diccionario donde se almacena la respuesta de la consulta
+       Recibe 'email' que es el mail si se utiliza como clave en la búsqueda
+       Recibe 'password' que se utiliza en la consulta. (Para validadar al usuario)
+       Retorna:
+        True cuando se obtiene un registro de u usuario a partir del 'email' y el 'pass.
+        False caso contrario.
+    '''
+    res=False
+    sSql="""SELECT id, nombre,apellido,telefono,fecha_nacimiento,ciudad,descripcion 
+    FROM  perfil WHERE  id_usuario = %s;"""
+    id_usuario = consultarIdXMail(email)
+    val=(id_usuario)
+    fila= ejecutarConsulta(BASE,sSql,val)
+    if fila!=[]:
+        res=True
+        result['id']=fila[0][0]
+        result['nombre']=fila[0][1]
+        result['apellido']=fila[0][2]
+        result['telefono']=fila[0][3]
+        result['fecha_nacimiento']=fila[0][4]
+        result['ciudad']=fila[0][5]
+        result['descripcion']=fila[0][6]
+        result['categoria']= consultarCategoriaDeUsuarioXMail(email)
+    return res    
+
+BASE={ "host":"localhost",
+        "user":"root",
+        "pass":"",
+        "dbname":"usuario"}
