@@ -126,3 +126,21 @@ BASE={ "host":"localhost",
         "user":"root",
         "pass":"",
         "dbname":"usuario"}
+
+def actualizarImagenPerfil(email, imagen):
+    sQuery = """
+        UPDATE usuario
+        SET ImagenPerfil = %s
+        WHERE Email = %s
+    """
+    ejecutar(sQuery, (imagen, email))
+
+
+def consultarImagenPerfilPorEmail(email):
+    sQuery = """
+        SELECT ImagenPerfil
+        FROM usuario
+        WHERE Email = %s
+    """
+    res = ejecutarConsulta(sQuery, (email,))
+    return res[0]['ImagenPerfil'] if res else None

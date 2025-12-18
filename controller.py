@@ -106,6 +106,7 @@ def cargarSesion(dicUsuario):
     session['Email']     = dicUsuario['Email']
     session['Contraseña']   = dicUsuario['Contraseña']
     session['Rol']   = dicUsuario['Categoria']
+    session['Imagen'] = dicUsuario['ImagenPerfil']
     session["time"]       = datetime.now()  
 
 def crearSesion(request):

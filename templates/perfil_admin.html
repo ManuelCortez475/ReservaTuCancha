@@ -37,14 +37,14 @@
             <div class="avatar-wrap">
                 <img id="avatarPreview" src="../static/img/Logo.png.png" alt="Foto de perfil">
                 <input type="file" id="avatarInput" accept="image/*">
-                <label for="avatarInput" class="upload-label"> Subir nueva foto </label>
+                <label for="avatarInput" name="ImagenPerfil" class="upload-label"> Subir nueva foto </label>
             </div>
             <div class="card">
                 <h3>Stats </h3>
                 <ul>
-                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> <input type="number" name="PartidosJugados" id="inputPartidos" value="{{ partidos or '' }}"></li>
-                    <li id="goles"><strong>Goles:</strong> <input type="number" name="Goles" id="inputGoles" value="{{ goles or '' }}"></li>
-                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> <input type="number" name="PartidosGanados" id="inputGanados" value="{{ partidosGanados or '' }}"></li>
+                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> <input type="number" name="PartidosJugados" id="inputPartidos" value="{{ diRequestPerfilAdmin.get('PartidosJugados') or '' }}"></li>
+                    <li id="goles"><strong>Goles:</strong> <input type="number" name="Goles" id="inputGoles" value="{{ diRequestPerfilAdmin.get('Goles') or '' }}"></li>
+                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> <input type="number" name="PartidosGanados" id="inputGanados" value="{{ diRequestPerfilAdmin.get('PartidosGanados') or '' }}"></li>
                 </ul>
             </div>
         </aside>     
@@ -54,22 +54,22 @@
                 <div class="grid">
                     <div>
                         <label>Nombre</label>
-                        <input name="Nombre" type="text" id="nombre" placeholder="Nombre" value="{{ nombre or '' }}">
+                        <input name="Nombre" type="text" id="nombre" placeholder="Nombre" value="{{ diRequestPerfilAdmin.get('Nombre') or '' }}">
                     </div>
                     <div>
                         <label>Apellido</label>
-                        <input name="Apellido" type="text" id="apellido" placeholder="Apellido" value="{{ apellido or '' }}">
+                        <input name="Apellido" type="text" id="apellido" placeholder="Apellido" value="{{ diRequestPerfilAdmin.get('Apellido') or '' }}">
                     </div>
                 </div>
 
                 <div class="grid">
                     <div>
                         <label>Teléfono</label>
-                        <input name="Telefono" type="text" id="telefono" placeholder="Teléfono" value="{{ telefono or '' }}">
+                        <input name="Telefono" type="text" id="telefono" placeholder="Teléfono" value="{{ diRequestPerfilAdmin.get('Telefono') or '' }}">
                     </div>
                     <div>
                         <label>Fecha de nacimiento</label>
-                        <input name="FechaNacimiento" type="date" id="fechaNacimiento" placeholder="Fecha de nacimiento" value="{{ fechaNacimiento or '' }}">
+                        <input name="FechaNacimiento" type="date" id="fechaNacimiento" placeholder="Fecha de nacimiento" value="{{ diRequestPerfilAdmin.get('FechaNacimiento') or '' }}">
                     </div>
                 </div>
 
@@ -80,14 +80,14 @@
                     </div>
                     <div>
                         <label>Ciudad</label>
-                        <input name="Ciudad" type="text" id="ciudad" placeholder="Ciudad" value="{{ ciudad or '' }}">
+                        <input name="Ciudad" type="text" id="ciudad" placeholder="Ciudad" value="{{ diRequestPerfilAdmin.get('Ciudad') or '' }}">
                     </div>
                 </div>
 
                 <div class="grid">
                     <div>
                         <label>Descripcion</label>
-                        <input class="descripcion" name="Descripcion" type="text" id="email" placeholder="Descripcion" value="{{ descripcion or '' }}">
+                        <input class="descripcion" name="Descripcion" type="text" id="email" placeholder="Descripcion" value="{{ diRequestPerfilAdmin.get('Descripcion') or '' }}">
                     </div>
                 </div>
 

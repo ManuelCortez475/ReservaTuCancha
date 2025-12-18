@@ -1,11 +1,10 @@
+const imagen = document.getElementById("avatarInput");
+const preview = document.getElementById("avatarPreview");
 
-function cambiarAvatar(e) {
-    const imagen = document.getElementById('avatarInput');
-    var file = this.files[0];
-    
-    if (!file) {
-        return;
-    }
+imagen.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (!file) return;
 
     if (!file.type.startsWith("image/")) {
         alert("Solo se permiten imágenes");
@@ -13,13 +12,11 @@ function cambiarAvatar(e) {
         return;
     }
 
-    var reader = new FileReader();
+    const reader = new FileReader();
 
-    reader.onload = function () {
-        document.getElementById("avatarPreview").src = reader.result;
+    reader.onload = function (e) {
+        preview.src = e.target.result;
     };
 
     reader.readAsDataURL(file);
-}
-
-imagen.addEventListener("change", cambiarAvatar)
+});

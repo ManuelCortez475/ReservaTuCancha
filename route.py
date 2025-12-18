@@ -47,48 +47,40 @@ def route(app):
             return redirect(url_for(redirect_route))
 
 
-    @app.route('/perfil',methods = ['POST', 'GET']) # 
+    @app.route('/perfil', methods=['GET', 'POST'])
     def formPerfil():
-        
-        email = session.get('email', '') 
-        if request.method == 'GET':
-            diRequestPerfil={}           
-            getRequet(diRequestPerfil)   
+        email = session.get('email', '')
+        diRequestPerfil = {}
+
+        if request.method == 'POST':
+            getRequet(diRequestPerfil)
             upload_file(diRequestPerfil)
             agregarInfoPerfil(diRequestPerfil)
-            return render_template('perfil.html',
-                                nombre= diRequestPerfil.get('Nombre'),
-                                apellido = diRequestPerfil.get('Apellido'),
-                                ciudad = diRequestPerfil.get('Ciudad'),
-                                fechaNacimiento = diRequestPerfil.get('FechaNacimiento'),
-                                email = email,
-                                descripcion = diRequestPerfil.get('Descripcion'),
-                                telefono = diRequestPerfil.get('Telefono'),
-                                partidos = diRequestPerfil.get('PartidosJugados'),
-                                goles = diRequestPerfil.get('Goles'),
-                                partidosGanados = diRequestPerfil.get('PartidosGanados'))
-        return render_template('perfil.html', email=email)
+
+        return render_template(
+            'perfil.html',
+            diRequestPerfil=diRequestPerfil,
+            email=email
+        )
+
     
 
-    @app.route('/perfilAdmin',methods = ['POST', 'GET']) # 
+    @app.route('/perfilAdmin', methods=['GET', 'POST'])
     def formPerfilAdmin():
-        email = session.get('email', '') 
+        email = session.get('email', '')
+        diRequestPerfilAdmin = {}
+
         if request.method == 'POST':
-            diRequestPerfilAdmin={}           
-            getRequet(diRequestPerfilAdmin)   
+            getRequet(diRequestPerfilAdmin)
             upload_file(diRequestPerfilAdmin)
             agregarInfoPerfil(diRequestPerfilAdmin)
-            return render_template('perfil_admin.html',
-                                nombre= diRequestPerfilAdmin.get('Nombre'),
-                                apellido = diRequestPerfilAdmin.get('Apellido'),
-                                ciudad = diRequestPerfilAdmin.get('Ciudad'),
-                                fechaNacimiento = diRequestPerfilAdmin.get('FechaNacimiento'),
-                                email = email,
-                                telefono = diRequestPerfilAdmin.get('Telefono'),
-                                partidos = diRequestPerfilAdmin.get('PartidosJugados'),
-                                goles = diRequestPerfilAdmin.get('Goles'),
-                                partidosGanados = diRequestPerfilAdmin.get('PartidosGanados'))
-        return render_template('perfil_admin.html', email=email)
+
+        return render_template(
+            'perfil_admin.html',
+            diRequestPerfilAdmin=diRequestPerfilAdmin,
+            email=email
+    )
+
     
     @app.route('/<name>') # dinámico
     def general(name):

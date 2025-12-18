@@ -7,7 +7,9 @@ SHOW TABLES;
 DESCRIBE perfil;
 
 SELECT * FROM perfil ;
-ALTER TABLE perfil AUTO_INCREMENT = 1;
+ALTER TABLE perfil
+ADD COLUMN imagen VARCHAR(255) NULL;
+
 
 INSERT INTO perfil (id, nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion, id_usuario) VALUES 
 (NULL, "Sofía", "Rodríguez Fernández", 5491130000002, "2001-09-03", "Córdoba", "Extremo derecho — velocidad para desbordar, centros precisos y tirar diagonales al área.",1),
