@@ -103,10 +103,16 @@ def cargarSesion(dicUsuario):
     '''
 
     session['id_usuario'] = dicUsuario['id']
-    session['Email']     = dicUsuario['Email']
-    session['Contraseña']   = dicUsuario['Contraseña']
-    session['Rol']   = dicUsuario['Categoria']
-    session['Imagen'] = dicUsuario['ImagenPerfil']
+    session['Nombre'] = dicUsuario['nombre'] or ''
+    session['Apellido'] = dicUsuario['apellido'] or ''
+    session['Telefono'] = dicUsuario['telefono'] or ''
+    session['FechaNacimiento'] = dicUsuario['fecha_nacimiento'] or ''
+    session['Ciudad'] = dicUsuario['ciudad'] or ''
+    session['Descripcion'] = dicUsuario['descripcion'] or ''
+    session['Email']     = dicUsuario['email']
+    session['Contraseña']   = dicUsuario['contraseña']
+    session['Rol']   = dicUsuario['categoria']
+    session['ImagenPerfil'] = dicUsuario['imagenPerfil'] or ''
     session["time"]       = datetime.now()  
 
 def crearSesion(request):
@@ -117,28 +123,41 @@ def crearSesion(request):
         un usuario.
         retorna True si se logra un session, False caso contrario
     '''
-    sesionValida=False
+    dicUsuario={}
     mirequest={}
-    try: 
-        #Carga los datos recibidos del form cliente en el dict 'mirequest'.          
-        getRequet(mirequest)
-        # CONSULTA A LA BASE DE DATOS. Si usuario es valido => crea session
-        dicUsuario={}
-        if obtenerPerfilXEmailPass(dicUsuario,mirequest.get("Email")):
-            # Carga sesion (Usuario validado)
-            cargarSesion(dicUsuario)
-            sesionValida = True
-    except ValueError:                              
-        pass
-    return sesionValida
+    getRequet(mirequest)
+    upload_file(mirequest)
+    email = mirequest.get("Email")
+    password = mirequest.get("Contraseña")
+    if not validarUsuario(
+        dicUsuario,
+        email,
+        password
+    ):
+        return False
+    if not obtenerPerfilXEmailPass(dicUsuario, email, password):
+        dicUsuario.update({
+        'nombre': '',
+        'apellido': '',
+        'telefono': '',
+        'fecha_nacimiento': '',
+        'ciudad': '',
+        'descripcion': '',
+        'imagenPerfil': '',
+        'email': email,
+        'contraseña': password,
+        'categoria': consultarCategoriaDeUsuarioXMail(email)
+        })
 
+    cargarSesion(dicUsuario)
+    return True
 def haySesion():  
     '''info:
         Determina si hay una sesion activa observando si en el dict
         session se encuentra la clave 'username'
         retorna True si hay sesión y False si no la hay.
     '''
-    return session.get("Email")!=None
+    return session.get("Email") is not None
 
 def cerrarSesion():
     '''info:

@@ -24,23 +24,20 @@ def route(app):
                 categoria = True
             elif categoria_str == 'Admin':
                 categoria = False            
-            altaUsuario(request.form.get('email'), request.form.get('Contraseña'), categoria)
-            return redirect(url_for('formLogin'))     # ruta perfil de admin
+            altaUsuario(request.form.get('Email'), request.form.get('Contraseña'), categoria)
+            return redirect(url_for('formLogin'))
             
 
     @app.route('/login',methods = ['POST', 'GET']) # 
     def formLogin():
         if request.method == 'GET':
             return render_template('login.html')
-        else:
-            diRequestLogin={}            
-            getRequet(diRequestLogin)    
-            upload_file(diRequestLogin)  
-            if diRequestLogin.get('Contraseña') == consultarContraseñaDeUsuarioExistenteXMail(diRequestLogin.get('Email')):
-                session['email'] = diRequestLogin.get('Email')
-                if consultarCategoriaDeUsuarioXMail(diRequestLogin.get('Email')) == True: 
+        else:  
+            if crearSesion(request):
+                email = session.get('Email')
+                if email and consultarCategoriaDeUsuarioXMail(email): 
                     redirect_route = 'formPerfil'
-                elif consultarCategoriaDeUsuarioXMail(diRequestLogin.get('Email')) == False:
+                else:
                     redirect_route = 'formPerfilAdmin'
             else:
                 redirect_route = 'formLogin'
@@ -49,13 +46,18 @@ def route(app):
 
     @app.route('/perfil', methods=['GET', 'POST'])
     def formPerfil():
-        email = session.get('email', '')
+        email = session.get('Email', '')
         diRequestPerfil = {}
+        id_usuario = session.get('id_usuario','')
 
         if request.method == 'POST':
             getRequet(diRequestPerfil)
             upload_file(diRequestPerfil)
-            agregarInfoPerfil(diRequestPerfil)
+            primeraVez = True
+            if primeraVez:
+                agregarInfoPerfil(diRequestPerfil)
+                primeraVez = False
+            updateInfoPerfil(diRequestPerfil, id_usuario)
 
         return render_template(
             'perfil.html',
@@ -67,7 +69,7 @@ def route(app):
 
     @app.route('/perfilAdmin', methods=['GET', 'POST'])
     def formPerfilAdmin():
-        email = session.get('email', '')
+        email = session.get('Email', '')
         diRequestPerfilAdmin = {}
 
         if request.method == 'POST':
