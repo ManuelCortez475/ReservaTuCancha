@@ -170,8 +170,7 @@ def route(app):
             diRequestReservar={}           
             getRequet(diRequestReservar)   
             upload_file(diRequestReservar)
-            print(diRequestReservar)
-            return render_template('reservar.html')
+            return render_template('reservar.html',canchas=consultarCanchasPublicadas())
         return redirect('/login')
     
     

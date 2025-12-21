@@ -21,6 +21,7 @@ body {
 
 .Tabla-Principal {
     width: 85%;
+    height:fit-content;
     margin: 30px auto;
     background: #fff;
     border-radius: 12px;
@@ -85,7 +86,7 @@ input[type="radio"] {
 }
 .btn-agregar {
     padding: 8px 14px;
-    background: #3498db;   
+    background: red;   
     border: none;
     border-radius: 6px;
     color: #fff;

@@ -112,7 +112,7 @@ ALTER TABLE cancha
 ADD COLUMN fecha date AFTER nombre;
 UPDATE cancha SET fecha = "2024-07-01" WHERE id BETWEEN 1 AND 15;
 UPDATE cancha SET fecha = "2024-07-02" WHERE id BETWEEN 16 AND 30;
-DELETE FROM cancha WHERE id BETWEEN 31 AND 60;
+DELETE FROM cancha WHERE id in (33,34,35);
 
 UPDATE cancha SET estado = "fuera de servicio" WHERE id IN (2,8);
 

@@ -26,18 +26,19 @@
                         <th>Jugadores</th>
                         <th>Fecha y Horarios</th>
                         <th>Estado</th>
+                        <th>Precio</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody class="Table-Body">
-                    <!-- Nordelta -->
+                    {% for cancha in canchas %}
                     <tr>
-                        <td>Cancha Nordelta</td>
-                        <td>Nordelta</td>
-                        <td>22</td>
+                        <td>{{ cancha.NombreCancha }}</td>
+                        <td>{{ cancha.Ubicacion }}</td>
+                        <td>{{ cancha.CantJugadores}}</td>
                         <td>
-                            <input type="date" id="fechaNordelta"><br>
-                            <select id="horaNordelta">
+                            <input type="date"><br>
+                            <select >
                                 <option disabled selected>Seleccionar...</option>
                                 <option value="9:00">9:00 AM</option>
                                 <option value="10:30">10:30 AM</option>
@@ -49,60 +50,32 @@
                             <br>
                             <span id="errorNordelta" class="error-text"></span>
                         </td>
-                        <td><label id="estadoNordelta">Reservada</label></td>
-                        <td><button id="btnNordelta" disabled class="btn-reservado">Reservado</button></td>
-                    </tr>
-
-                    <!-- Beccar -->
-                    <form action="reservar" method="post">
-                    <tr>
-                        <td>Cancha Beccar</td>
-                        <td>Beccar</td>
-                        <td>10</td>
+                        <td><label id="estadoNordelta">{{ cancha.Estado }}</label></td>
+                        <td><label>{{ cancha.Precio }}</label></td>
                         <td>
-                            
-                                <input name="Fecha" type="date" id="fechaBeccar"><br>
-                                <select name="Hora" id="horaBeccar">
-                                    <option disabled selected>Seleccionar...</option>
-                                    <option value="9:00">9:00 AM</option>
-                                    <option value="10:30">10:30 AM</option>
-                                    <option value="12:00">12:00 PM</option>
-                                    <option value="13:30">1:30 PM</option>
-                                    <option value="15:00">3:00 PM</option>
-                                    <option value="16:30">4:30 PM</option>
-                                </select>
-                                <br>
-                                <span id="errorBeccar" class="error-text"></span>
-                           
+                            <button id="btnNordelta" disabled class="
+                            {% if cancha.Estado == 'inhabilitada' %}
+                                btn-agregar
+                            {% elif cancha.Estado == 'habilitada' %}
+                                btn-reservar
+                            {% elif cancha.Estado == 'reservada' %}
+                                btn-reservado
+                            {% else %}
+                                estado-desconocido
+                            {% endif %}">
+                            {% if cancha.Estado == 'inhabilitada' %}
+                                Fuera de Servicio
+                            {% elif cancha.Estado == 'habilitada' %}
+                                Reservar
+                            {% elif cancha.Estado == 'reservada' %}
+                                Reservada
+                            {% else %}
+                                Desconocido
+                            {% endif %}
+                            </button>
                         </td>
-                        <td><label id="estadoBeccar">Habilitada</label></td>
-                        <td><button type="submit" id="btnBeccar" class="btn btn-reservar">Reservar</button></td>
-                        
                     </tr>
-                    </form> 
-
-                    <!-- Benavidez -->
-                    <tr>
-                        <td>Cancha Benavidez</td>
-                        <td>Benavidez</td>
-                        <td>16</td>
-                        <td>
-                            <input type="date" id="fechaBenavidez"><br>
-                            <select id="horaBenavidez">
-                                <option disabled selected>Seleccionar...</option>
-                                <option value="9:00">9:00 AM</option>
-                                <option value="10:30">10:30 AM</option>
-                                <option value="12:00">12:00 PM</option>
-                                <option value="13:30">1:30 PM</option>
-                                <option value="15:00">3:00 PM</option>
-                                <option value="16:30">4:30 PM</option>
-                            </select>
-                            <br>
-                            <span id="errorBenavidez" class="error-text"></span>
-                        </td>
-                        <td><label id="estadoBenavidez">Inhabilitada</label></td>
-                        <td><button id="btnBenavidez" disabled class="btn-reservado">Fuera de Servicio</button></td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

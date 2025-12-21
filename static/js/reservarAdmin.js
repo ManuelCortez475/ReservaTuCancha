@@ -9,10 +9,7 @@ function crearFilaNueva() {
     const nuevaFila = document.createElement('tr');
     
     nuevaFila.innerHTML = `
-    <form id='form' method="post" action="/reservaAdmin">
-    <table class="Tabla-Principal">
         <td>
-        
             <input name='NombreCancha${rowCount}' type="text" id="nombre${rowCount}" placeholder="Name">
         </td>
         <td><input name='UbicacionCancha${rowCount}' type="text" id="ubicacion${rowCount}" placeholder="Location"></td>
@@ -25,9 +22,9 @@ function crearFilaNueva() {
             <input type="time" id="end${rowCount}" name="end${rowCount}" required>
         </td>
         <td class="estado">
-            <label><input class="estado" type="radio" name="Estado${rowCount}" value="r"> Reservada</label><br>
-            <label><input class="estado" type="radio" name="Estado${rowCount}" value="h"> Habilitada</label><br>
-            <label><input class="estado" type="radio" name="Estado${rowCount}" value="i"> Inhabilitada</label>
+            <label><input class="estado" type="radio" name="Estado${rowCount}" value="reservada"> reservada</label><br>
+            <label><input class="estado" type="radio" name="Estado${rowCount}" value="habilitada"> habilitada</label><br>
+            <label><input class="estado" type="radio" name="Estado${rowCount}" value="inhabilitada"> inhabilitada</label>
         </td>
         <td>
             <label><input type="number" name="Precio${rowCount}"></label><br>
@@ -35,7 +32,6 @@ function crearFilaNueva() {
         <td>
             <button type="submit" id="btnPublicar${rowCount}" name='btnPublicar${rowCount}' class="btnPublicar1">Publicar</button>
             <p class="errorCampos" id="errorCampos${rowCount}"></p>
-        </form>
         </td>
     `;
     const filaAgregar = btnAgregar.closest('tr');

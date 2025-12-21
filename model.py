@@ -295,3 +295,25 @@ def insertarCanchaEnBD(di):
     cerrarDB(connDB)
     print ("Filas afectadas: ", res)
     return res
+
+def consultarCanchasPublicadas():
+    sQuery = """
+        SELECT * FROM cancha
+    """
+    connDB = conectarDB()
+    res = ejecutarConsulta(connDB, sQuery)
+    cerrarDB(connDB)
+    canchas = []
+    for fila in res:
+        cancha = {
+            'id_cancha': fila[0],
+            'NombreCancha': fila[1],
+            'Fecha': fila[2],
+            'Estado': fila[3],
+            'Ubicacion': fila[4],
+            'CantJugadores': fila[5],
+            'Precio': fila[6]
+        }
+        canchas.append(cancha)
+
+    return canchas
