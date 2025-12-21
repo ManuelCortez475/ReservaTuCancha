@@ -74,7 +74,7 @@ def route(app):
 
             return render_template(
                 'perfil.html',
-                diRequestPerfil=diRequestPerfil,
+                diRequestPerfil=obtenerPerfilPorUsuario(diRequestPerfil,id_usuario),
                 email=email
             )
         return redirect('/login')
@@ -110,7 +110,7 @@ def route(app):
 
             return render_template(
                 'perfil.html',
-                diRequestPerfilAdmin=diRequestPerfilAdmin,
+                diRequestPerfilAdmin=obtenerPerfilPorUsuario(diRequestPerfilAdmin,id_usuario),
                 email=email
             )
         return redirect('/login')
