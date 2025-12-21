@@ -130,6 +130,7 @@ def route(app):
     def misreservas():
         if haySesion():
             return render_template('misreservas.html')
+        return redirect('/login')
     
     @app.route('/pagina_pago', methods = ['POST', 'GET']) # 
     def formPaginaPago():
@@ -139,12 +140,14 @@ def route(app):
             upload_file(diRequestPago)
             print(diRequestPago)
             return render_template('pagina_pago.html')
+        return redirect('/login')
     
 
     @app.route('/publicaciones')
     def publicaciones():
         if haySesion():
             return render_template('publicaciones.html')
+        return redirect('/login')
     
     
     @app.route('/reservaAdmin',methods = ['POST', 'GET']) # 
@@ -184,6 +187,7 @@ def route(app):
                 canchas.append(cancha)
                 session['canchas_publicadas'] = canchas
                 return redirect(url_for('formReservaAdmin'))
+        return redirect('/login')
             
     @app.route('/confirmarPublicaciones', methods=['POST'])
     def confirmar_publicaciones():
@@ -199,11 +203,13 @@ def route(app):
 
             flash("Canchas publicadas con éxito")
             return redirect(url_for('formReservaAdmin'))
+        return redirect('/login')
 
     @app.route('/reservar')
     def reserva():
         if haySesion():
             return render_template('reservar.html')
+        return redirect('/login')
     
     @app.route('/datosReservar',methods = ['POST', 'GET']) # 
     def formReservar():
@@ -218,6 +224,7 @@ def route(app):
     def unirse():
         if haySesion():
             return render_template('unirse.html')
+        return redirect('/login')
 
     @app.route("/logout")
     def logout():  
