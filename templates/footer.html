@@ -13,6 +13,14 @@
                 <li class="liNav_footer"><a href="https://discord.gg/6wVzJSuN3R"><img src="../static/img/discord-logo-discord-logo-transparent-discord-icon-transparent-free-free-png.webp" alt="discord" height="50px"></a></li>
 				<li class="liNav_footer"><a class="buttonNav_footer" href="#">About</a></li>
 				<li class="liNav_footer"><a class="buttonNav_footer" href="#">Contact</a></li>
+				<li>
+					{% if session.get('Email') %}
+						<p>Sesión iniciada como: <strong>{{ session.get('Email') }}</strong></p>
+						<a href="/logout">Cerrar sesión</a>
+					{% else %}
+						<p>No hay sesión iniciada</p>
+					{% endif %}
+				</li>
 			</ul>
 		</div>
 	</nav>

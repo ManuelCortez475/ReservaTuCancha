@@ -53,5 +53,9 @@
 
 a{
     text-decoration: none;
-    color: inherit;
+    color: white;
+}
+
+p{
+    color: white;
 }

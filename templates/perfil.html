@@ -20,7 +20,7 @@
             <form action="/perfil" method="post" enctype="multipart/form-data">
             <div class="avatar-wrap">
                 <img id="avatarPreview"
-                    src="{{ url_for('static', filename='uploads/' + (diRequestPerfil.get('ImagenPerfil') or 'default.png')) }}">
+                    src="{{ url_for('static', filename='uploads/' + (diRequestPerfil.get('ImagenPerfil') or 'logo.png.png')) }}">
 
                 <input type="file" name="ImagenPerfil"  id="avatarInput" accept="image/*" >
                 <label for="avatarInput" class="upload-label"> Subir nueva foto </label>

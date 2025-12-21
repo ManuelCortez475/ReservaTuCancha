@@ -74,10 +74,8 @@ def updateInfoPerfil(di,id_usuario):
         """
     perfil={}
     perfilActual = obtenerPerfilPorUsuario(perfil,id_usuario)
-    img = di.get('ImagenPerfil')
-    if isinstance(img, dict) and img.get('file_name_new'):
-        imagenPerfil = img['file_name_new']
-    else:
+    imagenPerfil = di.get('ImagenPerfil')
+    if not imagenPerfil:
         imagenPerfil = perfilActual.get('ImagenPerfil')
 
 
@@ -186,7 +184,8 @@ def obtenerPerfilXEmailPass(result,email,Pass):
     fila= ejecutarConsulta(connDB,sSql,val)
     if fila!=[]:
         res=True
-        result['id']=fila[0][0]
+        result['id_perfil']=fila[0][0]
+        result['id_usuario'] = id_usuario
         result['nombre']=fila[0][1]
         result['apellido']=fila[0][2]
         result['telefono']=fila[0][3]
@@ -197,9 +196,9 @@ def obtenerPerfilXEmailPass(result,email,Pass):
         result['contraseña']=Pass
         result['imagenPerfil']=fila[0][7]
         result['categoria']= consultarCategoriaDeUsuarioXMail(email)
-        result['partidosJugados'] = res[0][7]
-        result['goles'] = res[0][8]
-        result['partidosGanados'] = res[0][9]
+        result['partidosJugados'] = fila[0][8]
+        result['goles'] = fila[0][9]
+        result['partidosGanados'] = fila[0][10]
 
     cerrarDB(connDB)
     return res    
@@ -210,6 +209,7 @@ def obtenerPerfilPorUsuario(di,id_usuario):
         FROM perfil
         WHERE id_usuario = %s
     """
+    print('Id usuario:',id_usuario)
     connDB = conectarDB()
     try:
         res = ejecutarConsulta(connDB, sQuery, (id_usuario,))

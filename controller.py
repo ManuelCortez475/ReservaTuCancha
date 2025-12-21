@@ -62,7 +62,7 @@ def upload_file (diResult) :
                     diResult[key]['file_error'] = True
                     diResult[key]['file_msg'] = str(e)
             else:
-                diResult[key]={} # viene vacio el input del file upload
+                continue # viene vacio el input del file upload
 
     # si existe el archivo devuelve True
     # os.path.exists(os.path.join('G:\\directorio\\....\\uploads',"agua.png"))
@@ -100,8 +100,8 @@ def cargarSesion(dicUsuario):
                de un usuario.
         Comentario: Usted puede agregar en 'session' las claves que necesite
     '''
-
-    session['id_usuario'] = dicUsuario['id']
+    session['id_perfil'] = dicUsuario['id_perfil']
+    session['id_usuario'] = dicUsuario['id_usuario']
     session['Nombre'] = dicUsuario['nombre'] or ''
     session['Apellido'] = dicUsuario['apellido'] or ''
     session['Telefono'] = dicUsuario['telefono'] or ''
@@ -147,6 +147,8 @@ def crearSesion(request):
         'contraseña': password,
         'categoria': consultarCategoriaDeUsuarioXMail(email)
         })
+    print("ID USUARIO:", dicUsuario['id_usuario'])
+    print("ID PERFIL:", dicUsuario.get('id_perfil'))
 
     cargarSesion(dicUsuario)
     return True

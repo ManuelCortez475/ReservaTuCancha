@@ -55,6 +55,12 @@ def route(app):
         if request.method == 'POST':
             getRequet(diRequestPerfil)
             upload_file(diRequestPerfil)
+            img = diRequestPerfil.get('ImagenPerfil')
+            if isinstance(img, dict):
+                if img.get('file_error') is False:
+                    diRequestPerfil['ImagenPerfil'] = img.get('file_name_new')
+                else:
+                    diRequestPerfil.pop('ImagenPerfil', None)
             di={}
             existePerfil = obtenerPerfilPorUsuario(di,id_usuario)
             print("PERFIL EN BD:", di)
@@ -66,9 +72,7 @@ def route(app):
                 print("ID USUARIO:", id_usuario)
                 print("DATOS UPDATE:", diRequestPerfil)
                 updateInfoPerfil(diRequestPerfil, id_usuario)
-            return redirect('/perfil')
-        
-        obtenerPerfilPorUsuario(diRequestPerfil, id_usuario)
+
         return render_template(
             'perfil.html',
             diRequestPerfil=diRequestPerfil,
