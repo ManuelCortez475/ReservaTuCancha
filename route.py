@@ -205,19 +205,15 @@ def route(app):
             return redirect(url_for('formReservaAdmin'))
         return redirect('/login')
 
-    @app.route('/reservar')
-    def reserva():
+    @app.route('/reservar',methods = ['POST', 'GET']) # 
+    def formReservar():
         if haySesion():
+            diRequestReservar={}           
+            getRequet(diRequestReservar)   
+            upload_file(diRequestReservar)
+            print(diRequestReservar)
             return render_template('reservar.html')
         return redirect('/login')
-    
-    @app.route('/datosReservar',methods = ['POST', 'GET']) # 
-    def formReservar():
-        diRequestReservar={}           
-        getRequet(diRequestReservar)   
-        upload_file(diRequestReservar)
-        print(diRequestReservar)
-        return diRequestReservar
     
     
     @app.route('/unirse')
