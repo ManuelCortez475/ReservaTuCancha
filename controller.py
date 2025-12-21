@@ -51,17 +51,16 @@ def upload_file (diResult) :
                     diResult[key]['file_name']=f.filename
                 try:
                     if not diResult[key]['file_error']:
-                        diResult[key]['file_error']=True
-                        diResult[key]['file_msg']='Se ha producido un error.'
+                        
+                        f.save(path_filename)
 
-                        f.save(path_filename)   
-                        diResult[key]['file_error']=False
-                        diResult[key]['file_name_new']=filename_unique
-                        diResult[key]['file_name']=f.filename
-                        diResult[key]['file_msg']='OK. Archivo cargado exitosamente'
- 
-                except:
-                        pass
+                        diResult[key]['file_error'] = False
+                        diResult[key]['file_name_new'] = filename_unique
+                        diResult[key]['file_name'] = f.filename
+                        diResult[key]['file_msg'] = 'OK. Archivo cargado exitosamente'
+                except Exception as e:
+                    diResult[key]['file_error'] = True
+                    diResult[key]['file_msg'] = str(e)
             else:
                 diResult[key]={} # viene vacio el input del file upload
 
