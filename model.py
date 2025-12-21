@@ -23,21 +23,21 @@ def bajaUsuario(_id):
     cerrarDB(connDB)
     return res
 
-def agregarInfoPerfil (di):
+def agregarInfoPerfil (di,id_usuario):
     sQuery="""
         INSERT INTO perfil
         (id,nombre,apellido,telefono,fecha_nacimiento,ciudad,descripcion,imagen,id_usuario)
         VALUES
         (NULL,%s,%s,%s,%s,%s,%s,%s,%s)
         """
-    id_usuario= consultarIdXMailPass(di.get('Email'),di.get('Contraseña'))
+    imagenPerfil = di.get('ImagenPerfil', {}).get('file_name_new')
     val=(di.get('Nombre'),
          di.get('Apellido'),
          di.get('Telefono'),
          di.get('FechaNacimiento'),
          di.get('Ciudad'),
          di.get('Descripcion'),
-         di.get('ImagenPerfil'),
+         imagenPerfil,
          id_usuario
          )
     connDB = conectarDB()
@@ -57,24 +57,20 @@ def updateInfoPerfil(di,id_usuario):
         telefono = %s,
         fecha_nacimiento = %s,
         ciudad = %s,
-        descripcion = %s
+        descripcion = %s,
         imagen = %s
         WHERE id_usuario = %s
         """
     perfilActual = obtenerPerfilPorUsuario(id_usuario)
-    nombre = di.get('Nombre') or perfilActual.get('Nombre')
-    apellido = di.get('Apellido') or perfilActual.get('Apellido')
-    telefono = di.get('Telefono') or perfilActual.get('Telefono')
-    fecha = di.get('FechaNacimiento') or perfilActual.get('FechaNacimiento')
-    ciudad = di.get('Ciudad') or perfilActual.get('Ciudad')
-    descripcion = di.get('Descripcion') or perfilActual.get('Descripcion')
-    imagenPerfil = di.get('ImagenPerfil') or perfilActual.get('ImagenPerfil')
-    val=(nombre,
-         apellido,
-         telefono,
-         fecha,
-         ciudad,
-         descripcion,
+    imagenPerfil = di.get('ImagenPerfil', {}).get('file_name_new') \
+        or perfilActual.get('ImagenPerfil')
+    val=(di.get('Nombre') or perfilActual.get('Nombre'),
+         di.get('Apellido') or perfilActual.get('Apellido'),
+         di.get('Telefono') or perfilActual.get('Telefono'),
+         di.get('FechaNacimiento') or perfilActual.get('FechaNacimiento'),
+         di.get('Ciudad') or perfilActual.get('Ciudad'),
+         di.get('Descripcion') or perfilActual.get('Descripcion'),
+         imagenPerfil,
          id_usuario
          )
     connDB = conectarDB()

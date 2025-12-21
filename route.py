@@ -49,15 +49,14 @@ def route(app):
         email = session.get('Email', '')
         diRequestPerfil = {}
         id_usuario = session.get('id_usuario','')
-
         if request.method == 'POST':
             getRequet(diRequestPerfil)
             upload_file(diRequestPerfil)
-            primeraVez = True
-            if primeraVez:
-                agregarInfoPerfil(diRequestPerfil)
-                primeraVez = False
-            updateInfoPerfil(diRequestPerfil, id_usuario)
+            existePerfil = obtenerPerfilPorUsuario(id_usuario)
+            if not existePerfil:
+                agregarInfoPerfil(diRequestPerfil,id_usuario)
+            else:
+                updateInfoPerfil(diRequestPerfil, id_usuario)
 
         return render_template(
             'perfil.html',
@@ -71,17 +70,21 @@ def route(app):
     def formPerfilAdmin():
         email = session.get('Email', '')
         diRequestPerfilAdmin = {}
-
+        id_usuario = session.get('id_usuario','')
         if request.method == 'POST':
             getRequet(diRequestPerfilAdmin)
             upload_file(diRequestPerfilAdmin)
-            agregarInfoPerfil(diRequestPerfilAdmin)
+            existePerfil = obtenerPerfilPorUsuario(id_usuario)
+            if not existePerfil:
+                agregarInfoPerfil(diRequestPerfilAdmin,id_usuario)
+            else:
+                updateInfoPerfil(diRequestPerfilAdmin, id_usuario)
 
         return render_template(
             'perfil_admin.html',
             diRequestPerfilAdmin=diRequestPerfilAdmin,
             email=email
-    )
+        )
 
     
     @app.route('/<name>') # dinámico

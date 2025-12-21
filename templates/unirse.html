@@ -10,23 +10,9 @@
     <link rel="icon" href="../static/img/Logo.png.png" type="image/x-icon">
 </head>
 <body>
-    <nav class="navbar_header">
-		<div class="navdiv_header">
-			<div class="logo_header">
-                <img src="../static/img/Logo.png.png" alt="Logo ReservaTuCancha" class="logo-img_header">
-            </div>
-			<div class="logo_header"> <a href="/home">ReservaTuCancha</a> </div>
-			<ul class="navbutton_header">
-				<li> <a href="/home">Home</a></li>
-                <li> <a href="/registro">Register</a></li>
-                <li> <a href="/login">Login</a></li>
-                <li> <a href="/perfil">Profile</a></li>
-                <li> <a href="/reservar">Reservar</a></li>
-                <li> <a href="/unirse">Unirse</a></li>
-				
-			</ul>
-		</div>
-	</nav>
+    {% block header %}   
+        {% include "header.html" %}
+    {% endblock %}
 	
     <h1 class="Titulo"> ReservaTuCancha </h1>
     <div>
@@ -66,17 +52,9 @@
         </table>
             
     </div>
-    <footer>
-        <nav class="navbar_footer">
-            <div class="navdiv_footer">
-                <ul class="navbutton_footer">
-                    <li class="liNav_footer"><a href="https://discord.gg/6wVzJSuN3R"><img src="../static/img/discord-logo-discord-logo-transparent-discord-icon-transparent-free-free-png.webp" alt="discord" height="50px"></a></li>
-                    <li class="liNav_footer"><a class="buttonNav_footer" href="#">About</a></li>
-                    <li class="liNav_footer"><a class="buttonNav_footer" href="#">Contact</a></li>
-                </ul>
-            </div>
-	    </nav>
-    </footer>
+    {% block footer %}   
+        {% include "footer.html" %}
+    {% endblock %}
     <script src="../static/js/unirse.js"></script>
 </body>
 </html>

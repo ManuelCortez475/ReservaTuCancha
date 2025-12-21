@@ -10,25 +10,9 @@
     <link rel="icon" href="../static/img/Logo.png.png" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <nav class="navbar_header">
-            <div class="navdiv_header">
-                <div class="logo_header">
-                    <img src="../static/img/Logo.png.png" alt="Logo ReservaTuCancha" class="logo-img_header">
-                </div>
-                <div class="logo_header"> <a href="/home">ReservaTuCancha</a> </div>
-
-			<ul class="navbutton_header">
-				<li> <a href="/home">Home</a></li>
-                <li> <a href="/registro">Register</a></li>
-                <li> <a href="/login">Login</a></li>
-                <li> <a href="/perfil">Profile</a></li>
-                <li> <a href="/reservar">Reservar</a></li>
-                <li> <a href="/unirse">Unirse</a></li>
-			</ul>
-            </div>
-        </nav>
-    </header>
+    {% block header %}   
+        {% include "header.html" %}
+    {% endblock %}
 
     <div class="profile-container">
         
@@ -36,7 +20,7 @@
             <form action="perfilAdmin" method="post">
             <div class="avatar-wrap">
                 <img id="avatarPreview" src="../static/img/Logo.png.png" alt="Foto de perfil">
-                <input type="file" id="avatarInput" accept="image/*">
+                <input type="file" name="ImagenPerfil" id="avatarInput" accept="image/*">
                 <label for="avatarInput" name="ImagenPerfil" class="upload-label"> Subir nueva foto </label>
             </div>
             <div class="card">
@@ -99,6 +83,10 @@
             </form>
         </section>
     </div>
+
+    {% block footer %}   
+        {% include "footer.html" %}
+    {% endblock %}
 
 <script src="../static/js/perfil.js"></script>
 
