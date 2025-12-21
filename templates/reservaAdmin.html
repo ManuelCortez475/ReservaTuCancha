@@ -18,7 +18,7 @@
 
     <main>
         <h1 class="Titulo">PublicaTuCancha</h1>
-        <div>
+        <form method="post" action="/reservaAdmin" id="formTabla">
             <table class="Tabla-Principal">
                 <thead class="Table-Header">
                     <tr>
@@ -27,31 +27,20 @@
                         <th>Jugadores</th>
                         <th>Fecha y Horarios</th>                    
                         <th>Estado</th>
+                        <th>Precio</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody class="Table-Body" id="tableCanchas">
-                    {% for cancha in canchas %}
-                    
-                    <tr id="fila1">
-                    </tr>
-                    
-                    {% endfor %}
+                    <!-- Fila de agregar nueva -->
                     <tr>
                         <td>
                             <input type="button" id="btnAgregar" value="Agregar Cancha" class="btn-agregar">
-
-                            <form method="post" action="/confirmarPublicaciones">
-                            <button type="submit" class="btn-confirmar">
-                                Confirmar publicaciones
-                            </button>
-                            </form>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-        
+        </form>
     </main>
 
     {% block footer %}   

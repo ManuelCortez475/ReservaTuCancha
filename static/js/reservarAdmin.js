@@ -1,5 +1,6 @@
 const btnPublicar1 = document.getElementById('btnPublicar1');
 const btnAgregar = document.getElementById('btnAgregar');
+const form = document.getElementById('form')
 
 
 function crearFilaNueva() {
@@ -8,9 +9,10 @@ function crearFilaNueva() {
     const nuevaFila = document.createElement('tr');
     
     nuevaFila.innerHTML = `
-    
+    <form id='form' method="post" action="/reservaAdmin">
+    <table class="Tabla-Principal">
         <td>
-        <form method="post" action="/reservaAdmin">
+        
             <input name='NombreCancha${rowCount}' type="text" id="nombre${rowCount}" placeholder="Name">
         </td>
         <td><input name='UbicacionCancha${rowCount}' type="text" id="ubicacion${rowCount}" placeholder="Location"></td>
@@ -23,17 +25,21 @@ function crearFilaNueva() {
             <input type="time" id="end${rowCount}" name="end${rowCount}" required>
         </td>
         <td class="estado">
-            <label><input type="radio" name="Estado${rowCount}" value="r"> Reservada</label><br>
-            <label><input type="radio" name="Estado${rowCount}" value="h"> Habilitada</label><br>
-            <label><input type="radio" name="Estado${rowCount}" value="i"> Inhabilitada</label>
+            <label><input class="estado" type="radio" name="Estado${rowCount}" value="r"> Reservada</label><br>
+            <label><input class="estado" type="radio" name="Estado${rowCount}" value="h"> Habilitada</label><br>
+            <label><input class="estado" type="radio" name="Estado${rowCount}" value="i"> Inhabilitada</label>
         </td>
         <td>
-            <input type="submit" id="btnPublicar${rowCount}" name='btnPublicar${rowCount}' class="btnPublicar1" value="Publicar Borrador">
+            <label><input type="number" name="Precio${rowCount}"></label><br>
+        </td>
+        <td>
+            <button type="submit" id="btnPublicar${rowCount}" name='btnPublicar${rowCount}' class="btnPublicar1">Publicar</button>
             <p class="errorCampos" id="errorCampos${rowCount}"></p>
         </form>
         </td>
     `;
-    tabla.insertBefore(nuevaFila, tabla.lastElementChild);
+    const filaAgregar = btnAgregar.closest('tr');
+    tabla.insertBefore(nuevaFila, filaAgregar);
     const btnPublicar= nuevaFila.querySelector('.btnPublicar1')
     btnPublicar.addEventListener('click', verificarCamposCompletos);
 }
@@ -75,4 +81,4 @@ function verificarCamposCompletos(e) {
 }
 
 btnAgregar.addEventListener('click', crearFilaNueva);
-btnPublicar1.addEventListener('click', verificarCamposCompletos);
+form.addEventListener('submit', verificarCamposCompletos);

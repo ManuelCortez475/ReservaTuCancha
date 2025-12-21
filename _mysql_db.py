@@ -32,7 +32,7 @@ def ejecutar (connDB,sQuery,params=None):
         print(e,"Fallo, se hizo rollback")
     return res
 
-def selectDB(configDB=None,sql="",val=None,title=False,dictionary=False):
+def selectDB(BASE=None,sql="",val=None,title=False,dictionary=False):
     ''' ########## SELECT
         # recibe 'configDB' un 'dict' con los parámetros de conexion
         # recibe 'sql' una cadena con la consulta sql
@@ -44,8 +44,8 @@ def selectDB(configDB=None,sql="",val=None,title=False,dictionary=False):
         #     los títulos de las columnas.
     '''
     resQuery=None
-    if configDB!=None:
-        mydb=conectarDB(configDB)
+    if BASE!=None:
+        mydb=conectarDB(BASE)
         resQuery=ejecutarConsulta(mydb,sQuery=sql,val=val,title=title,dictionary=dictionary)
         cerrarDB(mydb)
     return resQuery

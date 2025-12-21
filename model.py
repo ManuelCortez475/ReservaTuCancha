@@ -257,22 +257,23 @@ def consultarImagenPerfilPorEmail(email):
     return res[0]['ImagenPerfil'] if res else None
 
 
-def insertarCanchaEnBD(request):
+def insertarCanchaEnBD(di):
     fila_numero = None
-    for key in request.form.keys():
+    for key in di.keys():
         if key.startswith("btnPublicar"):
             fila_numero = key.replace("btnPublicar", "")
             break
     if fila_numero is None:
         return "No se detectó ninguna fila para publicar"
     cancha_data = {
-        "NombreCancha": request.form.get(f"NombreCancha{fila_numero}"),
-        "UbicacionCancha": request.form.get(f"UbicacionCancha{fila_numero}"),
-        "CantidadJug": request.form.get(f"CantidadJug{fila_numero}"),
-        "Fecha": request.form.get(f"Fecha{fila_numero}"),
-        "Inicio": request.form.get(f"start{fila_numero}"),
-        "Fin": request.form.get(f"end{fila_numero}"),
-        "Estado": request.form.get(f"Estado{fila_numero}")
+        "NombreCancha": di.get(f"NombreCancha{fila_numero}"),
+        "UbicacionCancha": di.get(f"UbicacionCancha{fila_numero}"),
+        "CantidadJug": di.get(f"CantidadJug{fila_numero}"),
+        "Fecha": di.get(f"Fecha{fila_numero}"),
+        "Inicio": di.get(f"start{fila_numero}"),
+        "Fin": di.get(f"end{fila_numero}"),
+        "Estado": di.get(f"Estado{fila_numero}"),
+        "Precio": di.get(f"Precio{fila_numero}")
     }
     print("Datos de la fila a publicar:", cancha_data)
     sQuery = """
@@ -286,10 +287,11 @@ def insertarCanchaEnBD(request):
         cancha_data.get('Estado'),
         cancha_data.get('UbicacionCancha'),
         cancha_data.get('CantidadJug'),
+        cancha_data.get('Precio')
         
     )
     connDB = conectarDB()
-    res = ejecutar(sQuery, val)
+    res = ejecutar(connDB,sQuery, val)
     cerrarDB(connDB)
     print ("Filas afectadas: ", res)
     return res

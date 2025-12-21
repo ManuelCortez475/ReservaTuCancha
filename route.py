@@ -150,19 +150,18 @@ def route(app):
         return redirect('/login')
     
     
-    @app.route('/reservaAdmin',methods = ['POST', 'GET']) # 
-    def formReservaAdmin():
+    @app.route('/reservaAdmin', methods = ['POST', 'GET'])
+    def formReservaAdmin (): 
         if haySesion():
             if request.method == 'GET':
-                return render_template('reservaAdmin.html')
-            else: 
-                print(request.form)
-                diRequestReservaAdmin={}           
-                getRequet(diRequestReservaAdmin)   
-                upload_file(diRequestReservaAdmin)
-                print("Info cancha: ",diRequestReservaAdmin)
-                insertarCanchaEnBD(request)
-                return redirect('/reservaAdmin')
+                return render_template('reservaAdmin.html')   
+            
+            diRequestReservaAdmin={}           
+            getRequet(diRequestReservaAdmin)   
+            upload_file(diRequestReservaAdmin)
+            insertarCanchaEnBD(diRequestReservaAdmin)
+            return redirect('/reservaAdmin')
+        return redirect('/login')
                 
 
     @app.route('/reservar',methods = ['POST', 'GET']) # 
