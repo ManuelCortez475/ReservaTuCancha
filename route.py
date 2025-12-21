@@ -154,56 +154,16 @@ def route(app):
     def formReservaAdmin():
         if haySesion():
             if request.method == 'GET':
-                return render_template('reservaAdmin.html', canchas=session.get('canchas_publicadas', []))
+                return render_template('reservaAdmin.html')
             else: 
+                print(request.form)
                 diRequestReservaAdmin={}           
                 getRequet(diRequestReservaAdmin)   
                 upload_file(diRequestReservaAdmin)
-                print(diRequestReservaAdmin)
+                print("Info cancha: ",diRequestReservaAdmin)
+                insertarCanchaEnBD(request)
+                return redirect('/reservaAdmin')
                 
-                boton_id = None
-
-                for key in request.form.keys():
-                    if key.startswith('btnPublicar'):
-                        boton_id = key  # ej: btnPublicar3
-                        break
-                numero = boton_id.replace('btnPublicar', '')
-                if boton_id is None:
-                    flash('No se detectó botón de publicación')
-                    return redirect(url_for('formReservaAdmin'))
-                cancha = {
-                    'numero': numero,
-                    'nombre': request.form.get(f'NombreCancha{numero}'),
-                    'ubicacion': request.form.get(f'UbicacionCancha{numero}'),
-                    'jugadores': request.form.get(f'CantidadJug{numero}'),
-                    'estado': request.form.get(f'Estado{numero}'),
-                    'fecha': request.form.get('Fecha'),
-                    'inicio': request.form.get(f'start{numero}'),
-                    'fin': request.form.get(f'end{numero}')
-                }
-                if 'canchas_publicadas' not in session:
-                    session['canchas_publicadas'] = []
-                canchas = session.get('canchas_publicadas',[])
-                canchas.append(cancha)
-                session['canchas_publicadas'] = canchas
-                return redirect(url_for('formReservaAdmin'))
-        return redirect('/login')
-            
-    @app.route('/confirmarPublicaciones', methods=['POST'])
-    def confirmar_publicaciones():
-        if haySesion():
-            canchas = session.get('canchas_publicadas', [])
-
-            for cancha in canchas:
-                # 👇 ACÁ VA LA DB (ejemplo)
-                print("Guardando en DB:", cancha)
-
-            # 🔥 limpiar session
-            session.pop('canchas_publicadas', None)
-
-            flash("Canchas publicadas con éxito")
-            return redirect(url_for('formReservaAdmin'))
-        return redirect('/login')
 
     @app.route('/reservar',methods = ['POST', 'GET']) # 
     def formReservar():

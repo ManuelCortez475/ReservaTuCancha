@@ -255,3 +255,41 @@ def consultarImagenPerfilPorEmail(email):
     res = ejecutarConsulta(sQuery, (email,))
     cerrarDB(connDB)
     return res[0]['ImagenPerfil'] if res else None
+
+
+def insertarCanchaEnBD(request):
+    fila_numero = None
+    for key in request.form.keys():
+        if key.startswith("btnPublicar"):
+            fila_numero = key.replace("btnPublicar", "")
+            break
+    if fila_numero is None:
+        return "No se detectó ninguna fila para publicar"
+    cancha_data = {
+        "NombreCancha": request.form.get(f"NombreCancha{fila_numero}"),
+        "UbicacionCancha": request.form.get(f"UbicacionCancha{fila_numero}"),
+        "CantidadJug": request.form.get(f"CantidadJug{fila_numero}"),
+        "Fecha": request.form.get(f"Fecha{fila_numero}"),
+        "Inicio": request.form.get(f"start{fila_numero}"),
+        "Fin": request.form.get(f"end{fila_numero}"),
+        "Estado": request.form.get(f"Estado{fila_numero}")
+    }
+    print("Datos de la fila a publicar:", cancha_data)
+    sQuery = """
+    INSERT INTO cancha 
+    (id,nombre, estado, ubicacion, cant_jugadores, precio)
+    VALUES
+    (NULL,%s,%s,%s,%s,%s)
+    """
+    val = (
+        cancha_data.get('NombreCancha'),
+        cancha_data.get('Estado'),
+        cancha_data.get('UbicacionCancha'),
+        cancha_data.get('CantidadJug'),
+        
+    )
+    connDB = conectarDB()
+    res = ejecutar(sQuery, val)
+    cerrarDB(connDB)
+    print ("Filas afectadas: ", res)
+    return res

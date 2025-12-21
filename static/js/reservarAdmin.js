@@ -8,7 +8,11 @@ function crearFilaNueva() {
     const nuevaFila = document.createElement('tr');
     
     nuevaFila.innerHTML = `
-        <td><input name='NombreCancha${rowCount}' type="text" id="nombre${rowCount}" placeholder="Name"></td>
+    
+        <td>
+        <form method="post" action="/reservaAdmin">
+            <input name='NombreCancha${rowCount}' type="text" id="nombre${rowCount}" placeholder="Name">
+        </td>
         <td><input name='UbicacionCancha${rowCount}' type="text" id="ubicacion${rowCount}" placeholder="Location"></td>
         <td><input name='CantidadJug${rowCount}' type="number" id="cantJug${rowCount}" placeholder="N°"></td>
         <td>
@@ -26,6 +30,7 @@ function crearFilaNueva() {
         <td>
             <input type="submit" id="btnPublicar${rowCount}" name='btnPublicar${rowCount}' class="btnPublicar1" value="Publicar Borrador">
             <p class="errorCampos" id="errorCampos${rowCount}"></p>
+        </form>
         </td>
     `;
     tabla.insertBefore(nuevaFila, tabla.lastElementChild);
