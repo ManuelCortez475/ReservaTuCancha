@@ -20,7 +20,7 @@
             <form action="perfilAdmin" method="post">
             <div class="avatar-wrap">
                 <img id="avatarPreview"
-                    src="{{ url_for('static', filename='uploads/' + (diRequestPerfil.get('ImagenPerfil') or 'logo.png.png')) }}">
+                    src="{{ url_for('static', filename='uploads/' + (diRequestPerfilAdmin.get('ImagenPerfil') or 'logo.png.png')) }}">
                 <input type="file" name="ImagenPerfil" id="avatarInput" accept="image/*">
                 <label for="avatarInput" name="ImagenPerfil" class="upload-label"> Subir nueva foto </label>
             </div>
@@ -78,7 +78,8 @@
 
                 <div class="buttons">
                     <button type="submit" id="btnGuardar" class="btn success">Guardar</button>
-                    <a href="misreservas.html" class="btn reservas">Mis publicaciones</a>
+                    <a href="publicaciones" class="btn reservas">Mis publicaciones</a>
+                    <a href="/misreservas" class="btn reservas">Mis reservas</a>
                    
                 </div>
             </form>

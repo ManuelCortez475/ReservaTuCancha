@@ -109,7 +109,7 @@ def route(app):
                     updateInfoPerfil(diRequestPerfilAdmin, id_usuario)
 
             return render_template(
-                'perfil.html',
+                'perfil_admin.html',
                 diRequestPerfilAdmin=obtenerPerfilPorUsuario(diRequestPerfilAdmin,id_usuario),
                 email=email
             )
