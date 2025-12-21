@@ -47,60 +47,73 @@ def route(app):
 
     @app.route('/perfil', methods=['GET', 'POST'])
     def formPerfil():
-        if 'id_usuario' not in session:
-            return redirect('/login')
-        email = session.get('Email', '')
-        diRequestPerfil = {}
-        id_usuario = session.get('id_usuario','')
-        if request.method == 'POST':
-            getRequet(diRequestPerfil)
-            upload_file(diRequestPerfil)
-            img = diRequestPerfil.get('ImagenPerfil')
-            if isinstance(img, dict):
-                if img.get('file_error') is False:
-                    diRequestPerfil['ImagenPerfil'] = img.get('file_name_new')
+        if haySesion():
+            email = session.get('Email', '')
+            diRequestPerfil = {}
+            id_usuario = session.get('id_usuario','')
+            if request.method == 'POST':
+                getRequet(diRequestPerfil)
+                upload_file(diRequestPerfil)
+                img = diRequestPerfil.get('ImagenPerfil')
+                if isinstance(img, dict):
+                    if img.get('file_error') is False:
+                        diRequestPerfil['ImagenPerfil'] = img.get('file_name_new')
+                    else:
+                        diRequestPerfil.pop('ImagenPerfil', None)
+                di={}
+                existePerfil = obtenerPerfilPorUsuario(di,id_usuario)
+                print("PERFIL EN BD:", di)
+                if existePerfil == {}:
+                    print("VOY A INSERTAR PERFIL")
+                    agregarInfoPerfil(diRequestPerfil,id_usuario)
                 else:
-                    diRequestPerfil.pop('ImagenPerfil', None)
-            di={}
-            existePerfil = obtenerPerfilPorUsuario(di,id_usuario)
-            print("PERFIL EN BD:", di)
-            if existePerfil == {}:
-                print("VOY A INSERTAR PERFIL")
-                agregarInfoPerfil(diRequestPerfil,id_usuario)
-            else:
-                print("VOY A ACTUALIZAR PERFIL")
-                print("ID USUARIO:", id_usuario)
-                print("DATOS UPDATE:", diRequestPerfil)
-                updateInfoPerfil(diRequestPerfil, id_usuario)
+                    print("VOY A ACTUALIZAR PERFIL")
+                    print("ID USUARIO:", id_usuario)
+                    print("DATOS UPDATE:", diRequestPerfil)
+                    updateInfoPerfil(diRequestPerfil, id_usuario)
 
-        return render_template(
-            'perfil.html',
-            diRequestPerfil=diRequestPerfil,
-            email=email
-        )
+            return render_template(
+                'perfil.html',
+                diRequestPerfil=diRequestPerfil,
+                email=email
+            )
+        return redirect('/login')
 
     
 
     @app.route('/perfilAdmin', methods=['GET', 'POST'])
     def formPerfilAdmin():
-        email = session.get('Email', '')
-        diRequestPerfilAdmin = {}
-        id_usuario = session.get('id_usuario','')
-        if request.method == 'POST':
-            getRequet(diRequestPerfilAdmin)
-            upload_file(diRequestPerfilAdmin)
-            di={}
-            existePerfil = obtenerPerfilPorUsuario(di,id_usuario)
-            if not existePerfil:
-                agregarInfoPerfil(diRequestPerfilAdmin,id_usuario)
-            else:
-                updateInfoPerfil(diRequestPerfilAdmin, id_usuario)
+        if haySesion():
+            email = session.get('Email', '')
+            diRequestPerfilAdmin = {}
+            id_usuario = session.get('id_usuario','')
+            if request.method == 'POST':
+                getRequet(diRequestPerfilAdmin)
+                upload_file(diRequestPerfilAdmin)
+                img = diRequestPerfilAdmin.get('ImagenPerfil')
+                if isinstance(img, dict):
+                    if img.get('file_error') is False:
+                        diRequestPerfilAdmin['ImagenPerfil'] = img.get('file_name_new')
+                    else:
+                        diRequestPerfilAdmin.pop('ImagenPerfil', None)
+                di={}
+                existePerfil = obtenerPerfilPorUsuario(di,id_usuario)
+                print("PERFIL EN BD:", di)
+                if existePerfil == {}:
+                    print("VOY A INSERTAR PERFIL")
+                    agregarInfoPerfil(diRequestPerfilAdmin,id_usuario)
+                else:
+                    print("VOY A ACTUALIZAR PERFIL")
+                    print("ID USUARIO:", id_usuario)
+                    print("DATOS UPDATE:", diRequestPerfilAdmin)
+                    updateInfoPerfil(diRequestPerfilAdmin, id_usuario)
 
-        return render_template(
-            'perfil_admin.html',
-            diRequestPerfilAdmin=diRequestPerfilAdmin,
-            email=email
-        )
+            return render_template(
+                'perfil.html',
+                diRequestPerfilAdmin=diRequestPerfilAdmin,
+                email=email
+            )
+        return redirect('/login')
 
     
     @app.route('/<name>') # dinámico
@@ -115,78 +128,82 @@ def route(app):
     
     @app.route('/misreservas')
     def misreservas():
-        return render_template('misreservas.html')
+        if haySesion():
+            return render_template('misreservas.html')
     
     @app.route('/pagina_pago', methods = ['POST', 'GET']) # 
     def formPaginaPago():
-        diRequestPago={}           
-        getRequet(diRequestPago)   
-        upload_file(diRequestPago)
-        print(diRequestPago)
-        return render_template('pagina_pago.html', 
-                              )
+        if haySesion():
+            diRequestPago={}           
+            getRequet(diRequestPago)   
+            upload_file(diRequestPago)
+            print(diRequestPago)
+            return render_template('pagina_pago.html')
     
 
     @app.route('/publicaciones')
     def publicaciones():
-        return render_template('publicaciones.html')
+        if haySesion():
+            return render_template('publicaciones.html')
     
     
     @app.route('/reservaAdmin',methods = ['POST', 'GET']) # 
     def formReservaAdmin():
-        if request.method == 'GET':
-            return render_template('reservaAdmin.html', canchas=session.get('canchas_publicadas', []))
-        else: 
-            diRequestReservaAdmin={}           
-            getRequet(diRequestReservaAdmin)   
-            upload_file(diRequestReservaAdmin)
-            print(diRequestReservaAdmin)
-            
-            boton_id = None
+        if haySesion():
+            if request.method == 'GET':
+                return render_template('reservaAdmin.html', canchas=session.get('canchas_publicadas', []))
+            else: 
+                diRequestReservaAdmin={}           
+                getRequet(diRequestReservaAdmin)   
+                upload_file(diRequestReservaAdmin)
+                print(diRequestReservaAdmin)
+                
+                boton_id = None
 
-            for key in request.form.keys():
-                if key.startswith('btnPublicar'):
-                    boton_id = key  # ej: btnPublicar3
-                    break
-            numero = boton_id.replace('btnPublicar', '')
-            if boton_id is None:
-                flash('No se detectó botón de publicación')
+                for key in request.form.keys():
+                    if key.startswith('btnPublicar'):
+                        boton_id = key  # ej: btnPublicar3
+                        break
+                numero = boton_id.replace('btnPublicar', '')
+                if boton_id is None:
+                    flash('No se detectó botón de publicación')
+                    return redirect(url_for('formReservaAdmin'))
+                cancha = {
+                    'numero': numero,
+                    'nombre': request.form.get(f'NombreCancha{numero}'),
+                    'ubicacion': request.form.get(f'UbicacionCancha{numero}'),
+                    'jugadores': request.form.get(f'CantidadJug{numero}'),
+                    'estado': request.form.get(f'Estado{numero}'),
+                    'fecha': request.form.get('Fecha'),
+                    'inicio': request.form.get(f'start{numero}'),
+                    'fin': request.form.get(f'end{numero}')
+                }
+                if 'canchas_publicadas' not in session:
+                    session['canchas_publicadas'] = []
+                canchas = session.get('canchas_publicadas',[])
+                canchas.append(cancha)
+                session['canchas_publicadas'] = canchas
                 return redirect(url_for('formReservaAdmin'))
-            cancha = {
-                'numero': numero,
-                'nombre': request.form.get(f'NombreCancha{numero}'),
-                'ubicacion': request.form.get(f'UbicacionCancha{numero}'),
-                'jugadores': request.form.get(f'CantidadJug{numero}'),
-                'estado': request.form.get(f'Estado{numero}'),
-                'fecha': request.form.get('Fecha'),
-                'inicio': request.form.get(f'start{numero}'),
-                'fin': request.form.get(f'end{numero}')
-            }
-            if 'canchas_publicadas' not in session:
-                session['canchas_publicadas'] = []
-            canchas = session.get('canchas_publicadas',[])
-            canchas.append(cancha)
-            session['canchas_publicadas'] = canchas
-            return redirect(url_for('formReservaAdmin'))
-        
+            
     @app.route('/confirmarPublicaciones', methods=['POST'])
     def confirmar_publicaciones():
+        if haySesion():
+            canchas = session.get('canchas_publicadas', [])
 
-        canchas = session.get('canchas_publicadas', [])
+            for cancha in canchas:
+                # 👇 ACÁ VA LA DB (ejemplo)
+                print("Guardando en DB:", cancha)
 
-        for cancha in canchas:
-            # 👇 ACÁ VA LA DB (ejemplo)
-            print("Guardando en DB:", cancha)
+            # 🔥 limpiar session
+            session.pop('canchas_publicadas', None)
 
-        # 🔥 limpiar session
-        session.pop('canchas_publicadas', None)
-
-        flash("Canchas publicadas con éxito")
-        return redirect(url_for('formReservaAdmin'))
+            flash("Canchas publicadas con éxito")
+            return redirect(url_for('formReservaAdmin'))
 
     @app.route('/reservar')
     def reserva():
-        return render_template('reservar.html')
+        if haySesion():
+            return render_template('reservar.html')
     
     @app.route('/datosReservar',methods = ['POST', 'GET']) # 
     def formReservar():
@@ -199,7 +216,8 @@ def route(app):
     
     @app.route('/unirse')
     def unirse():
-        return render_template('unirse.html')
+        if haySesion():
+            return render_template('unirse.html')
 
     @app.route("/logout")
     def logout():  
