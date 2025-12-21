@@ -33,6 +33,7 @@ def route(app):
         if request.method == 'GET':
             return render_template('login.html')
         else:  
+            crearSesion(request)
             if crearSesion(request):
                 email = session.get('Email')
                 if email and consultarCategoriaDeUsuarioXMail(email): 
@@ -46,18 +47,28 @@ def route(app):
 
     @app.route('/perfil', methods=['GET', 'POST'])
     def formPerfil():
+        if 'id_usuario' not in session:
+            return redirect('/login')
         email = session.get('Email', '')
         diRequestPerfil = {}
         id_usuario = session.get('id_usuario','')
         if request.method == 'POST':
             getRequet(diRequestPerfil)
             upload_file(diRequestPerfil)
-            existePerfil = obtenerPerfilPorUsuario(id_usuario)
-            if not existePerfil:
+            di={}
+            existePerfil = obtenerPerfilPorUsuario(di,id_usuario)
+            print("PERFIL EN BD:", di)
+            if existePerfil == {}:
+                print("VOY A INSERTAR PERFIL")
                 agregarInfoPerfil(diRequestPerfil,id_usuario)
             else:
+                print("VOY A ACTUALIZAR PERFIL")
+                print("ID USUARIO:", id_usuario)
+                print("DATOS UPDATE:", diRequestPerfil)
                 updateInfoPerfil(diRequestPerfil, id_usuario)
-
+            return redirect('/perfil')
+        
+        obtenerPerfilPorUsuario(diRequestPerfil, id_usuario)
         return render_template(
             'perfil.html',
             diRequestPerfil=diRequestPerfil,
@@ -74,7 +85,8 @@ def route(app):
         if request.method == 'POST':
             getRequet(diRequestPerfilAdmin)
             upload_file(diRequestPerfilAdmin)
-            existePerfil = obtenerPerfilPorUsuario(id_usuario)
+            di={}
+            existePerfil = obtenerPerfilPorUsuario(di,id_usuario)
             if not existePerfil:
                 agregarInfoPerfil(diRequestPerfilAdmin,id_usuario)
             else:

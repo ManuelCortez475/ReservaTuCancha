@@ -26,11 +26,15 @@ def bajaUsuario(_id):
 def agregarInfoPerfil (di,id_usuario):
     sQuery="""
         INSERT INTO perfil
-        (id,nombre,apellido,telefono,fecha_nacimiento,ciudad,descripcion,imagen,id_usuario)
+        (id,nombre,apellido,telefono,fecha_nacimiento,ciudad,descripcion,imagen,partidosJugados,goles,partidosGanados,id_usuario)
         VALUES
-        (NULL,%s,%s,%s,%s,%s,%s,%s,%s)
+        (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
         """
-    imagenPerfil = di.get('ImagenPerfil', {}).get('file_name_new')
+    img = di.get('ImagenPerfil')
+    if isinstance(img, dict) and img.get('file_name_new'):
+        imagenPerfil = img['file_name_new']
+    else:
+        imagenPerfil = None
     val=(di.get('Nombre'),
          di.get('Apellido'),
          di.get('Telefono'),
@@ -38,11 +42,15 @@ def agregarInfoPerfil (di,id_usuario):
          di.get('Ciudad'),
          di.get('Descripcion'),
          imagenPerfil,
+         di.get('PartidosJugados'),
+         di.get('Goles'),
+         di.get('PartidosGanados'),
          id_usuario
          )
     connDB = conectarDB()
     try:
         res = ejecutar(connDB, sQuery, val)
+        print("ROWCOUNT:", res)
     finally:
         cerrarDB(connDB)
     if res:
@@ -58,12 +66,21 @@ def updateInfoPerfil(di,id_usuario):
         fecha_nacimiento = %s,
         ciudad = %s,
         descripcion = %s,
-        imagen = %s
+        imagen = %s,
+        partidosJugados = %s,
+        goles = %s,
+        partidosGanados = %s
         WHERE id_usuario = %s
         """
-    perfilActual = obtenerPerfilPorUsuario(id_usuario)
-    imagenPerfil = di.get('ImagenPerfil', {}).get('file_name_new') \
-        or perfilActual.get('ImagenPerfil')
+    perfil={}
+    perfilActual = obtenerPerfilPorUsuario(perfil,id_usuario)
+    img = di.get('ImagenPerfil')
+    if isinstance(img, dict) and img.get('file_name_new'):
+        imagenPerfil = img['file_name_new']
+    else:
+        imagenPerfil = perfilActual.get('ImagenPerfil')
+
+
     val=(di.get('Nombre') or perfilActual.get('Nombre'),
          di.get('Apellido') or perfilActual.get('Apellido'),
          di.get('Telefono') or perfilActual.get('Telefono'),
@@ -71,11 +88,17 @@ def updateInfoPerfil(di,id_usuario):
          di.get('Ciudad') or perfilActual.get('Ciudad'),
          di.get('Descripcion') or perfilActual.get('Descripcion'),
          imagenPerfil,
+         di.get('PartidosJugados') or perfilActual.get('PartidosJugados'),
+         di.get('Goles') or perfilActual.get('Goles'),
+         di.get('PartidosGanados') or perfilActual.get('PartidosGanados'),
          id_usuario
          )
     connDB = conectarDB()
     try:
         res = ejecutar(connDB, sQuery, val)
+        print("QUERY:", sQuery)
+        print("VALORES:", val)
+        print("ROWCOUNT:", res)
     finally:
         cerrarDB(connDB)
     if res:
@@ -87,6 +110,7 @@ def validarUsuario(dic,email, password):
     connDB = conectarDB()
     try:
         consulta = ejecutarConsulta(connDB, sQuery, (email, password))
+        connDB.commit()
     finally:
         cerrarDB(connDB)
     if not consulta:
@@ -155,7 +179,7 @@ def obtenerPerfilXEmailPass(result,email,Pass):
     '''
     connDB = conectarDB()
     res=False
-    sSql="""SELECT id, nombre,apellido,telefono,fecha_nacimiento,ciudad,descripcion,imagen 
+    sSql="""SELECT id, nombre,apellido,telefono,fecha_nacimiento,ciudad,descripcion,imagen, partidosJugados, goles, partidosGanados 
     FROM  perfil WHERE  id_usuario = %s;"""
     id_usuario = consultarIdXMailPass(email,Pass)
     val=(id_usuario,)
@@ -173,13 +197,16 @@ def obtenerPerfilXEmailPass(result,email,Pass):
         result['contraseña']=Pass
         result['imagenPerfil']=fila[0][7]
         result['categoria']= consultarCategoriaDeUsuarioXMail(email)
+        result['partidosJugados'] = res[0][7]
+        result['goles'] = res[0][8]
+        result['partidosGanados'] = res[0][9]
 
     cerrarDB(connDB)
     return res    
 
-def obtenerPerfilPorUsuario(id_usuario):
+def obtenerPerfilPorUsuario(di,id_usuario):
     sQuery = """
-        SELECT nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion, imagen
+        SELECT nombre, apellido, telefono, fecha_nacimiento, ciudad, descripcion, imagen, partidosJugados, goles, partidosGanados
         FROM perfil
         WHERE id_usuario = %s
     """
@@ -190,16 +217,17 @@ def obtenerPerfilPorUsuario(id_usuario):
         cerrarDB(connDB)
 
     if res:
-        return {
-            "Nombre": res[0][0],
-            "Apellido": res[0][1],
-            "Telefono": res[0][2],
-            "FechaNacimiento": res[0][3],
-            "Ciudad": res[0][4],
-            "Descripcion": res[0][5],
-            'ImagenPerfil': res[0][6]
-        }
-    return {}
+            di["Nombre"] =  res[0][0]
+            di["Apellido"] = res[0][1]
+            di["Telefono"] = res[0][2]
+            di["FechaNacimiento"] = res[0][3]
+            di["Ciudad"] = res[0][4]
+            di["Descripcion"] = res[0][5]
+            di['ImagenPerfil'] = res[0][6]
+            di['PartidosJugados'] = res[0][7]
+            di['Goles'] = res[0][8]
+            di['PartidosGanados'] = res[0][9]
+    return di
 
 BASE={ "host":"localhost",
         "user":"root",

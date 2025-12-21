@@ -28,6 +28,7 @@ UPDATE usuario SET mail = "agustina.mendez@example.com" WHERE id = 9;
 
 DELETE FROM reserva_cancha;  
 
+SELECT * FROM perfil WHERE id_usuario = 26;
 
 
 SELECT categoria FROM usuario where mail= 'sofia.rodriguez@example.com';

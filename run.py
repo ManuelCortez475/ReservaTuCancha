@@ -9,6 +9,6 @@ def main():
 
     app.config['SECRET_KEY']='inicializar de session'
     
-    route(app)
+    route(app)  
     app.run('0.0.0.0',5000,debug=True)
 main()
