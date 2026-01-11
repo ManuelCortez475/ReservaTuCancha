@@ -1,0 +1,171 @@
+:root {
+    --bg: #f8f9fa;
+    --card: #fff;
+    --border: #e5e7eb;
+    --text: #111827;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --radius: 8px;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.profile-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 30px auto;
+    gap: 30px;
+    padding: 50 20px;
+}
+
+
+.profile-sidebar {
+    flex: 0 0 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+ 
+}
+
+.avatar-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+}
+
+.avatar-wrap img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.avatar-wrap input {
+    display: none;
+}
+
+.upload-label {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 6px;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 15px;
+}
+
+.card h3 {
+    margin-top: 0;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+}
+
+.card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .card li {
+    padding: 6px 0;
+    font-size: 0.9rem;
+  }
+  
+  /* Columna derecha */
+  .profile-form {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  
+  .profile-form h2 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  
+  label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+input {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn.success {
+    background-color: green;
+    color: white;
+}
+
+.btn.danger {
+    background-color: red;
+    color: white;
+}
+.btn.reservas {
+    background-color: rgb(54, 54, 54);
+    color: white;
+}
+
+
+@media (max-width: 800px) {
+    .profile-container {
+    flex-direction: column;
+    }
+    .grid {
+    grid-template-columns: 1fr;
+    }
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}

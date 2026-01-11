@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservaTuCancha</title>
+    <link rel="stylesheet" href="../static/css/reservarAdmin.css">
+    <link rel="stylesheet" href="../static/css/footer2.css">
+    <link rel="stylesheet" href="../static/css/header2.css">
+    <link rel="icon" href="../static/img/Logo.png.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% block header %}   
+        {% include "header.html" %}
+    {% endblock %}
+
+
+    <main>
+        <h1 class="Titulo">PublicaTuCancha</h1>
+        <form method="post" action="/reservaAdmin" id="formTabla">
+            <table class="Tabla-Principal">
+                <thead class="Table-Header">
+                    <tr>
+                        <th>Canchas</th>
+                        <th>Ubicaciones</th>
+                        <th>Jugadores</th>
+                        <th>Fecha y Horarios</th>                    
+                        <th>Estado</th>
+                        <th>Precio</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="Table-Body" id="tableCanchas">
+                    <!-- Fila de agregar nueva -->
+                    <tr>
+                        <td>
+                            <input type="button" id="btnAgregar" value="Agregar Cancha" class="btn-agregar">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </main>
+
+    {% block footer %}   
+        {% include "footer.html" %}
+    {% endblock %}
+    <script src="../static/js/reservarAdmin.js"></script>
+</body>
+</html>

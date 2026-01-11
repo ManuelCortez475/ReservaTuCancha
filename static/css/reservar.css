@@ -1,0 +1,147 @@
+.error-text {
+        color: red;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+    color: #333;
+}
+
+.Titulo {
+    text-align: center;
+    margin: 2% 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.Tabla-Principal {
+    width: 85%;
+    height:fit-content;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+.Table-Header th {
+    background: #1e1e1e;
+    color: #f5d07e;
+    text-align: center;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.Table-Body td {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.95rem;
+}
+
+input[type="number"], input[type="date"], select {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    width: 90%;
+}
+
+input[type="radio"] {
+    margin-right: 6px;
+}
+
+.btn-reservar {
+    padding: 8px 14px;
+    background: #f5d07e;
+    border: none;
+    border-radius: 6px;
+    color: #1e1e1e;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reservar:hover {
+    background: #27ae60;
+    transform: scale(1.05);
+}
+.btn-reservado{
+    padding: 8px 14px;
+    background: #c80b0b;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-agregar {
+    padding: 8px 14px;
+    background: red;   
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+@media screen and (max-width: 480px) {
+    .Tabla-Principal {
+        width: 95%;
+    }
+    .Table-Header, .Table-Body, .Table-Header th, .Table-Body td, .Table-Body tr {
+        display: block;
+        width: 100%;
+    }
+
+    .Table-Header {
+        display: none;
+    }
+
+    .Table-Body tr {
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e0e0e0;
+        padding: 10px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .Table-Body td {
+        text-align: left;
+        padding: 8px 10px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        border: none;
+        width: 90%;
+    }
+
+    .Table-Body td {
+        font-weight: 600;
+        color: #1e1e1e;
+        
+    }
+
+    .btn-reservar {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+      
+}

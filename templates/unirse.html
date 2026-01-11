@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/unirse.css">
+    <link rel="stylesheet" href="../static/css/footer2.css">
+    <link rel="stylesheet" href="../static/css/header2.css">
+    <title>Unirse</title>
+    <link rel="icon" href="../static/img/Logo.png.png" type="image/x-icon">
+</head>
+<body>
+    {% block header %}   
+        {% include "header.html" %}
+    {% endblock %}
+	
+    <h1 class="Titulo"> ReservaTuCancha </h1>
+    <div>
+        <table class="Tabla-Principal">
+            <thead class="Table-Header">
+                <tr>
+                    <th> Canchas: </th>
+                    <th> Ubicaciones </th>
+                    <th> Jugadores </th>
+                    <th> Estado </th>
+                    <th> Unirse </th>
+                </tr>
+            </thead>
+            <tbody class="Table-Body">
+                <tr>
+                    <td> Cancha Nordelta </td>
+                    <td> Nordelta </td>
+                    <td class="cantJugadores"> 0/12 </td>
+                    <td class="Estado"> Publica </td>
+                    <td> <button type="submit" class="btn-unirse">Unirse</button></td>
+                </tr>
+                <tr>
+                    <td> Cancha Beccar </td>
+                    <td> Beccar </td>
+                    <td class="cantJugadores"> 0/22 </td>
+                    <td class="Estado"> Privada </td>
+                    <td> <button type="submit" class="btn-unirse">Unirse</button></td>
+                </tr>   
+                <tr>
+                    <td> Cancha Benavidez </td>
+                    <td> Benavidez </td>
+                    <td class="cantJugadores"> 0/12 </td>
+                    <td class="Estado"> Publica </td>
+                    <td> <button type="submit" class="btn-unirse">Unirse</button> </td>
+                </tr>
+            </tbody>
+        </table>
+            
+    </div>
+    {% block footer %}   
+        {% include "footer.html" %}
+    {% endblock %}
+    <script src="../static/js/unirse.js"></script>
+</body>
+</html>

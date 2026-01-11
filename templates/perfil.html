@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/header2.css">
+    <link rel="stylesheet" href="../static/css/perfil.css">
+    <link rel="stylesheet" href="../static/css/footer2.css">
+    <title>Perfil</title>
+    <link rel="icon" href="../static/img/Logo.png.png" type="image/x-icon">
+</head>
+<body>
+    {% block header %}   
+        {% include "header.html" %}
+    {% endblock %}
+
+    <div class="profile-container">
+        
+        <aside class="profile-sidebar">
+            <form action="/perfil" method="post" enctype="multipart/form-data">
+            <div class="avatar-wrap">
+                <img id="avatarPreview"
+                    src="{{ url_for('static', filename='uploads/' + (diRequestPerfil.get('ImagenPerfil') or 'logo.png.png')) }}">
+
+                <input type="file" name="ImagenPerfil"  id="avatarInput" accept="image/*" >
+                <label for="avatarInput" class="upload-label"> Subir nueva foto </label>
+            </div>
+            <div class="card">
+                <h3>Stats </h3>
+                <ul>
+                    <li id="partidosJugados"><strong>Partidos Jugados:</strong> <input type="number" name="PartidosJugados" id="inputPartidos" value="{{ diRequestPerfil.get('PartidosJugados') or '' }}"></li>
+                    <li id="goles"><strong>Goles:</strong> <input type="number" name="Goles" id="inputGoles" value="{{ diRequestPerfil.get('Goles') or '' }}"></li>
+                    <li id="partidosGanados"><strong>Partidos Ganados:</strong> <input type="number" name="PartidosGanados" id="inputGanados" value="{{ diRequestPerfil.get('PartidosGanados') or '' }}"></li>
+                </ul>
+            </div>
+        </aside>     
+
+        <section class="profile-form">
+            <h2>Perfil</h2>
+                <div class="grid">
+                    <div>
+                        <label>Nombre</label>
+                        <input name="Nombre" type="text" id="nombre" placeholder="Nombre" value="{{ diRequestPerfil.get('Nombre') or '' }}">
+                    </div>
+                    <div>
+                        <label>Apellido</label>
+                        <input name="Apellido" type="text" id="apellido" placeholder="Apellido" value="{{ diRequestPerfil.get('Apellido') or '' }}">
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div>
+                        <label>Teléfono</label>
+                        <input name="Telefono" type="text" id="telefono" placeholder="Teléfono" value="{{ diRequestPerfil.get('Telefono') or '' }}">
+                    </div>
+                    <div>
+                        <label>Fecha de nacimiento</label>
+                        <input name="FechaNacimiento" type="date" id="fechaNacimiento" placeholder="Fecha de nacimiento" value="{{ diRequestPerfil.get('FechaNacimiento') or '' }}">
+                    </div>
+                </div>
+                <div class="grid">
+                    <div>
+                        <label>Email</label>
+                        <input name="Email" type="email" id="email" placeholder="Email" value="{{ email or '' }}">
+                    </div>
+                    <div>
+                        <label>Ciudad</label>
+                        <input name="Ciudad" type="text" id="ciudad" placeholder="Ciudad" value="{{ diRequestPerfil.get('Ciudad') or '' }}">
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div>
+                        <label>Descripcion</label>
+                        <input class="descripcion" name="Descripcion" type="text" id="email" placeholder="Descripcion" value="{{ diRequestPerfil.get('Descripcion') or '' }}">
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" id="btnGuardar" class="btn success">Guardar</button>
+                    <button type="submit" id="btnReservas" class="btn reservas"><a href="/misreservas">Mis reservas</a></button>
+                   
+                </div>
+            </form>
+        </section>
+    </div>
+    {% block footer %}   
+        {% include "footer.html" %}
+    {% endblock %}
+
+<script src="../static/js/perfil.js"></script>
+
+</body>
+</html>

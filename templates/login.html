@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/login.css">
+    <title>Login</title>
+    <link rel="icon" href="../static/img/Logo.png.png" type="image/x-icon">
+</head>
+<body>
+    {% block header %}   
+        {% include "header.html" %}
+    {% endblock %}
+    <h1 class="Titulo"> ReservaTuCancha </h1>
+    <div class="main-login">
+    <div class="login-container">
+        <h2> Iniciar Sesion </h2>
+        <form id="form" method="post" action="/login">
+            <input type="text" name="Email" id="mail" placeholder="Email">
+            <span id="errorMail" style="color: red;"></span><br><br>
+            <input type="password" name="Contraseña" id="pass" placeholder="Contraseña">
+            <span id="errorPass" style="color: red;"></span><br><br>
+            <button type="submit" class="Ingresar"> Ingresar  </button>
+        </form>
+    </div>
+    </div>
+    {% block footer %}   
+        {% include "footer.html" %}
+    {% endblock %}
+    <script src="../static/js/login.js"></script>
+</body>
+</html>

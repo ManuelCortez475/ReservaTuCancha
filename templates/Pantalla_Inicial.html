@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservaTuCancha</title>
+    <link rel="stylesheet" href="../static/css/Pantalla_Inicial.css">
+    <link rel="stylesheet" href="../static/css/footer2.css">
+    <link rel="stylesheet" href="../static/css/header2.css">
+    <link rel="icon" href="../static/img/Logo.png.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% block header %}   
+        {% include "header.html" %}
+    {% endblock %}
+
+    <main>
+        <section class="hero">
+            <h1>ReservaTuCancha</h1>
+            <div class="underline"></div>
+        </section>
+
+        <section class="vs-section">
+            <div class="card">
+                <h2>Unirse</h2>
+                <button class="btn"><a href="/unirse">Entrar</a></button>
+            </div>
+
+            <div class="vs-box">
+                <span>VS</span>
+            </div>
+
+            <div class="card">
+                <h2>Reservar</h2>
+                <button class="btn"><a href="/reservar">Comenzar</a></button>
+            </div>
+        </section>
+    </main>
+    {% block footer %}   
+        {% include "footer.html" %}
+    {% endblock %}
+</body>
+</html>

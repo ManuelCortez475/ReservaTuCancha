@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservaTuCancha</title>
+    <link rel="stylesheet" href="../static/css/reservar.css">
+    <link rel="stylesheet" href="../static/css/footer2.css">
+    <link rel="stylesheet" href="../static/css/header2.css">
+    <link rel="icon" href="../static/img/Logo.png.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% block header %}   
+        {% include "header.html" %}
+    {% endblock %}
+
+    <main>
+        <h1 class="Titulo">ReservaTuCancha</h1>
+        <div>
+            <table class="Tabla-Principal">
+                <thead class="Table-Header">
+                    <tr>
+                        <th>Canchas</th>
+                        <th>Ubicaciones</th>
+                        <th>Jugadores</th>
+                        <th>Fecha y Horarios</th>
+                        <th>Estado</th>
+                        <th>Precio</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="Table-Body">
+                    {% for cancha in canchas %}
+                    <tr>
+                        <td>{{ cancha.NombreCancha }}</td>
+                        <td>{{ cancha.Ubicacion }}</td>
+                        <td>{{ cancha.CantJugadores}}</td>
+                        <td>
+                            <input type="date"><br>
+                            <select >
+                                <option disabled selected>Seleccionar...</option>
+                                <option value="9:00">9:00 AM</option>
+                                <option value="10:30">10:30 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:30">1:30 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:30">4:30 PM</option>
+                            </select>
+                            <br>
+                            <span id="errorNordelta" class="error-text"></span>
+                        </td>
+                        <td><label id="estadoNordelta">{{ cancha.Estado }}</label></td>
+                        <td><label>{{ cancha.Precio }}</label></td>
+                        <td>
+                            <button id="btnNordelta" disabled class="
+                            {% if cancha.Estado == 'inhabilitada' %}
+                                btn-agregar
+                            {% elif cancha.Estado == 'habilitada' %}
+                                btn-reservar
+                            {% elif cancha.Estado == 'reservada' %}
+                                btn-reservado
+                            {% else %}
+                                estado-desconocido
+                            {% endif %}">
+                            {% if cancha.Estado == 'inhabilitada' %}
+                                Fuera de Servicio
+                            {% elif cancha.Estado == 'habilitada' %}
+                                Reservar
+                            {% elif cancha.Estado == 'reservada' %}
+                                Reservada
+                            {% else %}
+                                Desconocido
+                            {% endif %}
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    {% block footer %}   
+        {% include "footer.html" %}
+    {% endblock %}
+
+    <script src="../static/js/reservar.js"></script>
+</body>
+</html>
