@@ -147,8 +147,7 @@ def crearSesion(request):
         'contraseña': password,
         'categoria': consultarCategoriaDeUsuarioXMail(email)
         })
-    print("ID USUARIO:", dicUsuario['id_usuario'])
-    print("ID PERFIL:", dicUsuario.get('id_perfil'))
+
 
     cargarSesion(dicUsuario)
     return True

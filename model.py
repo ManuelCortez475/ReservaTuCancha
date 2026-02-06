@@ -113,7 +113,7 @@ def validarUsuario(dic,email, password):
         cerrarDB(connDB)
     if not consulta:
         return False
-    dic["id"] = consulta[0][0]
+    dic["id_usuario"] = consulta[0][0]
     dic["email"] = email
     dic["categoria"]= consulta[0][1]
     return True
