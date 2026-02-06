@@ -79,7 +79,6 @@ def route(app):
             )
         return redirect('/login')
 
-    
 
     @app.route('/perfilAdmin', methods=['GET', 'POST'])
     def formPerfilAdmin():
@@ -189,3 +188,9 @@ def route(app):
         cerrarSesion()     
         return redirect('/')
 
+    @app.route('/pagina_pago')
+    def pagina_pago():
+        if haySesion():
+            return render_template('pagina_pago.html')
+        else:
+            return redirect('/login') 

@@ -26,7 +26,7 @@ def getRequet(diResult):  # Función para obtener los datos de la solicitud y al
             else:                                   # Si no hay valores
                 diResult[name]=""                   # Almacena una cadena vacía en el diccionario
 
- 
+
 def upload_file (diResult) :
     UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif', '.pdf']
     MAX_CONTENT_LENGTH = 1024 * 1024     
@@ -51,14 +51,20 @@ def upload_file (diResult) :
                     diResult[key]['file_name']=f.filename
                 try:
                     if not diResult[key]['file_error']:
-                        
-                        f.save(path_filename)
+                    # --- AGREGÁ ESTOS PRINTS ACÁ ---
+                        print(f"DEBUG: Intentando guardar físicamente en: {path_filename}")
+                        f.save(path_filename) # Esta es la línea que guarda el archivo
+
+                        print("DEBUG: ¡El archivo se guardó con éxito!")
+                    # -------------------------------
 
                         diResult[key]['file_error'] = False
                         diResult[key]['file_name_new'] = filename_unique
                         diResult[key]['file_name'] = f.filename
                         diResult[key]['file_msg'] = 'OK. Archivo cargado exitosamente'
                 except Exception as e:
+                # Si falla en Mac, acá vas a ver el "Permission denied"
+                    print(f"DEBUG: ERROR CRÍTICO AL GUARDAR EN DISCO: {e}") 
                     diResult[key]['file_error'] = True
                     diResult[key]['file_msg'] = str(e)
             else:

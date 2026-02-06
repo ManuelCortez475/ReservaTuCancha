@@ -66,7 +66,7 @@
                             {% if cancha.Estado == 'inhabilitada' %}
                                 Fuera de Servicio
                             {% elif cancha.Estado == 'habilitada' %}
-                                Reservar
+                            <a href="{{ url_for('pagina_pago') }}">Reservar</a>
                             {% elif cancha.Estado == 'reservada' %}
                                 Reservada
                             {% else %}
