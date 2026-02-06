@@ -1,6 +1,6 @@
-// Js/reservar-dom-universal.js
+
 (function () {
-  // --- Utilidades para obtener elementos por FILA ---
+
   function getNombre(tr) {
     const celdaNombre = tr.querySelector('td');
     return (celdaNombre?.textContent || 'esta cancha').trim();
