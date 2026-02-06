@@ -100,7 +100,7 @@ def cargarSesion(dicUsuario):
                de un usuario.
         Comentario: Usted puede agregar en 'session' las claves que necesite
     '''
-    session['id_perfil'] = dicUsuario['id_perfil']
+
     session['id_usuario'] = dicUsuario['id_usuario']
     session['Nombre'] = dicUsuario['nombre'] or ''
     session['Apellido'] = dicUsuario['apellido'] or ''
