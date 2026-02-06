@@ -9,6 +9,7 @@ body {
     margin: 0;
     background: #f4f6f8;
     color: #333;
+    padding-bottom: 90px;
 }
 
 .Titulo {
@@ -21,7 +22,7 @@ body {
 
 .Tabla-Principal {
     width: 85%;
-    height:fit-content;
+    height:80%;
     margin: 30px auto;
     background: #fff;
     border-radius: 12px;
