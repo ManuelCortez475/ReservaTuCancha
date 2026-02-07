@@ -317,3 +317,5 @@ def consultarCanchasPublicadas():
         canchas.append(cancha)
 
     return canchas
+def consultarCanchaReservada(di):
+    pass

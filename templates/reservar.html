@@ -34,8 +34,8 @@
                 <tbody class="Table-Body">
                     {% for cancha in canchas %}
                     <tr>
-                        <form  method="post" action="/reservar">
-                        <td>{{ cancha.NombreCancha }}</td>
+                        <form method="POST" action="/reservar">
+                        <td name="Nombre">{{ cancha.NombreCancha }}</td>
                         <td>{{ cancha.Ubicacion }}</td>
                         <td>{{ cancha.CantJugadores}}</td>
                         <td>

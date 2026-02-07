@@ -194,8 +194,3 @@ def route(app):
         ''' 
         cerrarSesion()     
         return redirect('/')
-
-    @app.route('/test_pago')
-    def test_pago():
-        print("ENTRÓ A /pago")
-        return render_template('pagina_pago.html')

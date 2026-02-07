@@ -36,7 +36,7 @@
     const horaSinSeleccion = !hora || hora.selectedIndex === 0;
 
     if (sinFecha || horaSinSeleccion) {
-      if (error) error.textContent = `⚠️ Debes elegir fecha y horario para ${nombre}.`;
+      if (error) error.textContent = `⚠️ Completa los campos para ${nombre}.`;
       return false;
     }
     if (error) error.textContent = '';
@@ -75,13 +75,7 @@
       return;
     }
 
-    // Resolver URL de pago
-    const dataUrl = buttonEl?.dataset?.url;
-    const href = getAnchor(tr)?.getAttribute('href');
-    const destino = dataUrl || href || 'pagina_pago.html';
 
-    // Unificar navegación
-    e.preventDefault();
-    window.location.href = destino;
+
   });
 })();
