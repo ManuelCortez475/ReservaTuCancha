@@ -22,31 +22,23 @@
                     <th> Canchas: </th>
                     <th> Ubicaciones </th>
                     <th> Jugadores </th>
+                    <th> Fecha/Hora</th>
                     <th> Estado </th>
                     <th> Unirse </th>
                 </tr>
             </thead>
             <tbody class="Table-Body">
                 <tr>
-                    <td> Cancha Nordelta </td>
-                    <td> Nordelta </td>
-                    <td class="cantJugadores"> 0/12 </td>
-                    <td class="Estado"> Publica </td>
+                    <td> {{canchasReservadas.nombre_cancha}} </td>
+                    <td> {{canchasReservadas.ubicacion_cancha}} </td>
+                    <td class="cantJugadores"> 0/{{canchasReservadas.jugadores_cancha}} </td>
+                    <td> 
+                        {{canchasReservadas.fecha}} 
+                        ---
+                        {{canchasReservadas.hora}}
+                    </td>
+                    <td class="Estado"> {{canchasReservadas.privacidad}} </td>
                     <td> <button type="submit" class="btn-unirse">Unirse</button></td>
-                </tr>
-                <tr>
-                    <td> Cancha Beccar </td>
-                    <td> Beccar </td>
-                    <td class="cantJugadores"> 0/22 </td>
-                    <td class="Estado"> Privada </td>
-                    <td> <button type="submit" class="btn-unirse">Unirse</button></td>
-                </tr>   
-                <tr>
-                    <td> Cancha Benavidez </td>
-                    <td> Benavidez </td>
-                    <td class="cantJugadores"> 0/12 </td>
-                    <td class="Estado"> Publica </td>
-                    <td> <button type="submit" class="btn-unirse">Unirse</button> </td>
                 </tr>
             </tbody>
         </table>

@@ -26,6 +26,7 @@
                         <th>Jugadores</th>
                         <th>Fecha y Horarios</th>
                         <th>Estado</th>
+                        <th>Privacidad</th>
                         <th>Precio</th>
                         <th>Acción</th>
                     </tr>
@@ -39,8 +40,14 @@
                             {{ cancha.NombreCancha }}
                             <input type="hidden" name="nombre_cancha" value="{{ cancha.NombreCancha }}">
                         </td>
-                        <td>{{ cancha.Ubicacion }}</td>
-                        <td>{{ cancha.CantJugadores}}</td>
+                        <td>
+                            {{ cancha.Ubicacion }}
+                            <input type="hidden" name="ubicacion_cancha" value="{{ cancha.Ubicacion }}">
+                        </td>
+                        <td>
+                            {{ cancha.CantJugadores}}
+                            <input type="hidden" name="jugadores_cancha" value="{{ cancha.CantJugadores }}">
+                        </td>
                         <td>
                             <input name="fecha" type="date"><br>
                             <select name="hora" >
@@ -56,6 +63,12 @@
                             <span id="errorNordelta" class="error-text"></span>
                         </td>
                         <td><label id="estadoNordelta">{{ cancha.Estado }}</label></td>
+                        <td>
+                            <select name="privacidad">
+                                <option disabled selected>Seleccionar</option>
+                                <option value="Publica">Publica</option>
+                                <option value="Privada">Privada</option>
+                            </select></td>
                         <td>
                             <label>{{ cancha.Precio }}</label>
                             <input type="hidden" name="precio" value="{{ cancha.Precio }}">
