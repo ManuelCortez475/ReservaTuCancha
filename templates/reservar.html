@@ -30,15 +30,17 @@
                         <th>Acción</th>
                     </tr>
                 </thead>
+                
                 <tbody class="Table-Body">
                     {% for cancha in canchas %}
                     <tr>
+                        <form  method="post" action="/reservar">
                         <td>{{ cancha.NombreCancha }}</td>
                         <td>{{ cancha.Ubicacion }}</td>
                         <td>{{ cancha.CantJugadores}}</td>
                         <td>
-                            <input type="date"><br>
-                            <select >
+                            <input name="fecha" type="date"><br>
+                            <select name="hora" >
                                 <option disabled selected>Seleccionar...</option>
                                 <option value="9:00">9:00 AM</option>
                                 <option value="10:30">10:30 AM</option>
@@ -66,7 +68,7 @@
                             {% if cancha.Estado == 'inhabilitada' %}
                                 Fuera de Servicio
                             {% elif cancha.Estado == 'habilitada' %}
-                            <a href="{{ url_for('pagina_pago') }}">Reservar</a>
+                            Reservar
                             {% elif cancha.Estado == 'reservada' %}
                                 Reservada
                             {% else %}
@@ -74,9 +76,11 @@
                             {% endif %}
                             </button>
                         </td>
+                        </form>
                     </tr>
-                    {% endfor %}
+                    {% endfor %}    
                 </tbody>
+                
             </table>
         </div>
     </main>

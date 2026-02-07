@@ -138,7 +138,10 @@ def route(app):
             getRequet(diRequestPago)   
             upload_file(diRequestPago)
             print(diRequestPago)
-            return render_template('pagina_pago.html')
+            reserva = session.get('reserva')
+            if not reserva:
+                return redirect('/reservar')
+            return render_template('pagina_pago.html', reserva=reserva)
         return redirect('/login')
     
 
@@ -166,10 +169,14 @@ def route(app):
     @app.route('/reservar',methods = ['POST', 'GET']) # 
     def formReservar():
         if haySesion():
+            if request.method == "GET":
+                return render_template('reservar.html',canchas=consultarCanchasPublicadas())
             diRequestReservar={}           
             getRequet(diRequestReservar)   
             upload_file(diRequestReservar)
-            return render_template('reservar.html',canchas=consultarCanchasPublicadas())
+            print('Info cancha: ',diRequestReservar)
+            session['reserva'] = diRequestReservar
+            return redirect('/pagina_pago')
         return redirect('/login')
     
     
@@ -188,9 +195,7 @@ def route(app):
         cerrarSesion()     
         return redirect('/')
 
-    @app.route('/pagina_pago')
-    def pagina_pago():
-        if haySesion():
-            return render_template('pagina_pago.html')
-        else:
-            return redirect('/login') 
+    @app.route('/test_pago')
+    def test_pago():
+        print("ENTRÓ A /pago")
+        return render_template('pagina_pago.html')
