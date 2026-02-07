@@ -35,7 +35,10 @@
                     {% for cancha in canchas %}
                     <tr>
                         <form method="POST" action="/reservar">
-                        <td name="Nombre">{{ cancha.NombreCancha }}</td>
+                        <td>
+                            {{ cancha.NombreCancha }}
+                            <input type="hidden" name="nombre_cancha" value="{{ cancha.NombreCancha }}">
+                        </td>
                         <td>{{ cancha.Ubicacion }}</td>
                         <td>{{ cancha.CantJugadores}}</td>
                         <td>
@@ -53,7 +56,10 @@
                             <span id="errorNordelta" class="error-text"></span>
                         </td>
                         <td><label id="estadoNordelta">{{ cancha.Estado }}</label></td>
-                        <td><label>{{ cancha.Precio }}</label></td>
+                        <td>
+                            <label>{{ cancha.Precio }}</label>
+                            <input type="hidden" name="precio" value="{{ cancha.Precio }}">
+                        </td>
                         <td>
                             <button id="btnNordelta" class="
                             {% if cancha.Estado == 'inhabilitada' %}
