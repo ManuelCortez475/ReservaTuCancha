@@ -6,6 +6,11 @@ import os
 from uuid import uuid4
 from appConfig import config
 
+HORARIOS = [
+    "09:00", "10:30", "12:00", "13:30",
+    "15:00", "16:30", "18:00", "19:30", "21:00"
+]
+
 def getRequet(diResult):  # Función para obtener los datos de la solicitud y almacenarlos en un diccionario
     if request.method=='POST':                    # Si el método de la solicitud es POST
         for name in request.form.to_dict().keys():  # Itera sobre las claves del formulario
@@ -164,6 +169,11 @@ def haySesion():
         retorna True si hay sesión y False si no la hay.
     '''
     return session.get("Email") is not None
+
+def hora_a_minutos(hora):
+    h, m = hora.split(":")
+    return int(h) * 60 + int(m)
+
 
 def cerrarSesion():
     '''info:

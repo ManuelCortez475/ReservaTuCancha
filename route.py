@@ -170,7 +170,27 @@ def route(app):
     def formReservar():
         if haySesion():
             if request.method == "GET":
-                return render_template('reservar.html',canchas=consultarCanchasPublicadas())
+                canchas = consultarCanchasPublicadas()
+
+                for cancha in canchas:
+                    inicio = cancha.get("Inicio")
+                    fin = cancha.get("Fin")
+
+                    if inicio and fin:
+                        inicio_min = hora_a_minutos(inicio)
+                        fin_min = hora_a_minutos(fin)
+
+                        cancha["horarios_validos"] = [
+                            h for h in HORARIOS
+                            if inicio_min <= hora_a_minutos(h) < fin_min
+                        ]
+                    else:
+                        cancha["horarios_validos"] = []
+
+                return render_template(
+                    'reservar.html',
+                    canchas=canchas
+                )
             diRequestReservar={}           
             getRequet(diRequestReservar)   
             upload_file(diRequestReservar)

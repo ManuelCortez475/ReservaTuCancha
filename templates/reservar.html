@@ -50,17 +50,11 @@
                         </td>
                         <td>
                             <input name="fecha" type="date"><br>
-                            <select name="hora" >
+                            <select name="hora" required>
                                 <option disabled selected>Seleccionar...</option>
-                                <option value="9:00">9:00 AM</option>
-                                <option value="10:30">10:30</option>
-                                <option value="12:00">12:00</option>
-                                <option value="13:30">13:30</option>
-                                <option value="15:00">15:00</option>
-                                <option value="16:30">16:30</option>
-                                <option value="18:00">18:00</option>
-                                <option value="19:30">19:30</option>
-                                <option value="21:00">21:00</option>
+                                {% for h in cancha.horarios_validos %}
+                                    <option value="{{ h }}">{{ h }}</option>
+                                {% endfor %}
                             </select>
                             <br>
                             <span id="errorNordelta" class="error-text"></span>
