@@ -49,7 +49,10 @@
                             <input type="hidden" name="jugadores_cancha" value="{{ cancha.CantJugadores }}">
                         </td>
                         <td>
-                            <input name="fecha" type="date"><br>
+                            <input type="date"
+                                name="fecha_reserva"
+                                min="{{ cancha.Fecha_Inicio }}"
+                                max="{{ cancha.Fecha_Fin }}"><br>
                             <select name="hora" required>
                                 <option disabled selected>Seleccionar...</option>
                                 {% for h in cancha.horarios_validos %}

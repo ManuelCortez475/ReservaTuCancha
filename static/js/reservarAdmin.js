@@ -15,8 +15,12 @@ function crearFilaNueva() {
         <td><input name='UbicacionCancha${rowCount}' type="text" id="ubicacion${rowCount}" placeholder="Location"></td>
         <td><input name='CantidadJug${rowCount}' type="number" id="cantJug${rowCount}" placeholder="N°"></td>
         <td>
-            <input type="date" name="Fecha"><br>
-            <lab        el for="start${rowCount}">Desde:</label>
+            <label>Fecha inicial:</label>
+            <input type="date" name="fecha_desde${rowCount}">
+
+            <label>Fecha final:</label>
+            <input type="date" name="fecha_hasta${rowCount}">
+            <label for="start${rowCount}">Horario inicial:</label>
             <select id="start${rowCount}" name="Inicio${rowCount}" required>
                 <option disabled selected>Seleccionar...</option>
                 <option value="9:00">9:00</option>
@@ -29,7 +33,7 @@ function crearFilaNueva() {
                 <option value="19:30">19:30</option>
                 <option value="21:00">21:00</option>
             </select>
-            <label for="end${rowCount}">Hasta:</label>
+            <label for="end${rowCount}">Horario final:</label>
             <select id="end${rowCount}" name="Fin${rowCount}" required>
                 <option disabled selected>Seleccionar...</option>
                 <option value="9:00">9:00 AM</option>

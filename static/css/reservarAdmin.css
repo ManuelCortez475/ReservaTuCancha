@@ -2,6 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     background: #f4f6f8;
+    height: 80%;
     color: #333;
 }
 
@@ -15,6 +16,7 @@ body {
 
 .Tabla-Principal {
     width: 85%;
+    height: 80%;
     margin: 30px auto;
     background: #fff;
     border-radius: 12px;
@@ -35,9 +37,9 @@ body {
 .Table-Body td {
     text-align: center;
     padding: 10px;
-    border-bottom: 1px solid #e0e0e0;
     font-size: 0.95rem;
     vertical-align: middle;
+    height: 80%;
 }
 
 input[type="number"], input[type="date"], select {
