@@ -1,122 +1,60 @@
-const contraseña = document.getElementById('contraCancha')
+const tbody = document.querySelector('.Table-Body');
 
-
-(function () {
-
-  function getNombre(tr) {
-    const celdaNombre = tr.querySelector('td');
-    return (celdaNombre?.textContent || 'esta cancha').trim();
-  }
-  function getFecha(tr) {
-    return tr.querySelector('input[type="date"]');
-  }
-  function getHora(tr) {
-    return tr.querySelector('select');
-  }
-  function getError(tr) {
-    return tr.querySelector('.error-text');
-  }
-  function getEstadoTexto(tr) {
-    const lbl = tr.querySelector('td label');
-    return (lbl?.textContent || '').trim().toLowerCase(); // habilitada/reservada/inhabilitada
-  }
-  function getBoton(tr) {
-    return tr.querySelector('td:last-child button');
-  }
-  function getAnchor(tr) {
-    return tr.querySelector('td:last-child button a, td:last-child a');
-  }
-
-  // --- Validación por FILA (no crea ni toca filas) ---
-  function validarFila(tr) {
-    const nombre = getNombre(tr);
-    const fecha = getFecha(tr);
-    const hora = getHora(tr);
-    const error = getError(tr);
-
-    const sinFecha = !fecha || !fecha.value;
-    const horaSinSeleccion = !hora || hora.selectedIndex === 0;
-
-    if (sinFecha || horaSinSeleccion) {
-      if (error) error.textContent = `⚠️ Completa los campos para ${nombre}.`;
-      return false;
-    }
-    if (error) error.textContent = '';
-    return true;
-  }
-
-  // --- Delegación de eventos: NO agrega filas ---
-  const tbody = document.querySelector('.Table-Body');
-  if (!tbody) return;
-
-  tbody.addEventListener('click', function (e) {
-    const target = e.target;
-    if (!(target instanceof HTMLElement)) return;
-
-    const boton = target.closest('button');
-    const anchor = target.closest('a');
-    if (!boton && !anchor) return;
-
-    const tr = target.closest('tr');
-    if (!tr) return;
-
-    // Si el botón está disabled, no seguimos
-    const buttonEl = getBoton(tr);
-    if (buttonEl && buttonEl.disabled) return;
-
-    // Respeta el estado (solo permite si dice "Habilitada")
-    const estado = getEstadoTexto(tr); // 'habilitada' | 'reservada' | 'inhabilitada'
-    if (estado !== 'habilitada') {
-      e.preventDefault();
-      return;
-    }
-
-    // Validar fecha/hora
-    if (!validarFila(tr)) {
-      e.preventDefault();
-      return;
-    }
-
-
-
-  });
-})();
-const form = btn.closest("form");
-
-
-function reservar(btn) {
-  btn.preventDefault()
-  const form = btn.closest("form");
-  const tipo = form.querySelector(".tipo-reserva").value;
-  const claveBox = form.querySelector(".clave-box");
-
-  if (tipo === "privada") {
-    return true
-      
-  } else {
-      return false
+function cambioPrivacidad(event) {
+  const target = event.target;
+  if (target.classList.contains('tipo-reserva')) {
+      const fila = target.closest('tr');
+      const claveBox = fila.querySelector('.clave'); 
+      if (target.value === 'Privada') {
+          claveBox.style.display = 'inline-block';
+      } else {
+          claveBox.style.display = 'none';
+      }
   }
 }
 
-function confirmarReserva(btn) {
-  btn.preventDefault()
-  const form = btn.closest("form");
-  const clave = form.querySelector("input[name='clave_privada']").value;
+function manejarReserva(event) {
+  const target = event.target;
+  const boton = target.closest('button');
+  if (!boton || boton.classList.contains('btnConfirmarClave')) return;
+  const fila = target.closest('tr');
+  const nombre = fila.querySelector('.NombreCancha').innerText.trim();
+  const precio = fila.querySelector('.PrecioCancha').innerText.trim();
+  const fechaInput = fila.querySelector('.fechaInput');
+  const horaSelect = fila.querySelector('.horaSelect');
+  const privacidadSelect = fila.querySelector('.tipo-reserva');
+  const inputClave = fila.querySelector('.inputClave');
+  const estado = fila.querySelector('.EstadoLabel').innerText.trim().toLowerCase();
+  const errorSpan = fila.querySelector('.error-text');
 
-  if (clave.trim() === "") {
-      alert("Ingresá una contraseña");
+  if (estado !== 'habilitada') {
+      event.preventDefault();
       return;
   }
 
-  form.submit();
-}
-function reserva(e){
-  if (reservar(e)){
-    claveBox.style.display = "inline-block";
-    confirmarReserva(e)
+  if (!fechaInput.value || horaSelect.selectedIndex === 0) {
+      event.preventDefault();
+      if (errorSpan) {
+          errorSpan.innerText = `⚠️ Elegí fecha y hora para ${nombre}.`;
+          errorSpan.style.color = "red";
+      }
+      return;
   }
-  form.submit();
-  
-}
 
-form.addEventListener('submit', reserva)
+  let clavePrivada = "";
+  if (privacidadSelect.value === 'Privada') {
+      if (!inputClave.value.trim()) {
+          event.preventDefault();
+          if (errorSpan) {
+              errorSpan.innerText = "⚠️ La reserva privada necesita una contraseña.";
+              errorSpan.style.color = "orange";
+          }
+          return;
+      }
+      clavePrivada = inputClave.value.trim();
+  }
+}
+if (tbody) {
+  tbody.addEventListener('click', manejarReserva);
+  tbody.addEventListener('change', cambioPrivacidad);
+}

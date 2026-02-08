@@ -35,71 +35,77 @@
                 <tbody class="Table-Body">
                     {% for cancha in canchas %}
                     <tr>
-                        <form  method="POST" action="/reservar">
-                        <td>
-                            {{ cancha.NombreCancha }}
-                            <input type="hidden" name="nombre_cancha" value="{{ cancha.NombreCancha }}">
-                        </td>
-                        <td>
-                            {{ cancha.Ubicacion }}
-                            <input type="hidden" name="ubicacion_cancha" value="{{ cancha.Ubicacion }}">
-                        </td>
-                        <td>
-                            {{ cancha.CantJugadores}}
-                            <input type="hidden" name="jugadores_cancha" value="{{ cancha.CantJugadores }}">
-                        </td>
-                        <td>
-                            <input type="date" name="fecha"
-                                name="fecha_reserva"
-                                min="{{ cancha.Fecha_Inicio }}"
-                                max="{{ cancha.Fecha_Fin }}"><br>
-                            <select name="hora" required>
-                                <option disabled selected>Seleccionar...</option>
-                                {% for h in cancha.horarios_validos %}
-                                    <option value="{{ h }}">{{ h }}</option>
-                                {% endfor %}
-                            </select>
-                            <br>
-                            <span id="errorNordelta" class="error-text"></span>
-                        </td>
-                        <td><label id="estadoNordelta">{{ cancha.Estado }}</label></td>
-                        <td>
-                            <select name="privacidad" class="tipo-reserva">
-                                <option disabled selected>Seleccionar</option>
-                                <option value="Publica">Publica</option>
-                                <option value="Privada">Privada</option>
-                            </select>
-                            <span class="clave-box" style="display:none;">
-                                <input type="password" name="clave_privada" placeholder="Contraseña">
-                                <button type="button" onclick="confirmarReserva(this)">Confirmar</button>
-                            </span>
-                        </td>
-                        <td>
-                            <label>{{ cancha.Precio }}</label>
-                            <input type="hidden" name="precio" value="{{ cancha.Precio }}">
-                        </td>
-                        <td>
-                            <button id="btnNordelta" class="
-                            {% if cancha.Estado == 'inhabilitada' %}
-                                btn-agregar
-                            {% elif cancha.Estado == 'habilitada' %}
-                                btn-reservar
-                            {% elif cancha.Estado == 'reservada' %}
-                                btn-reservado
-                            {% else %}
-                                estado-desconocido
-                            {% endif %}">
-                            {% if cancha.Estado == 'inhabilitada' %}
-                                Fuera de Servicio
-                            {% elif cancha.Estado == 'habilitada' %}
-                            Reservar
-                            {% elif cancha.Estado == 'reservada' %}
-                                Reservada
-                            {% else %}
-                                Desconocido
-                            {% endif %}
-                            </button>
-                        </td>
+                        <form method="POST" action="/reservar">
+                            <td class="NombreCancha">
+                                {{ cancha.NombreCancha }}
+                                <input type="hidden" name="nombre_cancha" value="{{ cancha.NombreCancha }}">
+                            </td>
+                
+                            <td class="Ubicacion">
+                                {{ cancha.Ubicacion }}
+                                <input type="hidden" name="ubicacion_cancha" value="{{ cancha.Ubicacion }}">
+                            </td>
+                
+                            <td class="CantJugadores">
+                                {{ cancha.CantJugadores}}
+                                <input type="hidden" name="jugadores_cancha" value="{{ cancha.CantJugadores }}">
+                            </td>
+                
+                            <td class="Fecha">
+                                <input type="date" 
+                                    class="fechaInput" 
+                                    name="fecha_reserva"
+                                    min="{{ cancha.Fecha_Inicio }}"
+                                    max="{{ cancha.Fecha_Fin }}"><br>
+                                <select name="hora" class="horaSelect" required>
+                                    <option disabled selected value="">Seleccionar...</option>
+                                    {% for h in cancha.horarios_validos %}
+                                        <option value="{{ h }}">{{ h }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br>
+                                <span class="error-text"></span>
+                            </td>
+                
+                            <td class="Estado">
+                                <label class="EstadoLabel">{{ cancha.Estado }}</label>
+                            </td>
+    
+                            <td class="Privacidad">
+                                <select name="privacidad" class="tipo-reserva">
+                                    <option disabled selected>Seleccionar</option>
+                                    <option value="Publica">Publica</option>
+                                    <option value="Privada">Privada</option>
+                                </select>
+                                <span class="clave" style="display:none;">
+                                    <input type="password" name="clave_privada" class="inputClave" placeholder="Contraseña">
+                                    <button type="button" class="btnConfirmarClave" onclick="confirmarReserva(this)">Confirmar</button>
+                                </span>
+                            </td>
+                
+                            <td class="Precio">
+                                <label class="PrecioCancha">{{ cancha.Precio }}</label>
+                                <input type="hidden" name="precio" value="{{ cancha.Precio }}">
+                            </td>
+                
+                            <td>
+                                <button type="submit" class="btn-reservar
+                                {% if cancha.Estado == 'inhabilitada' %}
+                                    btn-agregar
+                                {% elif cancha.Estado == 'habilitada' %}
+                                    btn-reservar
+                                {% elif cancha.Estado == 'reservada' %}
+                                    btn-reservado
+                                {% endif %}">
+                                {% if cancha.Estado == 'inhabilitada' %}
+                                    Fuera de Servicio
+                                {% elif cancha.Estado == 'habilitada' %}
+                                    Reservar
+                                {% elif cancha.Estado == 'reservada' %}
+                                    Reservada
+                                {% endif %}
+                                </button>
+                            </td>
                         </form>
                     </tr>
                     {% endfor %}    
