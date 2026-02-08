@@ -22,6 +22,9 @@ function agregarJugador (event){
     if (cantidad < max){
         cantidad++;
         cantidadElement.innerText = `${cantidad}/${max}`;
+
+        event.target.innerText = 'Ya estas unido';
+        event.target.disabled = true;
         
         if (cantidad === max) {
             event.target.innerText = 'Cancha Llena';
