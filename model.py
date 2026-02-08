@@ -270,20 +270,23 @@ def insertarCanchaEnBD(di):
         "UbicacionCancha": di.get(f"UbicacionCancha{fila_numero}"),
         "CantidadJug": di.get(f"CantidadJug{fila_numero}"),
         "Fecha": di.get(f"Fecha{fila_numero}"),
-        "Inicio": di.get(f"start{fila_numero}"),
-        "Fin": di.get(f"end{fila_numero}"),
+        "Inicio": di.get(f"Inicio{fila_numero}"),
+        "Fin": di.get(f"Fin{fila_numero}"),
         "Estado": di.get(f"Estado{fila_numero}"),
         "Precio": di.get(f"Precio{fila_numero}")
     }
     print("Datos de la fila a publicar:", cancha_data)
     sQuery = """
     INSERT INTO cancha 
-    (id,nombre, estado, ubicacion, cant_jugadores, precio)
+    (id, nombre, fecha, inicio, fin, estado, ubicacion, cant_jugadores, precio)
     VALUES
-    (NULL,%s,%s,%s,%s,%s)
+    (NULL,%s,%s,%s,%s,%s,%s,%s,%s)
     """
     val = (
         cancha_data.get('NombreCancha'),
+        cancha_data.get('Fecha'),
+        cancha_data.get('Inicio'),
+        cancha_data.get('Fin'),
         cancha_data.get('Estado'),
         cancha_data.get('UbicacionCancha'),
         cancha_data.get('CantidadJug'),
@@ -309,13 +312,20 @@ def consultarCanchasPublicadas():
             'id_cancha': fila[0],
             'NombreCancha': fila[1],
             'Fecha': fila[2],
-            'Estado': fila[3],
-            'Ubicacion': fila[4],
-            'CantJugadores': fila[5],
-            'Precio': fila[6]
+            'Start': fila[3],
+            'End': fila[4],
+            'Estado': fila[5],
+            'Ubicacion': fila[6],
+            'CantJugadores': fila[7],
+            'Precio': fila[8]
         }
         canchas.append(cancha)
 
     return canchas
-def consultarCanchaReservada(di):
-    pass
+def insertarCanchaReservada(di):
+    sQuery = """
+            INSERT INTO reserva_cancha 
+            (id,id_cancha,id_perfil,precio,fecha_reservada,hora,comprobante_pago,estado)
+            VALUES
+            (NULL,%s,%s,%s,%s,%s,%s,%s)
+            """

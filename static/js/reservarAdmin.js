@@ -16,10 +16,32 @@ function crearFilaNueva() {
         <td><input name='CantidadJug${rowCount}' type="number" id="cantJug${rowCount}" placeholder="N°"></td>
         <td>
             <input type="date" name="Fecha"><br>
-            <label for="start${rowCount}">Desde:</label>
-            <input type="time" id="start${rowCount}" name="start${rowCount}" required>
+            <lab        el for="start${rowCount}">Desde:</label>
+            <select id="start${rowCount}" name="Inicio${rowCount}" required>
+                <option disabled selected>Seleccionar...</option>
+                <option value="9:00">9:00</option>
+                <option value="10:30">10:30</option>
+                <option value="12:00">12:00</option>
+                <option value="13:30">13:30</option>
+                <option value="15:00">15:00</option>
+                <option value="16:30">16:30</option>
+                <option value="18:00">18:00</option>
+                <option value="19:30">19:30</option>
+                <option value="21:00">21:00</option>
+            </select>
             <label for="end${rowCount}">Hasta:</label>
-            <input type="time" id="end${rowCount}" name="end${rowCount}" required>
+            <select id="end${rowCount}" name="Fin${rowCount}" required>
+                <option disabled selected>Seleccionar...</option>
+                <option value="9:00">9:00 AM</option>
+                <option value="10:30">10:30</option>
+                <option value="12:00">12:00</option>
+                <option value="13:30">13:30</option>
+                <option value="15:00">15:00</option>
+                <option value="16:30">16:30</option>
+                <option value="18:00">18:00</option>
+                <option value="19:30">19:30</option>
+                <option value="21:00">21:00</option>
+            </select>
         </td>
         <td class="estado">
             <label><input class="estado" type="radio" name="Estado${rowCount}" value="reservada"> reservada</label><br>

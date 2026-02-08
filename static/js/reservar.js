@@ -1,3 +1,5 @@
+const contraseña = document.getElementById('contraCancha')
+
 
 (function () {
 
@@ -79,3 +81,42 @@
 
   });
 })();
+const form = btn.closest("form");
+
+
+function reservar(btn) {
+  btn.preventDefault()
+  const form = btn.closest("form");
+  const tipo = form.querySelector(".tipo-reserva").value;
+  const claveBox = form.querySelector(".clave-box");
+
+  if (tipo === "privada") {
+    return true
+      
+  } else {
+      return false
+  }
+}
+
+function confirmarReserva(btn) {
+  btn.preventDefault()
+  const form = btn.closest("form");
+  const clave = form.querySelector("input[name='clave_privada']").value;
+
+  if (clave.trim() === "") {
+      alert("Ingresá una contraseña");
+      return;
+  }
+
+  form.submit();
+}
+function reserva(e){
+  if (reservar(e)){
+    claveBox.style.display = "inline-block";
+    confirmarReserva(e)
+  }
+  form.submit();
+  
+}
+
+form.addEventListener('submit', reserva)
