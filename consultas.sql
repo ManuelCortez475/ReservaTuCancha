@@ -26,7 +26,7 @@ SELECT nombre FROM perfil WHERE id = 2;
 
 UPDATE usuario SET mail = "agustina.mendez@example.com" WHERE id = 9;
 
-DELETE FROM reserva_cancha;  
+DELETE FROM usuario;  
 
 SELECT * FROM perfil WHERE id_usuario = 26;
 
@@ -112,7 +112,7 @@ ALTER TABLE cancha
 ADD COLUMN fecha date AFTER nombre;
 UPDATE cancha SET fecha = "2024-07-01" WHERE id BETWEEN 1 AND 15;
 UPDATE cancha SET fecha = "2024-07-02" WHERE id BETWEEN 16 AND 30;
-DELETE FROM cancha WHERE id BETWEEN 40 and 70;
+DELETE FROM cancha;
 
 UPDATE cancha SET estado = "fuera de servicio" WHERE id IN (2,8);
 

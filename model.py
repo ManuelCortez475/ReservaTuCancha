@@ -351,13 +351,13 @@ def NombreJugadoresUbicacionCanchaxIdCancha(id_cancha):
     if res:
         return res
     return None
-def fechaHoraxIdCancha(id_cancha):
+def fechaHoraxIdCancha(id):
     sQuery = """
             SELECT fecha_reservada,hora FROM reserva_cancha WHERE id = %s
             """
     connDB = conectarDB()
     try:
-        res = ejecutarConsulta(connDB,sQuery,(id_cancha,))
+        res = ejecutarConsulta(connDB,sQuery,(id,))
     finally:
         cerrarDB(connDB)
     if res:
@@ -380,7 +380,7 @@ def insertarCanchaReservada(di,id_usuario,id_cancha):
         di.get('hora'),
         di.get('privacidad')
     )
-
+    print(di.get('hora'))
     connDB=conectarDB()
     res = ejecutar(connDB,sQuery,val)
     cerrarDB(connDB)
@@ -432,9 +432,9 @@ def insertarUsuarioUnido (nombre_cancha):
             """
     id_cancha=IdCanchaxNombre(nombre_cancha)
     id_reserva = idXIdCancha(id_cancha)
-    fecha = fechaHoraxIdCancha(id_reserva)[0][0]
-    hora = fechaHoraxIdCancha(id_reserva)[0][1]
-    print('Fecha: ',fecha,'Hora: ',hora)
+    fecha_hora = fechaHoraxIdCancha(id_reserva)
+    fecha, hora = fecha_hora[0]
+    print('Fecha: ',fecha,'Hora: ',hora, 'id',id_reserva)
     val = (
         id_reserva,
         fecha,
