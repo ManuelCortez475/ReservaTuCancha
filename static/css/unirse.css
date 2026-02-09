@@ -92,6 +92,22 @@ input[type="radio"] {
     transition: all 0.3s ease;
 }
 
+.btn-verjugadores {
+    padding: 8px 14px;
+    background: #c1b5ff;
+    border: none;
+    border-radius: 6px;
+    color: #1e1e1e;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-verjugadores:hover {
+    background: #bdc3ec;
+    transform: scale(1.05);
+}
+
 a{
     text-decoration: none;
     color: inherit;
