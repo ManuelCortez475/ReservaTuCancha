@@ -195,7 +195,8 @@ def route(app):
             getRequet(diRequestReservar)   
             upload_file(diRequestReservar)
             print('Info cancha: ',diRequestReservar)
-            session['cancha_reserva'] = diRequestReservar
+            id_usuario = session.get('id_usuario','')
+            insertarCanchaReservada(diRequestReservar,id_usuario)
             return redirect('/pagina_pago')
         return redirect('/login')
     

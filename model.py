@@ -325,10 +325,39 @@ def consultarCanchasPublicadas():
         canchas.append(cancha)
 
     return canchas
-def insertarCanchaReservada(di):
+
+def IdCanchaxNombre(nombre_cancha):
+    sQuery = """
+            SELECT id FROM cancha WHERE nombre = %s
+            """
+    connDB = conectarDB()
+    try:
+        res = ejecutarConsulta(connDB,sQuery,(nombre_cancha,))
+    finally:
+        cerrarDB(connDB)
+    if res:
+        return res[0][0]
+    return None
+
+
+def insertarCanchaReservada(di,id_usuario):
     sQuery = """
             INSERT INTO reserva_cancha 
-            (id,id_cancha,id_perfil,precio,fecha_reservada,hora,comprobante_pago,estado)
+            (id,id_cancha,id_usuario,precio,fecha_reservada,hora,privacidad)
             VALUES
-            (NULL,%s,%s,%s,%s,%s,%s,%s)
+            (NULL,%s,%s,%s,%s,%s,%s)
             """
+    val = (
+        IdCanchaxNombre(di.get('nombre_cancha')),
+        id_usuario,
+        di.get("precio"),
+        di.get("fecha_reservada"),
+        di.get('hora'),
+        di.get('privacidad')
+    )
+
+    connDB=conectarDB()
+    res = ejecutar(connDB,sQuery,val)
+    cerrarDB(connDB)
+    print ("Filas afectadas: ", res)
+    return res
