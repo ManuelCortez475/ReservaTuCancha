@@ -156,6 +156,8 @@ INSERT INTO reserva_cancha (id, id_cancha,id_perfil,hora,comprobante_pago,estado
 
 UPDATE reserva_cancha SET estado = "pendiente" WHERE id IN (1,5)
 
+DELETE FROM reserva_cancha WHERE id BETWEEN 4 and 9;
+
 UPDATE reserva_cancha SET id_cancha = 17 WHERE id = 3;
 
 UPDATE reserva_cancha

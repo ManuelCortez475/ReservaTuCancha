@@ -196,7 +196,8 @@ def route(app):
             upload_file(diRequestReservar)
             print('Info cancha: ',diRequestReservar)
             id_usuario = session.get('id_usuario','')
-            insertarCanchaReservada(diRequestReservar,id_usuario)
+            session['id_cancha_reservada'] = IdCanchaxNombre(diRequestReservar.get('nombre_cancha'))
+            insertarCanchaReservada(diRequestReservar,id_usuario,session.get('id_cancha_reservada'))
             return redirect('/pagina_pago')
         return redirect('/login')
     
@@ -205,7 +206,7 @@ def route(app):
     def unirse():
         if haySesion():
             if request.method == 'GET':
-                canchasReservadas = session.get('cancha_reserva')
+                canchasReservadas = buscarCanchasReservadas()
                 return render_template('unirse.html', canchasReservadas = canchasReservadas)
             
         return redirect('/login')

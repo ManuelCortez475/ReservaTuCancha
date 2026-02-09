@@ -28,18 +28,20 @@
                 </tr>
             </thead>
             <tbody class="Table-Body">
+                {% for canchas in canchasReservadas %}
                 <tr>
-                    <td> {{canchasReservadas.nombre_cancha}} </td>
-                    <td> {{canchasReservadas.ubicacion_cancha}} </td>
-                    <td class="cantJugadores"> 0/{{canchasReservadas.jugadores_cancha}} </td>
+                    <td> {{canchas.Nombre_Cancha}} </td>
+                    <td> {{canchas.Ubicacion}} </td>
+                    <td class="cantJugadores"> 0/{{canchas.Cant_Jugadores}} </td>
                     <td> 
-                        {{canchasReservadas.fecha}} 
+                        {{canchas.Fecha_Reservada}} 
                         ---
-                        {{canchasReservadas.hora}}
+                        {{canchas.Hora}}
                     </td>
-                    <td class="Estado"> {{canchasReservadas.privacidad}} </td>
+                    <td class="Estado"> {{canchas.Privacidad}} </td>
                     <td> <button type="submit" class="btn-unirse">Unirse</button></td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
             

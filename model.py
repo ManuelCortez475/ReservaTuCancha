@@ -339,8 +339,20 @@ def IdCanchaxNombre(nombre_cancha):
         return res[0][0]
     return None
 
+def NombreJugadoresUbicacionCanchaxIdCancha(id_cancha):
+    sQuery = """
+            SELECT nombre,ubicacion,cant_jugadores FROM cancha WHERE id = %s
+            """
+    connDB = conectarDB()
+    try:
+        res = ejecutarConsulta(connDB,sQuery,(id_cancha,))
+    finally:
+        cerrarDB(connDB)
+    if res:
+        return res
+    return None
 
-def insertarCanchaReservada(di,id_usuario):
+def insertarCanchaReservada(di,id_usuario,id_cancha):
     sQuery = """
             INSERT INTO reserva_cancha 
             (id,id_cancha,id_usuario,precio,fecha_reservada,hora,privacidad)
@@ -348,16 +360,46 @@ def insertarCanchaReservada(di,id_usuario):
             (NULL,%s,%s,%s,%s,%s,%s)
             """
     val = (
-        IdCanchaxNombre(di.get('nombre_cancha')),
+        id_cancha,
         id_usuario,
         di.get("precio"),
         di.get("fecha_reservada"),
         di.get('hora'),
         di.get('privacidad')
     )
+    print('Fecha:',di.get('fecha_reservada'))
 
     connDB=conectarDB()
     res = ejecutar(connDB,sQuery,val)
     cerrarDB(connDB)
     print ("Filas afectadas: ", res)
     return res
+
+def buscarCanchasReservadas():
+    sQuery="""
+            SELECT * FROM reserva_cancha
+            """
+    connDB = conectarDB()
+    res = ejecutarConsulta(connDB,sQuery)
+    cerrarDB(connDB)
+    print('Respuesta:',res)
+    canchasReservadas = []
+    for fila in res:
+        id_cancha = fila[1]
+        info = NombreJugadoresUbicacionCanchaxIdCancha(id_cancha)
+        print('Fecha',fila[4])
+        cancha = {
+            'id_cancha_reservada': fila[0],
+            'id_cancha': id_cancha,
+            'id_usuario': fila[2],
+            'Nombre_Cancha': info[0][0],
+            'Ubicacion': info[0][1],
+            'Cant_Jugadores': info[0][2],
+            'Precio': fila[3],
+            'Fecha_Reservada': fila[4],
+            'Hora': fila[5],
+            'Comprobante_Pago': fila[6] or '',
+            'Privacidad': fila[7],
+        }
+        canchasReservadas.append(cancha)
+    return canchasReservadas
