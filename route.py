@@ -138,7 +138,7 @@ def route(app):
             getRequet(diRequestPago)   
             upload_file(diRequestPago)
             print(diRequestPago)
-            reserva = session.get('cancha_reserva')
+            reserva = session.get('cancha_reservada')
             if not reserva:
                 return redirect('/reservar')
             return render_template('pagina_pago.html', reserva=reserva)
@@ -195,6 +195,7 @@ def route(app):
             getRequet(diRequestReservar)   
             upload_file(diRequestReservar)
             print('Info cancha: ',diRequestReservar)
+            session['cancha_reservada'] = diRequestReservar
             id_usuario = session.get('id_usuario','')
             session['id_cancha_reservada'] = IdCanchaxNombre(diRequestReservar.get('nombre_cancha'))
             insertarCanchaReservada(diRequestReservar,id_usuario,session.get('id_cancha_reservada'))
