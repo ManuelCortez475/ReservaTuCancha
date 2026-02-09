@@ -34,5 +34,5 @@ function agregarJugador (event){
 }
 
 for (const button of btnUnirse) {
-    button.addEventListener('click', agregarJugador);
+    button.addEventListener('submit', agregarJugador);
 }

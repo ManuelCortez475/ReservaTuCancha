@@ -351,6 +351,19 @@ def NombreJugadoresUbicacionCanchaxIdCancha(id_cancha):
     if res:
         return res
     return None
+def fechaHoraxIdCancha(id_cancha):
+    sQuery = """
+            SELECT fecha_reservada,hora FROM reserva_cancha WHERE id = %s
+            """
+    connDB = conectarDB()
+    try:
+        res = ejecutarConsulta(connDB,sQuery,(id_cancha,))
+    finally:
+        cerrarDB(connDB)
+    if res:
+        print('hola',res)
+        return res
+    return None
 
 def insertarCanchaReservada(di,id_usuario,id_cancha):
     sQuery = """
@@ -367,12 +380,10 @@ def insertarCanchaReservada(di,id_usuario,id_cancha):
         di.get('hora'),
         di.get('privacidad')
     )
-    print('Fecha:',di.get('fecha_reservada'))
 
     connDB=conectarDB()
     res = ejecutar(connDB,sQuery,val)
     cerrarDB(connDB)
-    print ("Filas afectadas: ", res)
     return res
 
 def buscarCanchasReservadas():
@@ -382,12 +393,10 @@ def buscarCanchasReservadas():
     connDB = conectarDB()
     res = ejecutarConsulta(connDB,sQuery)
     cerrarDB(connDB)
-    print('Respuesta:',res)
     canchasReservadas = []
     for fila in res:
         id_cancha = fila[1]
         info = NombreJugadoresUbicacionCanchaxIdCancha(id_cancha)
-        print('Fecha',fila[4])
         cancha = {
             'id_cancha_reservada': fila[0],
             'id_cancha': id_cancha,
@@ -400,6 +409,43 @@ def buscarCanchasReservadas():
             'Hora': fila[5],
             'Comprobante_Pago': fila[6] or '',
             'Privacidad': fila[7],
+            'JugadoresUnidos': fila[8]
         }
         canchasReservadas.append(cancha)
     return canchasReservadas
+def idXIdCancha(id):
+    sQuery="""
+            SELECT id FROM reserva_cancha WHERE id_cancha=%s
+            """
+    connDB=conectarDB()
+    res=ejecutarConsulta(connDB,sQuery,(id,))
+    cerrarDB(connDB)
+    return res[0][0]
+
+def insertarUsuarioUnido (nombre_cancha):
+    sQuery="""
+            UPDATE reserva_cancha
+            SET JugadoresUnidos = JugadoresUnidos + 1
+            WHERE id = %s
+            AND fecha_reservada = %s
+            AND hora = %s;
+            """
+    id_cancha=IdCanchaxNombre(nombre_cancha)
+    id_reserva = idXIdCancha(id_cancha)
+    fecha = fechaHoraxIdCancha(id_reserva)[0][0]
+    hora = fechaHoraxIdCancha(id_reserva)[0][1]
+    print('Fecha: ',fecha,'Hora: ',hora)
+    val = (
+        id_reserva,
+        fecha,
+        hora
+    )
+
+    connDB=conectarDB()
+    try:
+        res = ejecutar(connDB, sQuery, val)
+    finally:
+        cerrarDB(connDB)
+    print(res)
+    return res
+

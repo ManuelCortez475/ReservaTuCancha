@@ -62,14 +62,11 @@ def route(app):
                         diRequestPerfil.pop('ImagenPerfil', None)
                 di={}
                 existePerfil = obtenerPerfilPorUsuario(di,id_usuario)
-                print("PERFIL EN BD:", di)
+                
                 if existePerfil == {}:
-                    print("VOY A INSERTAR PERFIL")
+                    
                     agregarInfoPerfil(diRequestPerfil,id_usuario)
                 else:
-                    print("VOY A ACTUALIZAR PERFIL")
-                    print("ID USUARIO:", id_usuario)
-                    print("DATOS UPDATE:", diRequestPerfil)
                     updateInfoPerfil(diRequestPerfil, id_usuario)
 
             return render_template(
@@ -97,14 +94,10 @@ def route(app):
                         diRequestPerfilAdmin.pop('ImagenPerfil', None)
                 di={}
                 existePerfil = obtenerPerfilPorUsuario(di,id_usuario)
-                print("PERFIL EN BD:", di)
                 if existePerfil == {}:
-                    print("VOY A INSERTAR PERFIL")
+
                     agregarInfoPerfil(diRequestPerfilAdmin,id_usuario)
                 else:
-                    print("VOY A ACTUALIZAR PERFIL")
-                    print("ID USUARIO:", id_usuario)
-                    print("DATOS UPDATE:", diRequestPerfilAdmin)
                     updateInfoPerfil(diRequestPerfilAdmin, id_usuario)
 
             return render_template(
@@ -137,7 +130,6 @@ def route(app):
             diRequestPago={}           
             getRequet(diRequestPago)   
             upload_file(diRequestPago)
-            print(diRequestPago)
             reserva = session.get('cancha_reservada')
             if not reserva:
                 return redirect('/reservar')
@@ -194,7 +186,6 @@ def route(app):
             diRequestReservar={}           
             getRequet(diRequestReservar)   
             upload_file(diRequestReservar)
-            print('Info cancha: ',diRequestReservar)
             session['cancha_reservada'] = diRequestReservar
             id_usuario = session.get('id_usuario','')
             session['id_cancha_reservada'] = IdCanchaxNombre(diRequestReservar.get('nombre_cancha'))
@@ -209,7 +200,13 @@ def route(app):
             if request.method == 'GET':
                 canchasReservadas = buscarCanchasReservadas()
                 return render_template('unirse.html', canchasReservadas = canchasReservadas)
-            
+            print('post')
+            diRequestUnirse={}           
+            getRequet(diRequestUnirse)   
+            upload_file(diRequestUnirse)
+            print('Info cancha: ',diRequestUnirse)
+            insertarUsuarioUnido(diRequestUnirse.get('NombreCancha'))   
+            return redirect('/unirse')
         return redirect('/login')
 
     @app.route("/logout")
