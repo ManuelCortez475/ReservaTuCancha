@@ -378,7 +378,7 @@ def insertarCanchaReservada(di,id_usuario,id_cancha):
         di.get("precio"),
         di.get("fecha_reservada"),
         di.get('hora'),
-        di.get('privacidad')
+        di.get('privacidad'),
     )
     print(di.get('hora'))
     connDB=conectarDB()

@@ -199,15 +199,19 @@ def route(app):
         if haySesion():
             if request.method == 'GET':
                 canchasReservadas = buscarCanchasReservadas()
-                return render_template('unirse.html', canchasReservadas = canchasReservadas)
-            print('post')
-            diRequestUnirse={}           
+                return render_template('unirse.html', canchasReservadas=canchasReservadas)
+            diRequestUnirse = {}           
             getRequet(diRequestUnirse)   
-            upload_file(diRequestUnirse)
-            print('Info cancha: ',diRequestUnirse)
-            insertarUsuarioUnido(diRequestUnirse.get('NombreCancha'))   
+            nombre_cancha = diRequestUnirse.get('NombreCancha')
+            insertarUsuarioUnido(nombre_cancha)
+            if 'canchas_unidas' not in session:
+                session['canchas_unidas'] = []
+            temp_list = session['canchas_unidas']
+            temp_list.append(nombre_cancha)
+            session['canchas_unidas'] = temp_list
             return redirect('/unirse')
         return redirect('/login')
+        
 
     @app.route("/logout")
     def logout():  
