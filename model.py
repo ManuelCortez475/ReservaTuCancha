@@ -368,9 +368,9 @@ def fechaHoraxIdCancha(id):
 def insertarCanchaReservada(di,id_usuario,id_cancha):
     sQuery = """
             INSERT INTO reserva_cancha 
-            (id,id_cancha,id_usuario,precio,fecha_reservada,hora,privacidad)
+            (id,id_cancha,id_usuario,precio,fecha_reservada,hora,privacidad,Jugadores_Max)
             VALUES
-            (NULL,%s,%s,%s,%s,%s,%s)
+            (NULL,%s,%s,%s,%s,%s,%s,%s)
             """
     val = (
         id_cancha,
@@ -378,7 +378,8 @@ def insertarCanchaReservada(di,id_usuario,id_cancha):
         di.get("precio"),
         di.get("fecha_reservada"),
         di.get('hora'),
-        di.get('privacidad')
+        di.get('privacidad'),
+        di.get('jugadores_cancha')
     )
     print(di.get('hora'))
     connDB=conectarDB()
@@ -428,7 +429,8 @@ def insertarUsuarioUnido (nombre_cancha):
             SET JugadoresUnidos = JugadoresUnidos + 1
             WHERE id = %s
             AND fecha_reservada = %s
-            AND hora = %s;
+            AND hora = %s
+            AND JugadoresUnidos = Jugadores_max - 1;
             """
     id_cancha=IdCanchaxNombre(nombre_cancha)
     id_reserva = idXIdCancha(id_cancha)
