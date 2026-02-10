@@ -43,7 +43,15 @@
                     </td>
                     <td class="Estado"> {{canchas.Privacidad}} </td>
                     <form method="post" action="/unirse">
-                    <td> <button type="submit" class="btn-unirse">Unirse</button></td>
+                        <td> 
+                            {% if canchas.Nombre_Cancha in session.get('canchas_unidas', []) %}
+                                <button type="button" class="btn-unirse" disabled style="background-color: grey;">
+                                    Ya estás unido
+                                </button>
+                            {% else %}
+                                <button type="submit" class="btn-unirse">Unirse</button>
+                            {% endif %}
+                        </td>
                     <td> <button type="submit" class="btn-verjugadores"> Ver Jugadores </button></td>
                     </form>
                 </tr>

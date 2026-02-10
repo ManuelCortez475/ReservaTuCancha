@@ -1,38 +1,40 @@
 const btnUnirse = document.querySelectorAll('.btn-unirse');
+const btn_verjugadores = document.querySelectorAll('.btn-verjugadores');
 const CONTRASEÑA_CORRECTA = 'reserva123'; 
 
-function agregarJugador (event){
+function agregarJugador(event) {
     const fila = event.target.closest('tr');
-    const estado = fila.querySelector('.Estado');
-    const estado_actual = estado.innerText.trim();
-    const cantidadElement = fila.querySelector('.cantJugadores');
-    const tamaño_cancha = cantidadElement.innerText;
-    const [cantidad_inicial, maximo] = tamaño_cancha.split('/');
-    let cantidad = parseInt(cantidad_inicial);
-    const max = parseInt(maximo);
+    const estadoElement = fila.querySelector('.Estado');
+    const estado_actual = estadoElement.innerText.trim();
     
-    if (estado_actual === 'Privada'){
-        const contrasena_ingresada = prompt("Esta cancha es privada. Por favor, ingresa la contraseña:");
+    if (estado_actual === 'Privada') {
+        const contrasena_ingresada = prompt("Esta cancha es privada. Ingresá la contraseña:");
 
         if (contrasena_ingresada !== CONTRASEÑA_CORRECTA) {
-            alert("Contraseña incorrecta o accion cancelada. No puedes unirte.");
+            alert("❌ Contraseña incorrecta. No podés unirte.");
+            event.preventDefault(); 
             return;
         }
     }
-    if (cantidad < max){
-        cantidad++;
-        cantidadElement.innerText = `${cantidad}/${max}`;
+    const cantidadElement = fila.querySelector('.cantJugadores');
+    const [cantidad_inicial, maximo] = cantidadElement.innerText.split('/');
+    const cantidad = parseInt(cantidad_inicial);
+    const max = parseInt(maximo);
 
-        event.target.innerText = 'Ya estas unido';
-        event.target.disabled = true;
-        
-        if (cantidad === max) {
-            event.target.innerText = 'Cancha Llena';
-            event.target.disabled = true; 
-        }
+    
+    if (cantidad >= max) {
+        alert("❌ La cancha ya está llena.");
+        event.preventDefault(); 
+        return;
     }
+
+
 }
 
 for (const button of btnUnirse) {
-    button.addEventListener('submit', agregarJugador);
+    button.addEventListener('click', agregarJugador);
+}
+
+for (const button of btn_verjugadores) {
+    button.addEventListener('click', agregarJugador);
 }
