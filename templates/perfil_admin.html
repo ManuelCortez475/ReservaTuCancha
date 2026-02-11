@@ -17,10 +17,10 @@
     <div class="profile-container">
         
         <aside class="profile-sidebar">
-            <form action="perfilAdmin" method="post">
+            <form action="perfilAdmin" method="post" enctype="multipart/form-data">
             <div class="avatar-wrap">
                 <img id="avatarPreview"
-                    src="{{ url_for('static', filename='uploads/' + (diRequestPerfilAdmin.get('ImagenPerfil') or 'logo.png.png')) }}">
+                    src="{{ url_for('static', filename='uploads/' + (diRequestPerfilAdmin.get('ImagenPerfil') or 'default.png')) }}">
                 <input type="file" name="ImagenPerfil" id="avatarInput" accept="image/*">
                 <label for="avatarInput" name="ImagenPerfil" class="upload-label"> Subir nueva foto </label>
             </div>
