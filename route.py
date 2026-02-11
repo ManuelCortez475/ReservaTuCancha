@@ -202,30 +202,32 @@ def route(app):
     @app.route('/unirse', methods=['POST','GET'])
     def unirse():
         if haySesion():
-            session.pop('canchas_unidas', None)
-
+            if 'reservas_unidas' not in session:
+                session['reservas_unidas'] = []
             if request.method == 'GET':
                 canchasReservadas = buscarCanchasReservadas()
                 return render_template('unirse.html', canchasReservadas=canchasReservadas)
             diRequestUnirse = {}           
             getRequet(diRequestUnirse)   
             nombre_cancha = diRequestUnirse.get('NombreCancha')
-            insertarUsuarioUnido(diRequestUnirse,nombre_cancha)
-            id_reserva= int(diRequestUnirse.get('id_reserva'))
-            print(diRequestUnirse)
-            if id_reserva not in session['reservas_unidas']:
-                session['reservas_unidas'].append(id_reserva)
-            session.modified = True
-            print(session.get('reservas_unidas'))            
+            insertarUsuarioUnido(diRequestUnirse, nombre_cancha)
+            id_reserva_raw = diRequestUnirse.get('id_reserva')
+            if id_reserva_raw:
+                id_reserva = int(id_reserva_raw)
+                if id_reserva not in session['reservas_unidas']:
+                    lista_actual = session['reservas_unidas']
+                    lista_actual.append(id_reserva)
+                    session['reservas_unidas'] = lista_actual
+                    session.modified = True 
+            
             return redirect('/unirse')
         return redirect('/login')
-        
 
     @app.route("/logout")
     def logout():  
         ''' Info: 
-          Cierra la sesión.
-          retorna la redirección a la pagina home   
+        Cierra la sesión.
+        retorna la redirección a la pagina home   
         ''' 
         cerrarSesion()     
         return redirect('/')

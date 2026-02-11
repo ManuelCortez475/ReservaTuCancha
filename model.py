@@ -369,24 +369,26 @@ def fechaHoraxIdCancha(id):
 
 def insertarCanchaReservada(di,id_usuario,id_cancha):
     sQuery = """
-            INSERT INTO reserva_cancha 
-            (id,id_cancha,id_usuario,precio,fecha_reservada,hora,privacidad)
-            VALUES
-            (NULL,%s,%s,%s,%s,%s,%s)
-            """
+    INSERT INTO reserva_cancha
+    (id,id_cancha,id_usuario,precio,fecha_reservada,hora,privacidad, JugadoresUnidos, comprobante_pago, Jugadores_Max)
+    VALUES
+    (NULL,%s,%s,%s,%s,%s,%s,'0','',%s)
+    """
     val = (
-        id_cancha,
-        id_usuario,
-        di.get("precio"),
-        di.get("fecha_reservada"),
-        di.get('hora'),
-        di.get('privacidad'),
+    id_cancha,
+    id_usuario,
+    di.get("precio"),
+    di.get("fecha_reservada"),
+    di.get('hora'),
+    di.get('privacidad'),
+    di.get('jugadores_cancha')
     )
     print(di.get('hora'))
     connDB=conectarDB()
     res = ejecutar(connDB,sQuery,val)
     cerrarDB(connDB)
     return res
+
 
 def buscarCanchasReservadas():
     sQuery="""
