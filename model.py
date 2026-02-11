@@ -367,27 +367,32 @@ def fechaHoraxIdCancha(id):
         return res
     return None
 
-def insertarCanchaReservada(di,id_usuario,id_cancha):
+def insertarCanchaReservada(di, id_usuario, id_cancha):
     sQuery = """
-    INSERT INTO reserva_cancha
-    (id,id_cancha,id_usuario,precio,fecha_reservada,hora,privacidad, JugadoresUnidos, comprobante_pago, Jugadores_Max)
-    VALUES
-    (NULL,%s,%s,%s,%s,%s,%s,'0','',%s)
-    """
+            INSERT INTO reserva_cancha 
+            (id, id_cancha, id_usuario, precio, fecha_reservada, hora, comprobante_pago, privacidad, Contraseña, JugadoresUnidos, Jugadores_Max)
+            VALUES
+            (NULL, %s, %s, %s, %s, %s, '', %s, %s, 0, %s)
+            """
     val = (
-    id_cancha,
-    id_usuario,
-    di.get("precio"),
-    di.get("fecha_reservada"),
-    di.get('hora'),
-    di.get('privacidad'),
-    di.get('jugadores_cancha')
+        id_cancha,
+        id_usuario,
+        di.get("precio"),
+        di.get("fecha_reservada"),
+        di.get('hora'),
+        di.get('privacidad'),
+        di.get('clave_privada'), # Captura la clave del name="clave_privada" de tu HTML
+        di.get('jugadores_cancha')
     )
-    print(di.get('hora'))
-    connDB=conectarDB()
-    res = ejecutar(connDB,sQuery,val)
-    cerrarDB(connDB)
-    return res
+    connDB = conectarDB()
+    try:
+        res = ejecutar(connDB, sQuery, val)
+        return res
+    except Exception as e:
+        print(f"Error al guardar contraseña: {e}")
+        return None
+    finally:
+        cerrarDB(connDB)
 
 
 def buscarCanchasReservadas():
@@ -413,7 +418,9 @@ def buscarCanchasReservadas():
             'Hora': fila[5],
             'Comprobante_Pago': fila[6] or '',
             'Privacidad': fila[7],
-            'JugadoresUnidos': fila[8]
+            'Contraseña': fila[8],
+            'JugadoresUnidos': fila[9],
+            'Cant_Jugadores': fila[10]
         }
         canchasReservadas.append(cancha)
     return canchasReservadas
