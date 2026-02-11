@@ -92,7 +92,7 @@ input[type="radio"] {
     transition: all 0.3s ease;
 }
 
-.btn-verjugadores {
+.btn-cancelar{
     padding: 8px 14px;
     background: #c1b5ff;
     border: none;
@@ -103,7 +103,7 @@ input[type="radio"] {
     transition: all 0.3s ease;
 }
 
-.btn-verjugadores:hover {
+.btn-cancelar:hover {
     background: #bdc3ec;
     transform: scale(1.05);
 }

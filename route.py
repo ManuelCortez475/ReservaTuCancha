@@ -210,16 +210,20 @@ def route(app):
             diRequestUnirse = {}           
             getRequet(diRequestUnirse)   
             nombre_cancha = diRequestUnirse.get('NombreCancha')
-            insertarUsuarioUnido(diRequestUnirse, nombre_cancha)
             id_reserva_raw = diRequestUnirse.get('id_reserva')
             if id_reserva_raw:
                 id_reserva = int(id_reserva_raw)
-                if id_reserva not in session['reservas_unidas']:
-                    lista_actual = session['reservas_unidas']
-                    lista_actual.append(id_reserva)
-                    session['reservas_unidas'] = lista_actual
-                    session.modified = True 
-            
+                if id_reserva in session['reservas_unidas']:
+                    bajarUsuarioUnido(diRequestUnirse, nombre_cancha)
+                    lista = session['reservas_unidas']
+                    lista.remove(id_reserva)
+                    session['reservas_unidas'] = lista
+                else:
+                    insertarUsuarioUnido(diRequestUnirse, nombre_cancha)
+                    lista = session['reservas_unidas']
+                    lista.append(id_reserva)
+                    session['reservas_unidas'] = lista
+                session.modified = True 
             return redirect('/unirse')
         return redirect('/login')
 

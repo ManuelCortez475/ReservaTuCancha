@@ -25,7 +25,6 @@
                     <th> Fecha/Hora</th>
                     <th> Estado </th>
                     <th> Unirse </th>
-                    <th> Ver Jugadores </th>
                 </tr>
             </thead>
             <tbody class="Table-Body">
@@ -48,14 +47,13 @@
                     <form method="post" action="/unirse">
                         <td>
                             {% if canchas.id_cancha_reservada in session.get('reservas_unidas', []) %}
-                                <button type="button" class="btn-unirse" disabled style="background-color: grey;">
-                                    Ya estás unido
+                                <button type="submit" class="btn-cancelar" style="background-color: rgb(230, 67, 67);">
+                                    Cancelar
                                 </button>
                             {% else %}
                                 <button type="submit" class="btn-unirse" data-pass="{{ canchas.Contraseña }}" >Unirse</button>
                             {% endif %}
                         </td>
-                    <td> <button type="submit" class="btn-verjugadores"> Ver Jugadores </button></td>
                     </form>
                 </tr>
                 {% endfor %}

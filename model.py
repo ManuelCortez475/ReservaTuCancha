@@ -521,3 +521,23 @@ def canchasPublicadasXId (id):
         }
         canchasPublicadas.append(cancha)
     return canchasPublicadas
+
+def bajarUsuarioUnido (di,nombre_cancha):
+    sQuery="""
+            UPDATE reserva_cancha
+            SET JugadoresUnidos = JugadoresUnidos - 1
+            WHERE id = %s;
+            """
+    id_cancha=IdCanchaxNombre(nombre_cancha)
+    id_reserva = obtenerIdReserva(id_cancha,di.get('fecha_reservada'),di.get('hora'))
+    val = (
+        id_reserva,
+    )
+    print(id_reserva)
+
+    connDB=conectarDB()
+    try:
+        res = ejecutar(connDB, sQuery, val)
+    finally:
+        cerrarDB(connDB)
+    return res
