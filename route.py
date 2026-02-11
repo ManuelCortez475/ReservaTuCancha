@@ -142,7 +142,9 @@ def route(app):
     @app.route('/publicaciones')
     def publicaciones():
         if haySesion():
-            return render_template('publicaciones.html')
+            id_usuario = session.get('id_usuario')
+            publicaciones = canchasPublicadasXId(id_usuario)
+            return render_template('publicaciones.html', mispublicaciones = publicaciones)
         return redirect('/login')
     
     
@@ -152,10 +154,11 @@ def route(app):
             if request.method == 'GET':
                 return render_template('reservaAdmin.html')   
             
+            id_usuario = session.get('id_usuario')
             diRequestReservaAdmin={}           
             getRequet(diRequestReservaAdmin)   
             upload_file(diRequestReservaAdmin)
-            insertarCanchaEnBD(diRequestReservaAdmin)
+            insertarCanchaEnBD(diRequestReservaAdmin,id_usuario)
             return redirect('/reservaAdmin')
         return redirect('/login')
                 

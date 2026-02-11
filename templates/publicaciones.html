@@ -19,21 +19,16 @@
     <section class="grid">
       <div class="col">
         <h2>Vigentes</h2>
-
+        {% for canchas in mispublicaciones %}
         <div class="card">
-          <div class="row"><b>Fecha:</b> 05/10/2025</div>
-          <div class="row"><b>Lugar:</b> Cancha 1</div>
-          <div class="row"><b>Hora:</b> 18:00</div>
+          <div class="row"><b>Nombre:</b> {{ canchas.Nombre }}</div>
+          <div class="row"><b>Ubicacion:</b> {{ canchas.Ubicacion }}</div>
+          <div class="row"><b>Fechas Publicadas:</b> {{ canchas.FechaI }} -- {{ canchas.FechaF }}</div>
+          <div class="row"><b>Rango Horario:</b> {{ canchas.HoraI }} a {{ canchas.HoraF }}</div>
+          <div class="row"><b>Precio:</b> {{ canchas.Precio }}</div>
           <div class="row"><b>Estado:</b> <span class="badge ok">Habilitado</span></div>
         </div>
-
-        <div class="card">
-          <div class="row"><b>Fecha:</b> 10/10/2025</div>
-          <div class="row"><b>Lugar:</b> Cancha 2</div>
-          <div class="row"><b>Hora:</b> 20:00</div>
-          <div class="row"><b>Estado:</b> <span class="badge ok">Habilitado</span></div>
-        </div>
-      </div>
+        {% endfor %}
     </section>
   </main>
     {% block footer %}   

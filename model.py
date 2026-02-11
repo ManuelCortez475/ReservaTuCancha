@@ -257,7 +257,7 @@ def consultarImagenPerfilPorEmail(email):
     return res[0]['ImagenPerfil'] if res else None
 
 
-def insertarCanchaEnBD(di):
+def insertarCanchaEnBD(di,id_usuario):
     fila_numero = None
     for key in di.keys():
         if key.startswith("btnPublicar"):
@@ -279,11 +279,12 @@ def insertarCanchaEnBD(di):
     print("Datos de la fila a publicar:", cancha_data)
     sQuery = """
     INSERT INTO cancha 
-    (id, nombre, fecha_inicio, fecha_fin, inicio, fin, estado, ubicacion, cant_jugadores, precio)
+    (id, id_usuario, nombre, fecha_inicio, fecha_fin, inicio, fin, estado, ubicacion, cant_jugadores, precio)
     VALUES
-    (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
     val = (
+        id_usuario,
         cancha_data.get('NombreCancha'),
         cancha_data.get('Fecha_Inicio'),
         cancha_data.get('Fecha_Fin'),
@@ -312,15 +313,16 @@ def consultarCanchasPublicadas():
     for fila in res:
         cancha = {
             'id_cancha': fila[0],
-            'NombreCancha': fila[1],
-            'Fecha_Inicio': fila[2],
-            'Fecha_Fin': fila[3],
-            'Inicio': fila[4],
-            'Fin': fila[5],
-            'Estado': fila[6],
-            'Ubicacion': fila[7],
-            'CantJugadores': fila[8],
-            'Precio': fila[9]
+            'id_usuario':fila[1],
+            'NombreCancha': fila[2],
+            'Fecha_Inicio': fila[3],
+            'Fecha_Fin': fila[4],
+            'Inicio': fila[5],
+            'Fin': fila[6],
+            'Estado': fila[7],
+            'Ubicacion': fila[8],
+            'CantJugadores': fila[9],
+            'Precio': fila[10]
         }
         canchas.append(cancha)
 
@@ -488,3 +490,25 @@ def buscarReservasXId(id):
         }
         canchasReservadasXUsuario.append(reserva)
     return canchasReservadasXUsuario
+
+def canchasPublicadasXId (id):
+    sQuery = """
+            SELECT * FROM cancha
+            WHERE id_usuario = %s;
+            """
+    connDB=conectarDB()
+    res = ejecutarConsulta(connDB,sQuery,(id,))
+    cerrarDB(connDB)
+    canchasPublicadas=[]
+    for fila in res:
+        cancha={
+            'Nombre':fila[2],
+            'FechaI':fila[3],
+            'FechaF':fila[4],
+            'HoraI':fila[5],
+            'HoraF':fila[6],
+            'Ubicacion':fila[8],
+            'Precio':fila[10]
+        }
+        canchasPublicadas.append(cancha)
+    return canchasPublicadas
