@@ -193,6 +193,7 @@ def route(app):
             upload_file(diRequestReservar)
             session['cancha_reservada'] = diRequestReservar
             id_usuario = session.get('id_usuario','')
+            print(diRequestReservar)
             session['id_cancha_reservada'] = IdCanchaxNombre(diRequestReservar.get('nombre_cancha'))
             insertarCanchaReservada(diRequestReservar,id_usuario,session.get('id_cancha_reservada'))
             return redirect('/pagina_pago')

@@ -381,7 +381,7 @@ def insertarCanchaReservada(di, id_usuario, id_cancha):
         di.get("fecha_reservada"),
         di.get('hora'),
         di.get('privacidad'),
-        di.get('clave_privada'), # Captura la clave del name="clave_privada" de tu HTML
+        di.get('clave_privada'),
         di.get('jugadores_cancha')
     )
     connDB = conectarDB()
@@ -522,7 +522,7 @@ def canchasPublicadasXId (id):
         canchasPublicadas.append(cancha)
     return canchasPublicadas
 
-def bajarUsuarioUnido (di,nombre_cancha):
+def  bajarUsuarioUnido (di,nombre_cancha):
     sQuery="""
             UPDATE reserva_cancha
             SET JugadoresUnidos = JugadoresUnidos - 1
