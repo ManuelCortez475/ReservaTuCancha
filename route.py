@@ -121,7 +121,9 @@ def route(app):
     @app.route('/misreservas')
     def misreservas():
         if haySesion():
-            return render_template('misreservas.html')
+            id_usuario = session.get('id_usuario')
+            reservas = buscarReservasXId(id_usuario)
+            return render_template('misreservas.html', canchasreservadas = reservas)
         return redirect('/login')
     
     @app.route('/pagina_pago', methods = ['POST', 'GET']) # 

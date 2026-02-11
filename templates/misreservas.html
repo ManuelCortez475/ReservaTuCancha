@@ -20,20 +20,14 @@
       <!-- Columna Vigentes -->
       <div class="col">
         <h2>Vigentes</h2>
-
+        {% for reserva in canchasreservadas %}
         <div class="card">
-          <div class="row"><b>Fecha:</b> 05/10/2025</div>
-          <div class="row"><b>Lugar:</b> Cancha 1</div>
-          <div class="row"><b>Hora:</b> 18:00</div>
-          <div class="row"><b>Estado:</b> <span class="badge ok">Habilitado</span></div>
+          <div class="row"><b>Cancha:</b> {{ reserva.Nombre }}</div>
+          <div class="row"><b>Fecha:</b> {{ reserva.Fecha }}</div>
+          <div class="row"><b>Lugar:</b> {{ reserva.Ubicacion}}</div>
+          <div class="row"><b>Hora:</b> {{ reserva.Hora}}</div>
         </div>
-
-        <div class="card">
-          <div class="row"><b>Fecha:</b> 10/10/2025</div>
-          <div class="row"><b>Lugar:</b> Cancha 2</div>
-          <div class="row"><b>Hora:</b> 20:00</div>
-          <div class="row"><b>Estado:</b> <span class="badge warn">Cancelado Por Admin</span></div>
-        </div>
+        {% endfor %}
       </div>
       
     </section>

@@ -463,3 +463,28 @@ def insertarUsuarioUnido (di,nombre_cancha):
         cerrarDB(connDB)
     return res
 
+def buscarReservasXId(id):
+    sQuery = """
+            SELECT  
+            reserva_cancha.fecha_reservada,
+            reserva_cancha.hora,
+            cancha.nombre,
+            cancha.ubicacion
+            FROM reserva_cancha
+            INNER JOIN cancha ON reserva_cancha.id_cancha = cancha.id
+            WHERE reserva_cancha.id_usuario = %s;
+            """
+    connDB = conectarDB()
+    res = ejecutarConsulta(connDB,sQuery,(id,))
+    cerrarDB(connDB)
+    print(res)
+    canchasReservadasXUsuario = []
+    for cancha in res:
+        reserva={
+            'Fecha':cancha[0],
+            'Hora':cancha[1],
+            'Nombre':cancha[2],
+            'Ubicacion':cancha[3]
+        }
+        canchasReservadasXUsuario.append(reserva)
+    return canchasReservadasXUsuario
