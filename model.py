@@ -415,37 +415,51 @@ def buscarCanchasReservadas():
     return canchasReservadas
 def idXIdCancha(id):
     sQuery="""
-            SELECT id FROM reserva_cancha WHERE id_cancha=%s
+            SELECT id FROM reserva_cancha WHERE 
+            id_cancha=%s
+            AND 
             """
     connDB=conectarDB()
     res=ejecutarConsulta(connDB,sQuery,(id,))
     cerrarDB(connDB)
     return res[0][0]
 
-def insertarUsuarioUnido (nombre_cancha):
+def obtenerIdReserva(id_cancha, fecha, hora):
+    sQuery = """
+        SELECT id
+        FROM reserva_cancha
+        WHERE id_cancha = %s
+        AND fecha_reservada = %s
+        AND hora = %s
+        LIMIT 1
+    """
+    connDB = conectarDB()
+    try:
+        res = ejecutarConsulta(connDB, sQuery, (id_cancha, fecha, hora))
+    finally:
+        cerrarDB(connDB)
+
+    if res:
+        return res[0][0]
+    return None
+
+def insertarUsuarioUnido (di,nombre_cancha):
     sQuery="""
             UPDATE reserva_cancha
             SET JugadoresUnidos = JugadoresUnidos + 1
-            WHERE id = %s
-            AND fecha_reservada = %s
-            AND hora = %s;
+            WHERE id = %s;
             """
     id_cancha=IdCanchaxNombre(nombre_cancha)
-    id_reserva = idXIdCancha(id_cancha)
-    fecha_hora = fechaHoraxIdCancha(id_reserva)
-    fecha, hora = fecha_hora[0]
-    print('Fecha: ',fecha,'Hora: ',hora, 'id',id_reserva)
+    id_reserva = obtenerIdReserva(id_cancha,di.get('fecha_reservada'),di.get('hora'))
     val = (
         id_reserva,
-        fecha,
-        hora
     )
+    print(id_reserva)
 
     connDB=conectarDB()
     try:
         res = ejecutar(connDB, sQuery, val)
     finally:
         cerrarDB(connDB)
-    print(res)
     return res
 

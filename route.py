@@ -197,18 +197,21 @@ def route(app):
     @app.route('/unirse', methods=['POST','GET'])
     def unirse():
         if haySesion():
+            session.pop('canchas_unidas', None)
+
             if request.method == 'GET':
                 canchasReservadas = buscarCanchasReservadas()
                 return render_template('unirse.html', canchasReservadas=canchasReservadas)
             diRequestUnirse = {}           
             getRequet(diRequestUnirse)   
             nombre_cancha = diRequestUnirse.get('NombreCancha')
-            insertarUsuarioUnido(nombre_cancha)
-            if 'canchas_unidas' not in session:
-                session['canchas_unidas'] = []
-            temp_list = session['canchas_unidas']
-            temp_list.append(nombre_cancha)
-            session['canchas_unidas'] = temp_list
+            insertarUsuarioUnido(diRequestUnirse,nombre_cancha)
+            id_reserva= int(diRequestUnirse.get('id_reserva'))
+            print(diRequestUnirse)
+            if id_reserva not in session['reservas_unidas']:
+                session['reservas_unidas'].append(id_reserva)
+            session.modified = True
+            print(session.get('reservas_unidas'))            
             return redirect('/unirse')
         return redirect('/login')
         

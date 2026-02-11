@@ -40,11 +40,14 @@
                         {{canchas.Fecha_Reservada}} 
                         ---
                         {{canchas.Hora}}
+                        <input type="hidden" name="fecha_reservada" value="{{ canchas.Fecha_Reservada }}">
+                        <input type="hidden" name="hora" value="{{ canchas.Hora }}">
+                        <input type="hidden" name="id_reserva" value="{{ canchas.id_cancha_reservada }}">
                     </td>
                     <td class="Estado"> {{canchas.Privacidad}} </td>
                     <form method="post" action="/unirse">
-                        <td> 
-                            {% if canchas.Nombre_Cancha in session.get('canchas_unidas', []) %}
+                        <td>
+                            {% if canchas.id_cancha_reservada in session.get('reservas_unidas', []) %}
                                 <button type="button" class="btn-unirse" disabled style="background-color: grey;">
                                     Ya estás unido
                                 </button>
