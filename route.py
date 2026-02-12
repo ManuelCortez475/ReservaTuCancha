@@ -126,18 +126,20 @@ def route(app):
             return render_template('misreservas.html', canchasreservadas = reservas)
         return redirect('/login')
     
-    @app.route('/pagina_pago', methods = ['POST', 'GET']) # 
+
+    @app.route('/pagina_pago', methods=['POST', 'GET']) 
     def formPaginaPago():
         if haySesion():
-            diRequestPago={}           
-            getRequet(diRequestPago)   
-            upload_file(diRequestPago)
+            if request.method == 'POST':
+                diRequestPago = {}           
+                getRequet(diRequestPago)   
+                upload_file(diRequestPago)
+                return redirect('/misreservas') 
             reserva = session.get('cancha_reservada')
             if not reserva:
                 return redirect('/reservar')
             return render_template('pagina_pago.html', reserva=reserva)
         return redirect('/login')
-    
 
     @app.route('/publicaciones')
     def publicaciones():
