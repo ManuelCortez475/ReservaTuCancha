@@ -59,3 +59,25 @@ a{
 p{
     color: white;
 }
+
+@media screen and (max-width: 768px) {
+    .navbar_footer {
+        padding: 10px 5px; 
+        height: auto;      
+    }
+
+    .navbutton_footer {
+        gap: 15px;         
+        flex-wrap: wrap;   
+    }
+
+    .liNav_footer {
+        font-size: 14px;   
+    }
+
+    .buttonNav_footer {
+        padding: 8px 15px; 
+        font-size: 12px;
+        margin-left: 5px;
+    }
+}

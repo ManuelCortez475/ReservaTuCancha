@@ -46,3 +46,24 @@ h1{margin:0 0 16px; text-align:center}
 .ok{color:var(--ok); background:#eef8f3}
 .warn{color:var(--warn); background:#fdecec}
 .neu{color:var(--neu); background:#f3f3f3}
+
+
+@media screen and (max-width: 480px) {
+  .wrap {
+    margin: 16px auto; 
+    padding: 10px;
+  }
+
+  .col {
+    max-width: 100%; 
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem; 
+  }
+
+  .badge {
+    font-size: 0.8rem; 
+  }
+}
