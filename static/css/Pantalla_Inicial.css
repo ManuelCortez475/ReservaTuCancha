@@ -1,3 +1,6 @@
+main {
+    flex: 1;
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -6,7 +9,9 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     color: #f0f0f0; 
 }
 
@@ -94,26 +99,30 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+
+    .hero {
+        margin: 50px 15px 30px;
+    }
+
     .hero h1 {
-        font-size: 2.4rem;
-        width: 90%;
+        font-size: 2rem;
     }
+
     .vs-section {
-        flex-direction: row; 
-        justify-content: center;
-        gap: 20px;
+        flex-direction: column;   /* 👈 ahora se apilan */
+        gap: 25px;
+        margin: 40px 20px;
     }
+
     .card {
-        width: 45%;
-        padding: 25px 15px;
-        margin-bottom: 20px;
-    }
-    .vs-box {
         width: 100%;
-        order: 3;
-        margin: 10px 0;
-        padding: 18px 25px;
-        font-size: 1.6rem;
+        max-width: 320px;
+        padding: 30px 20px;
+    }
+
+    .btn {
+        width: 70%;
+        text-align: center;
+        display: inline-block;
     }
 }
-
