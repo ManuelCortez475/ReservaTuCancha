@@ -4,11 +4,11 @@ function cambioPrivacidad(event) {
 const target = event.target;
 if (target.classList.contains('tipo-reserva')) {
     const fila = target.closest('tr');
-    const claveBox = fila.querySelector('.clave'); 
+    const clave = fila.querySelector('.clave'); 
     if (target.value === 'Privada') {
-        claveBox.style.display = 'inline-block';
+        clave.style.display = 'inline-block';
     } else {
-        claveBox.style.display = 'none';
+        clave.style.display = 'none';
     }
 }
 }
@@ -16,10 +16,10 @@ if (target.classList.contains('tipo-reserva')) {
 function manejarReserva(event) {
 const target = event.target;
 const boton = target.closest('button');
-if (!boton || boton.classList.contains('btnConfirmarClave')) return;
+if (!boton || boton.classList.contains('btnConfirmarClave')) {
+    return};
 const fila = target.closest('tr');
 const nombre = fila.querySelector('.NombreCancha').innerText.trim();
-const precio = fila.querySelector('.PrecioCancha').innerText.trim();
 const fechaInput = fila.querySelector('.fechaInput');
 const horaSelect = fila.querySelector('.horaSelect');
 const privacidadSelect = fila.querySelector('.tipo-reserva');

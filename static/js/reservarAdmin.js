@@ -94,7 +94,6 @@ function verificarCamposCompletos(e) {
     
     const boton = e.target;
     const fila = boton.closest('tr');
-    const inputsTexto = fila.querySelectorAll('input[type="text"]');
     const nombre = fila.querySelector('input[type="text"]').value.trim();
     const ubicacion = fila.querySelector('input[placeholder="Location"]').value.trim();
     const cantJug = fila.querySelector('input[type="number"]').value.trim();

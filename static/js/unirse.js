@@ -18,8 +18,8 @@ function agregarJugador(event) {
         }
     }
     
-    const cantidadElement = fila.querySelector('.cantJugadores');
-    const [cantidad_inicial, maximo] = cantidadElement.innerText.split('/');
+    const cantidadJug = fila.querySelector('.cantJugadores');
+    const [cantidad_inicial, maximo] = cantidadJug.innerText.split('/');
     const cantidad = parseInt(cantidad_inicial);
     const max = parseInt(maximo);
 
@@ -33,14 +33,10 @@ function agregarJugador(event) {
 
 function bajarJugador(event) {
     const boton = event.target;
-    const fila = boton.closest('tr');
-    const privacidad = fila.querySelector('.Estado').innerText.trim();
-    const claveReal = boton.getAttribute('data-pass'); 
+    const fila = boton.closest('tr'); 
 
     const cantidadElement = fila.querySelector('.cantJugadores');
     const [cantidad_inicial, maximo] = cantidadElement.innerText.split('/');
-    const cantidad = parseInt(cantidad_inicial);
-    const max = parseInt(maximo);
 
 }
 
