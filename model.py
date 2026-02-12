@@ -9,7 +9,7 @@ def altaUsuario(mail,contraseña,categoria):
     """
     val=(mail,contraseña,categoria)
     connDB = conectarDB()
-    res = ejecutar(connDB,sQuery, val) #la respuesta de un insert son las filas afectadas (un entero)
+    res = ejecutar(connDB,sQuery, val) 
     cerrarDB(connDB)
     return res
 
@@ -77,7 +77,6 @@ def updateInfoPerfil(di,id_usuario):
     imagenPerfil = di.get('ImagenPerfil')
     if not imagenPerfil:
         imagenPerfil = perfilActual.get('ImagenPerfil')
-
 
     val=(di.get('Nombre') or perfilActual.get('Nombre'),
          di.get('Apellido') or perfilActual.get('Apellido'),
