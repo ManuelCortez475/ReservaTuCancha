@@ -51,4 +51,4 @@ function validarErrores(event) {
   }
 }
 
-form.addEventListener("click", validarErrores);
+form.addEventListener("submit", validarErrores);
