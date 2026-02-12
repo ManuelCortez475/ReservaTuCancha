@@ -31,19 +31,8 @@ function agregarJugador(event) {
     
 }
 
-function bajarJugador(event) {
-    const boton = event.target;
-    const fila = boton.closest('tr'); 
-
-    const cantidadElement = fila.querySelector('.cantJugadores');
-    const [cantidad_inicial, maximo] = cantidadElement.innerText.split('/');
-
-}
 
 for (const button of btnUnirse) {
     button.addEventListener('click', agregarJugador);
 }
 
-for (const button of btncancelar) {
-    button.addEventListener('click', bajarJugador);
-}
