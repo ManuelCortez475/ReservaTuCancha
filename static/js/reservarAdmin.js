@@ -67,7 +67,7 @@ function crearFilaNueva() {
             </div>
         </td>
         <td>
-            <label><input type="number" name="Precio${rowCount}"></label><br>
+            <label><input type="number" placeholder='Precio' name="Precio${rowCount}"></label><br>
         </td>
         <td>
             <button type="submit" id="btnPublicar${rowCount}" name='btnPublicar${rowCount}' class="btnPublicar1">Publicar</button>
