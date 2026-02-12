@@ -1,7 +1,10 @@
 const imagen = document.getElementById("avatarInput");
 const preview = document.getElementById("avatarPreview");
 
-imagen.addEventListener("change", function () {
+function mostrarPreview(e){
+    preview.src = e.target.result;
+}
+function Imagen (e) {
     const file = this.files[0];
 
     if (!file) return;
@@ -14,9 +17,8 @@ imagen.addEventListener("change", function () {
 
     const reader = new FileReader();
 
-    reader.onload = function (e) {
-        preview.src = e.target.result;
-    };
+    reader.onload = mostrarPreview;
 
     reader.readAsDataURL(file);
-});
+}
+imagen.addEventListener("change", Imagen )
