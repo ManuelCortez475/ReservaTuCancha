@@ -15,42 +15,56 @@ function crearFilaNueva() {
         <td><input name='UbicacionCancha${rowCount}' type="text" id="ubicacion${rowCount}" placeholder="Location"></td>
         <td><input name='CantidadJug${rowCount}' type="number" id="cantJug${rowCount}" placeholder="N°"></td>
         <td>
-            <label>Fecha inicial:</label>
-            <input type="date" name="fecha_desde${rowCount}">
+            <div class="grupo-fechas">
+                <div class="fila">
+                    <label>Desde</label>
+                    <input type="date" name="fecha_desde${rowCount}">
+                </div>
 
-            <label>Fecha final:</label>
-            <input type="date" name="fecha_hasta${rowCount}">
-            <label for="start${rowCount}">Horario inicial:</label>
-            <select id="start${rowCount}" name="Inicio${rowCount}" required>
-                <option disabled selected>Seleccionar...</option>
-                <option value="9:00">9:00</option>
-                <option value="10:30">10:30</option>
-                <option value="12:00">12:00</option>
-                <option value="13:30">13:30</option>
-                <option value="15:00">15:00</option>
-                <option value="16:30">16:30</option>
-                <option value="18:00">18:00</option>
-                <option value="19:30">19:30</option>
-                <option value="21:00">21:00</option>
-            </select>
-            <label for="end${rowCount}">Horario final:</label>
-            <select id="end${rowCount}" name="Fin${rowCount}" required>
-                <option disabled selected>Seleccionar...</option>
-                <option value="9:00">9:00 AM</option>
-                <option value="10:30">10:30</option>
-                <option value="12:00">12:00</option>
-                <option value="13:30">13:30</option>
-                <option value="15:00">15:00</option>
-                <option value="16:30">16:30</option>
-                <option value="18:00">18:00</option>
-                <option value="19:30">19:30</option>
-                <option value="21:00">21:00</option>
-            </select>
+                <div class="fila">
+                    <label>Hasta</label>
+                    <input type="date" name="fecha_hasta${rowCount}">
+                </div>
+
+                <div class="fila">
+                    <label>Inicio</label>
+                    <select id="start${rowCount}" name="Inicio${rowCount}" required>
+                        <option disabled selected>Seleccionar...</option>
+                        <option value="9:00">9:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:30">13:30</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:30">16:30</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:30">19:30</option>
+                        <option value="21:00">21:00</option>
+                    </select>
+                </div>
+
+                <div class="fila">
+                    <label>Fin</label>
+                    <select id="end${rowCount}" name="Fin${rowCount}" required>
+                        <option disabled selected>Seleccionar...</option>
+                        <option value="9:00">9:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:30">13:30</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:30">16:30</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:30">19:30</option>
+                        <option value="21:00">21:00</option>
+                    </select>
+                </div>
+            </div>
         </td>
-        <td class="estado">
-            <label><input class="estado" type="radio" name="Estado${rowCount}" value="reservada"> reservada</label><br>
-            <label><input class="estado" type="radio" name="Estado${rowCount}" value="habilitada"> habilitada</label><br>
-            <label><input class="estado" type="radio" name="Estado${rowCount}" value="inhabilitada"> inhabilitada</label>
+        <td>
+            <div class="estado-grupo">
+                <label><input class="estado" type="radio" name="Estado${rowCount}" value="reservada"> reservada</label><br>
+                <label><input class="estado" type="radio" name="Estado${rowCount}" value="habilitada"> habilitada</label><br>
+                <label><input class="estado" type="radio" name="Estado${rowCount}" value="inhabilitada"> inhabilitada</label>
+            </div>
         </td>
         <td>
             <label><input type="number" name="Precio${rowCount}"></label><br>

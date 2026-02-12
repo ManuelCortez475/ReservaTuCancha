@@ -6,6 +6,36 @@ body {
     color: #333;
     padding-bottom: 80px;
 }
+.grupo-fechas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.grupo-fechas .fila {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.grupo-fechas input,
+.grupo-fechas select {
+    width: auto;
+}
+
+.estado-grupo {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+}
+
+.estado-grupo label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 
 .Titulo {
     text-align: center;
@@ -147,7 +177,7 @@ a{
     .Table-Body td {
         text-align: left;
         padding: 8px 10px;
-        display: flex;
+        display: block;
         justify-content: space-between;
         font-size: 0.9rem;
         border: none;
@@ -163,5 +193,13 @@ a{
         width: 100%;
         text-align: center;
         margin-top: 10px;
+    }
+    .grupo-fechas {
+        flex-direction: column;
+    }
+
+    .estado-grupo {
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 }
