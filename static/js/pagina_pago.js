@@ -45,7 +45,7 @@ function corregirCVU(e){
   if (validarCamposVacios(e) && soloNumerosCVU(e) && validarLongitudCVU(e)){
     form.submit()
   }
- 
+  
 
 }
 

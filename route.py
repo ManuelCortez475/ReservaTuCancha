@@ -213,9 +213,9 @@ def route(app):
             diRequestUnirse = {}           
             getRequet(diRequestUnirse)   
             nombre_cancha = diRequestUnirse.get('NombreCancha')
-            id_reserva_raw = diRequestUnirse.get('id_reserva')
-            if id_reserva_raw:
-                id_reserva = int(id_reserva_raw)
+            id_reserva = diRequestUnirse.get('id_reserva')
+            if id_reserva:
+                id_reserva = int(id_reserva)
                 if id_reserva in session['reservas_unidas']:
                     bajarUsuarioUnido(diRequestUnirse, nombre_cancha)
                     lista = session['reservas_unidas']

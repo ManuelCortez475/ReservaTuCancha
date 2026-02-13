@@ -107,6 +107,7 @@ def validarUsuario(dic,email, password):
     connDB = conectarDB()
     try:
         consulta = ejecutarConsulta(connDB, sQuery, (email, password))
+        print(consulta)
         connDB.commit()
     finally:
         cerrarDB(connDB)
@@ -176,7 +177,7 @@ def obtenerPerfilXEmailPass(result,email,Pass):
     '''
     connDB = conectarDB()
     res=False
-    sSql="""SELECT id, nombre,apellido,telefono,fecha_nacimiento,ciudad,descripcion,imagen, partidosJugados, goles, partidosGanados 
+    sSql="""SELECT * 
     FROM  perfil WHERE  id_usuario = %s;"""
     id_usuario = consultarIdXMailPass(email,Pass)
     val=(id_usuario,)
