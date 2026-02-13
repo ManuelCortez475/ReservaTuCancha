@@ -7,7 +7,9 @@ function mostrarPreview(e){
 function Imagen (e) {
     const file = this.files[0];
 
-    if (!file) return;
+    if (!file) {
+        return;
+    }
 
     if (!file.type.startsWith("image/")) {
         alert("Solo se permiten imágenes");
