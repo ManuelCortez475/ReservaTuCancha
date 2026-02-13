@@ -17,7 +17,8 @@ function manejarReserva(event) {
 const target = event.target;
 const boton = target.closest('button');
 if (!boton || boton.classList.contains('btnConfirmarClave')) {
-    return};
+    return
+};
 const fila = target.closest('tr');
 const nombre = fila.querySelector('.NombreCancha').innerText.trim();
 const fechaInput = fila.querySelector('.fechaInput');
