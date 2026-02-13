@@ -76,7 +76,7 @@ function crearFilaNueva() {
     `;
     const filaAgregar = btnAgregar.closest('tr');
     tabla.insertBefore(nuevaFila, filaAgregar);
-    const btnPublicar= nuevaFila.querySelector('.btnPublicar1')
+    const btnPublicar= nuevaFila.querySelector('.btnPublicar1');
     btnPublicar.addEventListener('click', verificarCamposCompletos);
 }
 
